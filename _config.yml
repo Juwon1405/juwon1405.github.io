@@ -20,7 +20,7 @@ author: Juwon1405
 ###############################################
 
 navbar-links:
-  About Me: "Bang Juwon(方ジュウォン)"
+  DS-KaGPT: "http://pf.kakao.com/_VHnUxj"
   Resources:
     - our Github: "http://www.doubles1405.com"
     - our Wiki: "https://doubles1405.atlassian.net/wiki/spaces/DOUB/overview"
@@ -35,8 +35,8 @@ navbar-links:
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
 #avatar: "/assets/img/avatar-icon.png"
-#avatar: "/assets/img/bnag_juwon_profile.jpg"
-avatar: "/assets/img/Juwon1405_logo_ms.jpeg"
+avatar: "/assets/img/bnag_juwon_profile.jpg"
+#avatar: "/assets/img/Juwon1405_logo_ms.jpeg"
 
 
 
@@ -56,14 +56,14 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "juwon1405.jp@gmail.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  #rss: true  # remove this line if you don't want to show an RSS link at the bottom
   facebook: juwon1405
   github: juwon1405
   twitter: juwon1405_jp
-  patreon: patreon655
+  #patreon: patreon655
   youtube: c/doubles1405
-  medium: juwon1405.jp
-  reddit: Fun_South1735
+  #medium: juwon1405.jp
+  #reddit: Fun_South1735
   linkedin: juwon-bang-194b53252
 #  Israel: yourname
 #  stackoverflow: "3943160/daattali"
@@ -81,11 +81,11 @@ social-network-links:
 #  google-scholar: your google scholar
 #  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
-  hackerrank: juwon1405_jp
+#  hackerrank: juwon1405_jp
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+# rss-description: This website is a virtual proof that I'm awesome
 
 ###########################
 # --- General options --- #
