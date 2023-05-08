@@ -1,3 +1,13 @@
+---
+layout: post
+title: Framework of Incident Investigation 
+subtitle: by each institution of Cyber Incident Investigation Framework
+gh-repo: daattali/beautiful-jekyll
+gh-badge: [star, fork, follow]
+tags: [Incident Investigation ]
+comments: true
+---
+
 # Cyber-Incident-Investigation-Framework
 This is a collection related to the Cyber ​​Incident Investigation Framework.
 
