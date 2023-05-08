@@ -8,23 +8,23 @@
 ############################
 # --- Required options --- #
 ############################
+url: "juwon1405.github.io"
+baseurl: ""
 
 # Name of website
-title: My Website
+title: Juwon1405 Gitpage
 
 # Your name to show in the footer
-author: Some Person
+author: Juwon1405
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  About Me: "Bang Juwon(方ジュウォン)"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+    - Join us, Slack: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
 # --- Logo --- #
@@ -49,13 +49,15 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
+  email: "juwon1405.jp@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: c/daattali
+  facebook: https://www.facebook.com/juwon1405
+  github: https://github.com/juwon1405
+  twitter: https://twitter.com/Juwon1405_JP
+  linkedin: https://www.linkedin.com/in/juwon-bang-194b53252/
+  youtube: https://www.youtube.com/c/doubles1405
+  hackerrank: @juwon1405_jp
+#  telephone: +14159998888
 #  medium: yourname
 #  reddit: yourname
 #  linkedin: daattali
@@ -64,7 +66,6 @@ social-network-links:
 #  snapchat: deanat78
 #  instagram: deanat78
 #  spotify: yourname
-#  telephone: +14159998888
 #  steam: deanat78
 #  twitch: yourname
 #  yelp: yourname
@@ -75,7 +76,7 @@ social-network-links:
 #  google-scholar: your google scholar
 #  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
-#  hackerrank: yourname
+
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
@@ -94,7 +95,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "juwon1405.github.io"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
