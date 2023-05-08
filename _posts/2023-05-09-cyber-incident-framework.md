@@ -8,7 +8,8 @@ tags: [Incident Investigation Framework]
 comments: true
 ---
 
-# Cyber-Incident-Investigation-Framework
+> **Caution:** This material is a collection for educational purposes and must comply with the copyright of the corresponding institution. Using the material published by the institution for other purposes may result in illegal copyright infringement and may cause legal problems, so caution is advised.
+
 | No. | Institution name | Document title | Publication year |
 | --- | --- | --- | --- |
 | 1 | KISA | 침해사고 분석절차 안내서 | 2010 |
