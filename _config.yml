@@ -51,12 +51,12 @@ round-avatar: true
 social-network-links:
   email: "juwon1405.jp@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: https://www.facebook.com/juwon1405
-  github: https://github.com/juwon1405
-  twitter: https://twitter.com/Juwon1405_JP
-  linkedin: https://www.linkedin.com/in/juwon-bang-194b53252/
+  facebook: juwon1405
+  github: juwon1405
+  twitter: Juwon1405_JP
+  linkedin: juwon-bang-194b53252
   youtube: c/doubles1405
-#  hackerrank: juwon1405_jp
+  hackerrank: juwon1405_jp
 #  telephone: +14159998888
 #  medium: yourname
 #  reddit: yourname
