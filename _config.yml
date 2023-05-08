@@ -22,9 +22,11 @@ author: Juwon1405
 navbar-links:
   About Me: "Bang Juwon(方ジュウォン)"
   Resources:
-    - Beautiful Jekyll: "http://www.doubles1405.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+    - our Github: "http://www.doubles1405.com"
+    - our Wiki: "https://doubles1405.atlassian.net/wiki/spaces/DOUB/overview"
+    - our Study Cafe: "http://www.doubles1405.com"
+    - our Youtube: "https://www.youtube.com/c/doubles1405"
+  Join us on Slack: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
 # --- Logo --- #
@@ -32,7 +34,11 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+#avatar: "/assets/img/avatar-icon.png"
+#avatar: "bnag_juwon_profile.jpg"
+avatar: "Juwon1405_logo_ms.jpeg"
+
+
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -49,17 +55,17 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
+  email: "juwon1405.jp@gmail.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: c/daattali
-#  medium: yourname
-#  reddit: yourname
-#  linkedin: daattali
-#  xing: yourname
+  facebook: juwon1405
+  github: juwon1405
+  twitter: juwon1405_jp
+  patreon: patreon655
+  youtube: c/doubles1405
+  medium: juwon1405.jp
+  reddit: Fun_South1735
+  linkedin: juwon-bang-194b53252
+#  Israel: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
 #  instagram: deanat78
@@ -75,7 +81,7 @@ social-network-links:
 #  google-scholar: your google scholar
 #  discord: invite/invite_code or users/userid 
 #  kaggle: yourname
-#  hackerrank: yourname
+  hackerrank: juwon1405_jp
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
@@ -94,7 +100,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "juwon1405.com"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
