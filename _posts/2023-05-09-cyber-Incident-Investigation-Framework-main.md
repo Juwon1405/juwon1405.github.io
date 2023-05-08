@@ -65,12 +65,24 @@ This is a collection related to the Cyber ​​Incident Investigation Framework
 | 48 | SANS | Enhancing incident response through forensic, memory analysis and malware sandboxing techniques | 2014 |
 | 49 | SANS | Incident Handling Annual Testing and Training | 2014 |
 | 50 | SANS | Incident Response in Amazon EC2 First Responders Guide to Security Incidents in the Cloud | 2016 |
-| 51 | SANS | Incident Handling Preparation Learning Normal with the Kansa PowerShell Incident Response Framework | 2016 |
-| 52 | SANS | Incident Response in a Security Operation Center | 2020 |
-| 53 | Kaspersky | Incident Response Guide | 2017 |
-| 54 | Microsoft | Incident Response Reference Guide | 2014 |
-| 55 | CREST | Cyber Security Incident Response Guide | 2014 |
-| 56 | Cyber Security Coalition | Cyber Security Incident Management Guide | 2015 |
-| 57 | IIROC | Cyber Incident Management Planning Guide | 2015 |
-| 58 | AWS | AWS Security Incident Response Guide | 2020 |
-| 59 | APPA | Public Power Cyber Incident Response Playbook | 2019 |
+
+
+
+
+## Boxes
+You can add notification, warning and error boxes like this:
+
+### Notification
+
+{: .box-note}
+**Note:** This is a notification box.
+
+### Warning
+
+{: .box-warning}
+**Warning:** This is a warning box.
+
+### Error
+
+{: .box-error}
+**Error:** This is an error box.
