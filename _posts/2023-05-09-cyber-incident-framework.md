@@ -2,17 +2,13 @@
 layout: post
 title: Framework of Incident Investigation 
 subtitle: by each institution of Cyber Incident Investigation Framework
-gh-repo: daattali/beautiful-jekyll
+gh-repo: Juwon1405/awesome-Cyber-Incident-Investigation-Framework
 gh-badge: [star, fork, follow]
-tags: [Incident Investigation ]
+tags: [Incident Investigation Framework]
 comments: true
 ---
 
 # Cyber-Incident-Investigation-Framework
-This is a collection related to the Cyber ​​Incident Investigation Framework.
-
-> **Caution:** This material is a collection for educational purposes and must comply with the copyright of the corresponding institution. Using the material published by the institution for other purposes may result in illegal copyright infringement and may cause legal problems, so caution is advised.
-
 | No. | Institution name | Document title | Publication year |
 | --- | --- | --- | --- |
 | 1 | KISA | 침해사고 분석절차 안내서 | 2010 |
@@ -66,23 +62,4 @@ This is a collection related to the Cyber ​​Incident Investigation Framework
 | 49 | SANS | Incident Handling Annual Testing and Training | 2014 |
 | 50 | SANS | Incident Response in Amazon EC2 First Responders Guide to Security Incidents in the Cloud | 2016 |
 
-
-
-
-## Boxes
-You can add notification, warning and error boxes like this:
-
-### Notification
-
-{: .box-note}
-**Note:** This is a notification box.
-
-### Warning
-
-{: .box-warning}
-**Warning:** This is a warning box.
-
-### Error
-
-{: .box-error}
-**Error:** This is an error box.
+[Juwon1405/awesome-Cyber-Incident-Investigation-Framework](https://github.com/Juwon1405/awesome-Cyber-Incident-Investigation-Framework)
