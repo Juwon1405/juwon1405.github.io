@@ -10,19 +10,19 @@
 ############################
 
 # Name of website
-title: My Website
+title: Juwon1405 Home
 
 # Your name to show in the footer
-author: Some Person
+author: Juwon1405
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
+  About Me: "Bang Juwon(方ジュウォン)"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
+    - Beautiful Jekyll: "http://www.doubles1405.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
   Author's home: "https://deanattali.com"
 
