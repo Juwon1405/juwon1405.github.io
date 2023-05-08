@@ -22,10 +22,10 @@ author: Juwon1405
 navbar-links:
   DS-KaGPT: "http://pf.kakao.com/_VHnUxj"
   Resources:
-    - our Github: "http://www.doubles1405.com"
-    - our Wiki: "https://doubles1405.atlassian.net/wiki/spaces/DOUB/overview"
-    - our Study Cafe: "http://www.doubles1405.com"
-    - our Youtube: "https://www.youtube.com/c/doubles1405"
+    - published book: "http://www.yes24.com/Product/Goods/83538369"
+    - Study Wiki: "https://doubles1405.atlassian.net/wiki/spaces/DOUB/overview"
+    - Study Cafe: "http://www.doubles1405.com"
+    - Our Github: "http://www.doubles1405.com"
   Join us on Slack: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
@@ -207,7 +207,7 @@ footer-hover-col: "#0085A1"
 #utterances:
 #  repository: # GitHub username/repository eg. "daattali/beautiful-jekyll"
 #  issue-term: title   # Mapping between blog posts and GitHub issues
-#  theme: github-light # Utterances theme
+  theme: github-dark # Utterances theme
 #  label: blog-comments # Label that will be assigned to GitHub Issues created by Utterances
 
 # To use Staticman comments, uncomment the following section. You may leave the reCaptcha
