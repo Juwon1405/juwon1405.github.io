@@ -22,9 +22,12 @@ author: Juwon1405
 navbar-links:
   About Me: "Bang Juwon(方ジュウォン)"
   Resources:
-    - DS Team Wiki: "블루팀.com"
-    - DS Team Github: "https://github.com/DoubleS1405"
-    - Join us, Team Slack: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
+    - title: DS Team Wiki
+      url: "블루팀.com"
+    - title: DS Team Github
+      url: "https://github.com/DoubleS1405"
+    - title: Join us, Team Slack
+      url: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
 # --- Logo --- #
