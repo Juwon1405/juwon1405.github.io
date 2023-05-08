@@ -9,6 +9,9 @@
 # --- Required options --- #
 ############################
 
+url: https://juwon1405.github.io
+baseurl: ""
+
 # Name of website
 title: Juwon1405 Gitpage
 
@@ -22,11 +25,11 @@ author: Juwon1405
 navbar-links:
   About Me: "Bang Juwon(方ジュウォン)"
   Resources:
-    - title: DS Team Wiki
+    - title: "DS Team Wiki"
       url: "블루팀.com"
-    - title: DS Team Github
+    - title: "DS Team Github"
       url: "https://github.com/DoubleS1405"
-    - title: Join us, Team Slack
+    - title: "Join us, Team Slack"
       url: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
