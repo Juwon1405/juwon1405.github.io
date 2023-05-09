@@ -10,10 +10,10 @@
 ############################
 
 # Name of website
-title: juwon1405.github.io
+title: juwon1405.com
 
 # Your name to show in the footer
-# brother: luxpal21@gmail.com
+brother: luxpal21(Gun)
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -22,10 +22,11 @@ title: juwon1405.github.io
 navbar-links:
   DS-KaGPT: "http://pf.kakao.com/_VHnUxj"
   Resources:
-    - published book: "http://www.yes24.com/Product/Goods/83538369"
+    - Published Book: "http://www.yes24.com/Product/Goods/83538369"
     - Study Wiki: "https://doubles1405.atlassian.net/wiki/spaces/DOUB/overview"
     - Study Cafe: "http://www.doubles1405.com"
-    - Our Github: "http://www.doubles1405.com"
+    - Study Github: "http://www.doubles1405.com"
+    - Study Youtube: "https://www.youtube.com/c/doubles1405"
   Join us on Slack: "https://join.slack.com/t/doubles1405/shared_invite/zt-1uh8wxkgn-odceL8OKMJviwSKgscuAvg"
 
 ################
@@ -55,16 +56,16 @@ round-avatar: true
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "juwon1405.jp@gmail.com"
-  #rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: juwon1405
+  email: "juwon1405@doubles1405.com"
+  rss: true  # remove this line if you don't want to show an RSS link at the bottom
   github: juwon1405
   twitter: juwon1405_jp
-  #patreon: patreon655
+  facebook: juwon1405
+  linkedin: juwon-bang-194b53252  
   youtube: c/doubles1405
-  #medium: juwon1405.jp
-  #reddit: Fun_South1735
-  linkedin: juwon-bang-194b53252
+# medium: juwon1405.jp
+# reddit: Fun_South1735
+#  patreon: patreon655
 #  Israel: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
