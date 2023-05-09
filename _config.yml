@@ -57,12 +57,13 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "juwon1405@doubles1405.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  github: juwon1405
+  #rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  
   twitter: juwon1405_jp
   facebook: juwon1405
   linkedin: juwon-bang-194b53252  
   youtube: c/doubles1405
+  github: juwon1405
 # medium: juwon1405.jp
 # reddit: Fun_South1735
 #  patreon: patreon655
