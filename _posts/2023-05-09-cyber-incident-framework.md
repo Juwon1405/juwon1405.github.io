@@ -44,7 +44,7 @@ comments: true
 | 30 | SANS | Baselines and Incident Handling | 2008 |
 | 31 | SANS | Breach Notification in Incident Handling | 2008 |
 | 32 | SANS | Incident Handling for SMEs (Small to Medium Enterprises) | 2008 |
-| 33 | SANS | Mining gold... A primer on incident handling and response | 2008 ||
+| 33 | SANS | Mining gold... A primer on incident handling and response | 2008 |
 | 34 | SANS | Expanding Response Deeper Analysis for Incident Handlers | 2008 |
 | 35 | SANS | Security Incident Handling in Small Organizations | 2008 |
 | 36 | SANS | A Guide to Encrypted Storage Incident Handling | 2009 |
