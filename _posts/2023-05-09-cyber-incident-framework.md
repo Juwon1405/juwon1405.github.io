@@ -63,4 +63,4 @@ comments: true
 | 49 | SANS | Incident Handling Annual Testing and Training | 2014 |
 | 50 | SANS | Incident Response in Amazon EC2 First Responders Guide to Security Incidents in the Cloud | 2016 |
 
-[Juwon1405/awesome-Cyber-Incident-Investigation-Framework](https://github.com/Juwon1405/awesome-Cyber-Incident-Investigation-Framework)
+[Juwon1405/GitNote/Repositories/awesome-Cyber-Incident-Investigation-Framework](https://github.com/Juwon1405/GitNote/tree/main/Repositories/Cyber-Incident-Investigation-Framework)
