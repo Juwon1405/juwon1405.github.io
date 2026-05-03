@@ -1,5 +1,963 @@
----
-layout: home
-title: 
-subtitle: 人生で苦労しているときは、人生の勉強をしているのだと思う。すべてが勉強なんです。
----
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>優心 · YuShin — Bang Juwon</title>
+<meta name="description" content="DFIR &amp; Detection Engineering. Building autonomous detection systems with MCP-based forensic agents. Architecture-first, not prompt-first." />
+<meta name="author" content="Bang Juwon (優心 / YuShin)" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#0a0a0a" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="優心 · YuShin — Bang Juwon" />
+<meta property="og:description" content="DFIR &amp; Detection Engineering — Tokyo. Autonomous detection systems, MCP-based forensic agents." />
+<meta property="og:url" content="https://juwon1405.github.io/" />
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/126803957?v=4" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='16' y='23' font-family='serif' font-size='22' font-weight='600' fill='%2300ff95' text-anchor='middle'>優</text></svg>" />
+
+<!-- Fonts: distinctive choices, no Inter/Roboto -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ───── tokens ───── */
+:root{
+  --bg:#0a0a0a;
+  --bg-2:#101010;
+  --bg-3:#161616;
+  --fg:#ece8e1;
+  --fg-1:#b8b3aa;
+  --fg-2:#6a6660;
+  --fg-3:#3a3833;
+  --line:#1c1a17;
+  --line-2:#2a2722;
+  --acc:#5cffa5;        /* phosphor green */
+  --acc-2:#ff5e3a;      /* burnt orange */
+  --acc-3:#a78bff;      /* used very sparingly */
+  --serif:'Instrument Serif', ui-serif, Georgia, serif;
+  --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --jp:'Noto Sans JP', var(--mono);
+  --maxw:1280px;
+  --pad:clamp(1.25rem, 3vw, 2.5rem);
+  --rad:2px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth }
+body{
+  margin:0;
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:14.5px;
+  line-height:1.6;
+  letter-spacing:-0.005em;
+  color:var(--fg);
+  background:var(--bg);
+  overflow-x:hidden;
+  font-feature-settings:"calt" 1, "ss01" 1;
+}
+::selection{ background:var(--acc); color:#000 }
+
+/* ───── ambient backdrop ───── */
+.bg-grid{
+  position:fixed; inset:0; z-index:-3; pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at top, #000 30%, transparent 80%);
+}
+.bg-glow{
+  position:fixed; inset:0; z-index:-2; pointer-events:none;
+  background:
+    radial-gradient(900px 500px at 8% -5%, rgba(92,255,165,.07), transparent 60%),
+    radial-gradient(700px 400px at 95% 15%, rgba(255,94,58,.05), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(167,139,255,.04), transparent 60%);
+}
+.bg-grain{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  opacity:.06; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .8 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.scanline{
+  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.35;
+  background:repeating-linear-gradient(to bottom, transparent 0 2px, rgba(255,255,255,.012) 2px 3px);
+}
+
+/* ───── container ───── */
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad) }
+
+/* ───── top status bar ───── */
+.statusbar{
+  position:sticky; top:0; z-index:50;
+  border-bottom:1px solid var(--line);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  background:rgba(10,10,10,.72);
+}
+.statusbar .row{
+  display:flex; align-items:center; gap:1rem;
+  padding:.6rem 0;
+  font-size:11.5px; color:var(--fg-2);
+  letter-spacing:.02em;
+}
+.statusbar .dot{
+  width:7px; height:7px; border-radius:50%;
+  background:var(--acc); box-shadow:0 0 12px var(--acc);
+  animation:pulse 2s ease-in-out infinite;
+  display:inline-block;
+}
+@keyframes pulse{
+  0%,100%{ opacity:1; transform:scale(1) }
+  50%{ opacity:.55; transform:scale(.85) }
+}
+.statusbar .sep{ color:var(--fg-3) }
+.statusbar .right{ margin-left:auto; display:flex; gap:1rem }
+.statusbar a{ color:var(--fg-1); text-decoration:none }
+.statusbar a:hover{ color:var(--acc) }
+@media (max-width:680px){
+  .statusbar .hide-sm{ display:none }
+}
+
+/* ───── headline ───── */
+.hero{
+  position:relative;
+  padding: clamp(3rem, 9vh, 7rem) 0 clamp(3rem, 8vh, 6rem);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,420px);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items:end;
+}
+@media (max-width:880px){
+  .hero-grid{ grid-template-columns:1fr; gap:2.5rem }
+}
+
+.eyebrow{
+  display:flex; align-items:center; gap:.7rem;
+  font-size:11.5px; color:var(--fg-2); letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:1.2rem;
+}
+.eyebrow .tag{
+  border:1px solid var(--line-2); padding:.18rem .55rem;
+  border-radius:1px; color:var(--fg-1);
+  background:linear-gradient(180deg, var(--bg-3), var(--bg-2));
+}
+.eyebrow .tag.live{ color:var(--acc); border-color:rgba(92,255,165,.25) }
+
+.kanji{
+  font-family:var(--jp);
+  font-weight:700;
+  font-size: clamp(7rem, 18vw, 15rem);
+  line-height:.85;
+  letter-spacing:-.04em;
+  margin:0;
+  color:var(--fg);
+  position:relative;
+  display:inline-block;
+}
+.kanji span{ display:inline-block; position:relative }
+.kanji .k1{ color:var(--fg) }
+.kanji .k2{
+  font-style:italic; font-family:var(--serif); font-weight:400;
+  color:var(--acc);
+  margin-left:.04em;
+}
+.kanji::after{
+  content:""; position:absolute; left:0; right:0; bottom:-.15em;
+  height:1px; background:linear-gradient(90deg, var(--acc) 0%, transparent 70%);
+  opacity:.6;
+}
+
+.name-line{
+  margin:1.4rem 0 0;
+  font-family:var(--mono);
+  color:var(--fg-1);
+  font-size:14px;
+  letter-spacing:.02em;
+}
+.name-line .slash{ color:var(--fg-3); margin:0 .55rem }
+.name-line strong{ color:var(--fg); font-weight:500 }
+
+.tagline{
+  margin:2rem 0 0; max-width:46ch;
+  font-family:var(--serif);
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height:1.18;
+  color:var(--fg);
+  font-weight:400;
+  letter-spacing:-.012em;
+}
+.tagline em{ color:var(--acc); font-style:italic }
+.tagline .strike{ color:var(--fg-2); text-decoration:line-through; text-decoration-thickness:1.5px }
+
+/* hero side: terminal card */
+.term{
+  font-family:var(--mono);
+  font-size:12.5px;
+  border:1px solid var(--line-2);
+  background:linear-gradient(180deg, rgba(22,22,22,.6), rgba(16,16,16,.6));
+  border-radius:var(--rad);
+  overflow:hidden;
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.02) inset;
+}
+.term-head{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.55rem .8rem;
+  border-bottom:1px solid var(--line);
+  background:var(--bg-3);
+  color:var(--fg-2); font-size:11px; letter-spacing:.04em;
+}
+.term-head .b{ width:9px; height:9px; border-radius:50%; background:var(--fg-3) }
+.term-head .b:nth-child(1){ background:#ff5e3a }
+.term-head .b:nth-child(2){ background:#ffc233 }
+.term-head .b:nth-child(3){ background:#5cffa5 }
+.term-head .title{ margin-left:auto; opacity:.7 }
+.term-body{ padding:1rem 1rem 1.1rem; }
+.term-body p{ margin:.18rem 0 }
+.term-body .prompt{ color:var(--acc) }
+.term-body .key{ color:var(--fg-2) }
+.term-body .val{ color:var(--fg) }
+.term-body .ok{ color:var(--acc) }
+.term-body .warn{ color:var(--acc-2) }
+.cursor{
+  display:inline-block; width:.55ch; height:1em; vertical-align:-.15em;
+  background:var(--acc); margin-left:.15ch;
+  animation: blink 1.05s steps(2) infinite;
+}
+@keyframes blink{ 50%{ opacity:0 } }
+
+/* ───── section primitives ───── */
+section{ padding: clamp(3rem, 8vh, 6rem) 0; border-bottom:1px solid var(--line) }
+.section-head{
+  display:flex; align-items:baseline; gap:1rem;
+  margin: 0 0 2.2rem;
+  font-size:12px; color:var(--fg-2); letter-spacing:.16em; text-transform:uppercase;
+}
+.section-head .num{ color:var(--fg-3); font-variant-numeric:tabular-nums }
+.section-head .line{ flex:1; height:1px; background:var(--line-2) }
+.section-head h2{
+  font-family:var(--mono); font-weight:500; font-size:12px;
+  margin:0; color:var(--fg-1); letter-spacing:.16em;
+}
+
+/* ───── about ───── */
+.about{
+  display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:3rem;
+}
+@media (max-width:880px){ .about{ grid-template-columns:1fr; gap:2rem } }
+.about p{
+  font-family:var(--serif);
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+  line-height:1.5;
+  color:var(--fg);
+  margin:0 0 1rem;
+  max-width:54ch;
+}
+.about p .acc{ color:var(--acc) }
+.about p .dim{ color:var(--fg-2) }
+.facts{ font-family:var(--mono); font-size:13px; color:var(--fg-1) }
+.fact{
+  display:grid; grid-template-columns:7.5rem 1fr; gap:1rem;
+  padding:.55rem 0; border-top:1px solid var(--line);
+}
+.fact:last-child{ border-bottom:1px solid var(--line) }
+.fact .k{ color:var(--fg-2); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; padding-top:2px }
+.fact .v{ color:var(--fg) }
+.fact .v a{ color:var(--fg); text-decoration:none; border-bottom:1px dashed var(--fg-3) }
+.fact .v a:hover{ color:var(--acc); border-color:var(--acc) }
+
+/* ───── featured ───── */
+.featured{
+  position:relative;
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items:start;
+}
+@media (max-width:980px){ .featured{ grid-template-columns:1fr } }
+.featured .meta{
+  font-size:11px; color:var(--fg-2); letter-spacing:.12em; text-transform:uppercase;
+  display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1.1rem;
+}
+.featured .meta .pill{
+  border:1px solid var(--line-2); padding:.18rem .55rem; border-radius:1px;
+  color:var(--fg-1); background:var(--bg-2);
+}
+.featured .meta .pill.acc{ color:var(--acc); border-color:rgba(92,255,165,.25) }
+.featured h3{
+  font-family:var(--serif); font-weight:400;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height:1.05;
+  margin: 0 0 .9rem;
+  letter-spacing:-.014em;
+}
+.featured h3 .slash{ color:var(--acc); font-style:italic }
+.featured .lede{
+  font-family:var(--serif); font-size:1.3rem; line-height:1.45;
+  color:var(--fg-1); margin:0 0 1.6rem; max-width:48ch;
+}
+.featured .ctas{ display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.5rem }
+.btn{
+  font-family:var(--mono); font-size:12px; letter-spacing:.05em;
+  text-transform:uppercase; text-decoration:none;
+  padding:.7rem 1.05rem; border-radius:1px;
+  border:1px solid var(--line-2);
+  color:var(--fg); background:var(--bg-2);
+  display:inline-flex; align-items:center; gap:.55rem;
+  transition:transform .25s ease, color .2s, border-color .2s, background .2s;
+}
+.btn:hover{ color:var(--acc); border-color:var(--acc); transform:translateY(-1px) }
+.btn.solid{ background:var(--acc); color:#000; border-color:var(--acc) }
+.btn.solid:hover{ background:transparent; color:var(--acc) }
+.btn .arrow{ transition:transform .2s }
+.btn:hover .arrow{ transform:translateX(3px) }
+
+.specs{
+  font-family:var(--mono); font-size:12.5px; color:var(--fg-1);
+  border:1px solid var(--line-2); border-radius:var(--rad);
+  background:linear-gradient(180deg, rgba(22,22,22,.4), rgba(16,16,16,.4));
+}
+.specs .row{
+  display:grid; grid-template-columns: 1fr auto;
+  padding:.7rem 1rem; border-bottom:1px dashed var(--line);
+  align-items:center;
+}
+.specs .row:last-child{ border-bottom:0 }
+.specs .row .k{ color:var(--fg-2); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase }
+.specs .row .v{ color:var(--fg); font-variant-numeric:tabular-nums }
+.specs .row .v.acc{ color:var(--acc) }
+.specs .progress{
+  height:3px; background:var(--line); position:relative; overflow:hidden;
+}
+.specs .progress::after{
+  content:""; position:absolute; left:0; top:0; bottom:0;
+  width:var(--pct, 0%);
+  background:linear-gradient(90deg, var(--acc), var(--acc-3));
+  transition:width 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.kicker{
+  font-family:var(--mono); font-size:11px; color:var(--fg-2);
+  letter-spacing:.16em; text-transform:uppercase; margin:1.4rem 0 .55rem;
+}
+
+/* ───── work list ───── */
+.work-list{ font-family:var(--mono) }
+.work-row{
+  display:grid;
+  grid-template-columns: 4.5rem minmax(0,16rem) minmax(0,1fr) 6rem;
+  gap:1.2rem;
+  padding: 1.15rem 0;
+  border-top:1px solid var(--line);
+  align-items:baseline;
+  position:relative;
+  transition: padding-left .35s cubic-bezier(.2,.8,.2,1);
+}
+.work-row:last-child{ border-bottom:1px solid var(--line) }
+.work-row::before{
+  content:""; position:absolute; left:-.75rem; top:50%; width:.35rem; height:.35rem;
+  background:var(--acc); transform:translateY(-50%) scale(0); transition:transform .25s;
+  border-radius:1px;
+}
+.work-row:hover{ padding-left:1.1rem; background:linear-gradient(90deg, rgba(92,255,165,.025), transparent 50%) }
+.work-row:hover::before{ transform:translateY(-50%) scale(1) }
+.work-row .yr{ color:var(--fg-3); font-size:12px; font-variant-numeric:tabular-nums }
+.work-row .nm{
+  color:var(--fg); font-size:14.5px; font-weight:500; letter-spacing:-.01em;
+  text-decoration:none; display:inline-block;
+}
+.work-row:hover .nm{ color:var(--acc) }
+.work-row .desc{ color:var(--fg-1); font-size:13px; line-height:1.5; max-width:60ch }
+.work-row .desc .tag{ color:var(--fg-2) }
+.work-row .stars{
+  color:var(--fg-2); font-size:11.5px; letter-spacing:.04em; text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.work-row .stars b{ color:var(--fg); font-weight:500 }
+@media (max-width:880px){
+  .work-row{
+    grid-template-columns:1fr; gap:.35rem;
+  }
+  .work-row .yr{ font-size:11px }
+  .work-row .stars{ text-align:left; margin-top:.2rem }
+}
+
+/* ───── stack ───── */
+.stack{
+  display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:0;
+  border:1px solid var(--line-2); border-radius:var(--rad);
+}
+.stack .col{
+  padding:1.2rem 1.3rem;
+  border-right:1px solid var(--line);
+}
+.stack .col:last-child{ border-right:0 }
+.stack .col h4{
+  margin:0 0 .9rem;
+  font-family:var(--mono); font-size:11px; color:var(--fg-2);
+  letter-spacing:.14em; text-transform:uppercase; font-weight:500;
+}
+.stack .col ul{ margin:0; padding:0; list-style:none }
+.stack .col li{
+  font-family:var(--mono); font-size:13px; color:var(--fg);
+  padding:.32rem 0; border-bottom:1px dashed transparent;
+  display:flex; align-items:center; gap:.55rem;
+}
+.stack .col li::before{
+  content:"·"; color:var(--fg-3); font-size:18px; line-height:0; transform:translateY(-2px);
+}
+.stack .col li.acc::before{ color:var(--acc) }
+@media (max-width:880px){
+  .stack{ grid-template-columns:repeat(2,1fr) }
+  .stack .col:nth-child(2){ border-right:0 }
+  .stack .col:nth-child(-n+2){ border-bottom:1px solid var(--line) }
+}
+@media (max-width:520px){
+  .stack{ grid-template-columns:1fr }
+  .stack .col{ border-right:0; border-bottom:1px solid var(--line) }
+  .stack .col:last-child{ border-bottom:0 }
+}
+
+/* ───── now ───── */
+.now-grid{
+  display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:1.5rem;
+}
+@media (max-width:880px){ .now-grid{ grid-template-columns:1fr } }
+.now-card{
+  border:1px solid var(--line-2);
+  padding:1.4rem 1.4rem 1.6rem;
+  border-radius:var(--rad);
+  background:linear-gradient(180deg, var(--bg-2), var(--bg));
+  position:relative; overflow:hidden;
+}
+.now-card .label{
+  font-family:var(--mono); font-size:11px; color:var(--fg-2);
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:.5rem;
+  display:flex; align-items:center; gap:.5rem;
+}
+.now-card .label .dot{
+  width:6px; height:6px; border-radius:50%; background:var(--acc); box-shadow:0 0 10px var(--acc);
+}
+.now-card h4{
+  margin:0 0 .7rem; font-family:var(--serif); font-weight:400;
+  font-size:1.4rem; line-height:1.2; color:var(--fg);
+  letter-spacing:-.01em;
+}
+.now-card p{
+  margin:0; color:var(--fg-1); font-size:13px; line-height:1.6;
+}
+.now-card .countdown{
+  margin-top:1rem; padding-top:.9rem; border-top:1px dashed var(--line-2);
+  font-family:var(--mono); font-size:11.5px; color:var(--fg-2);
+}
+.now-card .countdown b{ color:var(--acc-2); font-weight:500 }
+
+/* ───── contact ───── */
+.contact{
+  display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:3rem; align-items:end;
+}
+@media (max-width:880px){ .contact{ grid-template-columns:1fr; gap:2rem } }
+.contact h2.big{
+  font-family:var(--serif); font-weight:400;
+  font-size: clamp(2.6rem, 6vw, 4.8rem); line-height:1; letter-spacing:-.02em;
+  margin:0 0 1.2rem;
+}
+.contact h2.big em{ color:var(--acc); font-style:italic }
+.contact p{ font-family:var(--serif); font-size:1.25rem; color:var(--fg-1); margin:0 0 1.5rem; max-width:42ch }
+.links{ font-family:var(--mono); font-size:13px }
+.links .lk{
+  display:grid; grid-template-columns:6.5rem 1fr auto;
+  gap:1rem; align-items:center;
+  padding:.85rem 0; border-top:1px solid var(--line);
+  text-decoration:none; color:var(--fg);
+  transition:padding-left .25s, color .2s;
+}
+.links .lk:last-child{ border-bottom:1px solid var(--line) }
+.links .lk:hover{ color:var(--acc); padding-left:.6rem }
+.links .lk .k{ color:var(--fg-2); font-size:11px; letter-spacing:.1em; text-transform:uppercase }
+.links .lk .v{ font-size:14px }
+.links .lk .arrow{ color:var(--fg-3); transition:transform .25s, color .2s }
+.links .lk:hover .arrow{ color:var(--acc); transform:translate(3px,-3px) }
+
+/* ───── footer ───── */
+footer{
+  padding:2rem 0 3rem; color:var(--fg-2);
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+}
+footer .row{ display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center }
+footer .right{ margin-left:auto }
+footer a{ color:var(--fg-1); text-decoration:none }
+footer a:hover{ color:var(--acc) }
+@media (max-width:680px){
+  footer .right{ margin-left:0 }
+}
+
+/* ───── scroll reveals ───── */
+[data-reveal]{ opacity:0; transform:translateY(14px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1) }
+[data-reveal].in{ opacity:1; transform:none }
+[data-reveal][data-delay="1"]{ transition-delay:.08s }
+[data-reveal][data-delay="2"]{ transition-delay:.16s }
+[data-reveal][data-delay="3"]{ transition-delay:.24s }
+[data-reveal][data-delay="4"]{ transition-delay:.32s }
+[data-reveal][data-delay="5"]{ transition-delay:.40s }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important }
+  [data-reveal]{ opacity:1; transform:none }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-grain"></div>
+<div class="scanline"></div>
+
+<!-- ─────────────── status bar ─────────────── -->
+<header class="statusbar">
+  <div class="wrap row">
+    <span class="dot" aria-hidden="true"></span>
+    <span><b style="color:var(--fg);font-weight:500">SYS</b> <span class="sep">/</span> online</span>
+    <span class="hide-sm sep">·</span>
+    <span class="hide-sm">35.6762°N&nbsp;139.6503°E <span class="sep">·</span> Tokyo, JP</span>
+    <span class="hide-sm sep">·</span>
+    <span class="hide-sm" id="clock">--:--:--&nbsp;JST</span>
+    <span class="right">
+      <a href="#work">work</a>
+      <a href="#stack">stack</a>
+      <a href="#now">now</a>
+      <a href="#contact">contact</a>
+    </span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ─────────────── hero ─────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <div>
+          <div class="eyebrow" data-reveal>
+            <span class="tag live">● ACTIVE</span>
+            <span>Bang Juwon</span>
+            <span class="sep" style="color:var(--fg-3)">/</span>
+            <span>バン ジュウォン</span>
+            <span class="sep" style="color:var(--fg-3)">/</span>
+            <span>방주원</span>
+          </div>
+
+          <h1 class="kanji" data-reveal data-delay="1" aria-label="YuShin">
+            <span class="k1">優</span><span class="k2">心</span>
+          </h1>
+
+          <p class="name-line" data-reveal data-delay="2">
+            <strong>YuShin</strong>
+            <span class="slash">/</span> ゆうしん
+            <span class="slash">/</span> 優心
+            <span class="slash">/</span> 우신
+          </p>
+
+          <p class="tagline" data-reveal data-delay="3">
+            DFIR &amp; Detection Engineer based in Tokyo.<br>
+            Building <em>autonomous</em> detection systems with MCP-based forensic agents.<br>
+            <span class="strike">prompt-first</span> &nbsp;<em>architecture-first.</em>
+          </p>
+        </div>
+
+        <aside class="term" data-reveal data-delay="4" aria-label="System info">
+          <div class="term-head">
+            <span class="b"></span><span class="b"></span><span class="b"></span>
+            <span class="title">~/yushin · zsh</span>
+          </div>
+          <div class="term-body">
+            <p><span class="prompt">$</span> whoami --verbose</p>
+            <p><span class="key">name      </span><span class="val">Bang Juwon (優心)</span></p>
+            <p><span class="key">role      </span><span class="val">Senior DFIR · Detection Eng.</span></p>
+            <p><span class="key">based     </span><span class="val">Tokyo, JP</span> <span class="key">since</span> <span class="val">2022</span></p>
+            <p><span class="key">focus     </span><span class="val">agentic DFIR · MCP · ATT&amp;CK</span></p>
+            <p><span class="key">stack     </span><span class="val">python · bash · ts · llm · mcp</span></p>
+            <p><span class="key">flagship  </span><span class="val">agentic-dart</span> <span class="ok">[v0.4.1]</span></p>
+            <p><span class="key">submission</span><span class="val">SANS FIND EVIL! 2026</span> <span class="warn">[due 06-15]</span></p>
+            <p><span class="prompt">$</span> _<span class="cursor"></span></p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── about ─────────────── -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">01</span><h2>about</h2><span class="line"></span>
+      </div>
+      <div class="about">
+        <div data-reveal data-delay="1">
+          <p>
+            I work in the seam between <span class="acc">incident response</span> and <span class="acc">automation</span>:
+            building agents that read forensic artifacts, correlate them against MITRE ATT&amp;CK,
+            and propose response actions that a human can sign off on.
+          </p>
+          <p>
+            <span class="dim">Day to day —</span>
+            detection engineering, host &amp; network forensics, MCP tool design, vendor evaluation,
+            and the unglamorous infrastructure work that makes any of it possible.
+          </p>
+          <p>
+            <span class="dim">Working theory —</span>
+            most "AI for security" demos fail because they're prompt engineering with extra steps.
+            The interesting problem is the <em style="font-style:italic;color:var(--acc)">architecture</em>:
+            tool boundaries, deterministic correlation, evidence chains, audit trails.
+          </p>
+        </div>
+
+        <div class="facts" data-reveal data-delay="2">
+          <div class="fact"><span class="k">Loc</span><span class="v">Tokyo, JP <span style="color:var(--fg-3)">(KR ↔ JP)</span></span></div>
+          <div class="fact"><span class="k">Field</span><span class="v">DFIR · Detection · DevSecOps</span></div>
+          <div class="fact"><span class="k">Lang</span><span class="v">한국어 · 日本語 · English</span></div>
+          <div class="fact"><span class="k">GitHub</span><span class="v"><a href="https://github.com/Juwon1405" target="_blank" rel="noopener">@Juwon1405</a></span></div>
+          <div class="fact"><span class="k">Mail</span><span class="v"><a href="mailto:juwon1405.jp@gmail.com">juwon1405.jp@gmail.com</a></span></div>
+          <div class="fact"><span class="k">Status</span><span class="v" style="color:var(--acc)">● open to research collab</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── featured ─────────────── -->
+  <section id="featured">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">02</span><h2>featured · /flagship</h2><span class="line"></span>
+      </div>
+
+      <div class="featured">
+        <div>
+          <div class="meta" data-reveal>
+            <span class="pill acc">● live · v0.4.1</span>
+            <span class="pill">SANS FIND EVIL! 2026</span>
+            <span class="pill">Python · MCP · LLM</span>
+          </div>
+
+          <h3 data-reveal data-delay="1">
+            agentic <span class="slash">/</span> dart
+          </h3>
+
+          <p class="lede" data-reveal data-delay="2">
+            An autonomous detection &amp; response agent. Five packages, thirty-five MCP tool functions,
+            eleven of twelve ATT&amp;CK tactics covered. The architecture is the point.
+          </p>
+
+          <div class="ctas" data-reveal data-delay="3">
+            <a class="btn solid" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
+              View repo <span class="arrow">→</span>
+            </a>
+            <a class="btn" href="https://github.com/Juwon1405/agentic-dart/wiki" target="_blank" rel="noopener">
+              Wiki <span class="arrow">↗</span>
+            </a>
+            <a class="btn" href="https://github.com/Juwon1405/agentic-dart/issues" target="_blank" rel="noopener">
+              Issues <span class="arrow">↗</span>
+            </a>
+          </div>
+
+          <p class="kicker">Decomposed</p>
+          <div style="font-family:var(--mono);font-size:13px;color:var(--fg-1);line-height:1.95" data-reveal data-delay="4">
+            <div><span style="color:var(--acc)">dart_audit</span><span style="color:var(--fg-3)"> — </span>collection &amp; chain-of-custody</div>
+            <div><span style="color:var(--acc)">dart_mcp</span><span style="color:var(--fg-3)"> — </span>tool layer (35 functions, stdio/HTTP)</div>
+            <div><span style="color:var(--acc)">dart_agent</span><span style="color:var(--fg-3)"> — </span>orchestration &amp; reasoning loop</div>
+            <div><span style="color:var(--acc)">dart_corr</span><span style="color:var(--fg-3)"> — </span>deterministic correlation engine</div>
+            <div><span style="color:var(--acc)">dart_playbook</span><span style="color:var(--fg-3)"> — </span>YAML, 10 phases, 845 lines</div>
+          </div>
+        </div>
+
+        <div class="specs" data-reveal data-delay="2">
+          <div class="row"><span class="k">version</span><span class="v acc">v0.4.1</span></div>
+          <div class="row"><span class="k">tools</span><span class="v">35 / 35</span></div>
+          <div class="row"><span class="k">tests</span><span class="v">20 / 20 passing</span></div>
+          <div class="row"><span class="k">ATT&amp;CK tactics</span><span class="v">11 / 12</span></div>
+          <div class="progress" style="--pct:91.6%"></div>
+          <div class="row"><span class="k">issues tracked</span><span class="v">38</span></div>
+          <div class="row"><span class="k">milestones</span><span class="v">4</span></div>
+          <div class="row"><span class="k">wiki pages</span><span class="v">25</span></div>
+          <div class="row"><span class="k">playbook</span><span class="v">10 phases · 845 LOC</span></div>
+          <div class="row"><span class="k">submission</span><span class="v" style="color:var(--acc-2)">SANS · 2026-06-15</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── work list ─────────────── -->
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">03</span><h2>selected work · /repo</h2><span class="line"></span>
+      </div>
+
+      <div class="work-list" id="work-list" data-reveal>
+        <!-- agentic-dart -->
+        <a class="work-row" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">agentic-dart</span>
+          <span class="desc">Autonomous DFIR agent. <span class="tag">Python · MCP · LLM · YAML playbook</span></span>
+          <span class="stars"><b>★ 4</b> · python</span>
+        </a>
+        <!-- mac-forensics-platform -->
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">yushin-mac-forensics-platform</span>
+          <span class="desc">Flask DFIR platform — ingests collector ZIPs &amp; disk images (DD/RAW/E01/AFF/DMG), parses 30+ artifact categories, ships PDF incident reports. <span class="tag">Optional Ollama / OpenAI analysis</span></span>
+          <span class="stars"><b>★ 1</b> · python</span>
+        </a>
+        <!-- mac-artifact-collector -->
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">yushin-mac-artifact-collector</span>
+          <span class="desc">macOS DFIR collector. Single-file, zero-dependency, modular. <span class="tag">Selective module exec · supply-chain IOC sweeps</span></span>
+          <span class="stars"><b>★ 1</b> · shell</span>
+        </a>
+        <!-- gendfir-rag -->
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">yushin-gendfir-rag</span>
+          <span class="desc">Unofficial replication of <i>Loumachi, Ghanem &amp; Ferrag (2024)</i> — RAG + LLM pipeline for DFIR timeline analysis. <span class="tag">Equation-by-equation, fully unit-tested</span></span>
+          <span class="stars"><b>★ 1</b> · python</span>
+        </a>
+        <!-- gitnote -->
+        <a class="work-row" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">GitNote</span>
+          <span class="desc">Curated notes — InfoSec &amp; CS. <span class="tag">Long-running learning ledger</span></span>
+          <span class="stars"><b>★ 1</b> · misc</span>
+        </a>
+        <!-- profile -->
+        <a class="work-row" href="https://github.com/Juwon1405/Juwon1405" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">Juwon1405</span>
+          <span class="desc">GitHub profile config. <span class="tag">README · pinned · landing</span></span>
+          <span class="stars">★ 1 · md</span>
+        </a>
+      </div>
+
+      <p style="margin:1.6rem 0 0;font-family:var(--mono);font-size:12px;color:var(--fg-2)">
+        <span style="color:var(--fg-3)">→</span> <a href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener" style="color:var(--fg-1);text-decoration:none;border-bottom:1px dashed var(--fg-3)">all repositories on github</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────── stack ─────────────── -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">04</span><h2>stack · /tools</h2><span class="line"></span>
+      </div>
+
+      <div class="stack" data-reveal>
+        <div class="col">
+          <h4>languages</h4>
+          <ul>
+            <li class="acc">Python</li>
+            <li class="acc">Bash · Zsh</li>
+            <li>TypeScript</li>
+            <li>Go <span style="color:var(--fg-3)">(learning)</span></li>
+            <li>SQL · KQL</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>detection &amp; ir</h4>
+          <ul>
+            <li class="acc">MITRE ATT&amp;CK</li>
+            <li class="acc">YARA · Sigma</li>
+            <li>Splunk · XSOAR</li>
+            <li>Arkime · Suricata</li>
+            <li>Velociraptor · KAPE</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>forensics</h4>
+          <ul>
+            <li>Plaso · log2timeline</li>
+            <li>Volatility 3</li>
+            <li>The Sleuth Kit</li>
+            <li>macOS · Linux · Win</li>
+            <li>memory · disk · network</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>ai &amp; infra</h4>
+          <ul>
+            <li class="acc">Anthropic API · MCP</li>
+            <li class="acc">LangGraph · Ollama</li>
+            <li>AWS · Bedrock</li>
+            <li>Docker · k8s · git</li>
+            <li>Confluence · Jira</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── now ─────────────── -->
+  <section id="now">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">05</span><h2>currently · /now</h2><span class="line"></span>
+      </div>
+
+      <div class="now-grid">
+        <article class="now-card" data-reveal>
+          <div class="label"><span class="dot"></span>shipping</div>
+          <h4>SANS FIND EVIL! 2026</h4>
+          <p>Final pass on agentic-dart v0.5 — wiring the deterministic correlation engine to the agent loop and tightening the MCP tool boundaries.</p>
+          <div class="countdown" id="cd">due in <b>—</b> · 2026-06-15</div>
+        </article>
+
+        <article class="now-card" data-reveal data-delay="1">
+          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>reading</div>
+          <h4>Architecture &gt; Prompts</h4>
+          <p>Going deep on tool-use semantics, evidence chains, and where deterministic systems should hand off to a reasoning model — and where they shouldn't.</p>
+          <div class="countdown">notes <span style="color:var(--fg-3)">→</span> <a href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener" style="color:var(--fg-1)">GitNote</a></div>
+        </article>
+
+        <article class="now-card" data-reveal data-delay="2">
+          <div class="label"><span class="dot" style="background:var(--acc-3);box-shadow:0 0 10px var(--acc-3)"></span>open to</div>
+          <h4>Research &amp; Collab</h4>
+          <p>DFIR automation, agentic SOC, MCP tool design, replication studies. If your work touches any of those — get in touch.</p>
+          <div class="countdown">mail <span style="color:var(--fg-3)">→</span> <a href="mailto:juwon1405.jp@gmail.com" style="color:var(--fg-1)">juwon1405.jp@gmail.com</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── contact ─────────────── -->
+  <section id="contact" style="border-bottom:0">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">06</span><h2>get in touch · /contact</h2><span class="line"></span>
+      </div>
+
+      <div class="contact">
+        <div data-reveal>
+          <h2 class="big">
+            Let's <em>build</em><br>something<br>worth shipping.
+          </h2>
+          <p>If you work on detection, IR, or agentic systems — or just want to argue about tool boundaries over coffee in Tokyo — drop a line.</p>
+        </div>
+
+        <nav class="links" data-reveal data-delay="1" aria-label="Contact links">
+          <a class="lk" href="mailto:juwon1405.jp@gmail.com">
+            <span class="k">mail</span><span class="v">juwon1405.jp@gmail.com</span><span class="arrow">↗</span>
+          </a>
+          <a class="lk" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
+            <span class="k">github</span><span class="v">@Juwon1405</span><span class="arrow">↗</span>
+          </a>
+          <a class="lk" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
+            <span class="k">flagship</span><span class="v">agentic-dart</span><span class="arrow">↗</span>
+          </a>
+          <a class="lk" href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener">
+            <span class="k">repos</span><span class="v">all repositories</span><span class="arrow">↗</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─────────────── footer ─────────────── -->
+<footer>
+  <div class="wrap row">
+    <span>© 2026 <b style="color:var(--fg)">Bang Juwon</b> · 優心 · YuShin</span>
+    <span style="color:var(--fg-3)">/</span>
+    <span>No tracking. No analytics. Just HTML.</span>
+    <span class="right">
+      <span id="build">built —</span>
+      <span style="color:var(--fg-3)">·</span>
+      <a href="https://github.com/Juwon1405/juwon1405.github.io" target="_blank" rel="noopener">source</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+/* ─── Tokyo clock ─── */
+(function(){
+  const el = document.getElementById('clock');
+  if(!el) return;
+  const fmt = new Intl.DateTimeFormat('en-GB',{
+    timeZone:'Asia/Tokyo', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+  });
+  const tick = ()=>{ el.textContent = fmt.format(new Date()) + ' JST'; };
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ─── SANS countdown ─── */
+(function(){
+  const el = document.getElementById('cd');
+  if(!el) return;
+  const target = new Date('2026-06-15T23:59:59+09:00').getTime();
+  const upd = ()=>{
+    const ms = target - Date.now();
+    const days = Math.max(0, Math.floor(ms/86400000));
+    const hrs = Math.max(0, Math.floor((ms%86400000)/3600000));
+    el.innerHTML = `due in <b>${days}d ${hrs}h</b> · 2026-06-15`;
+  };
+  upd(); setInterval(upd, 60000);
+})();
+
+/* ─── build date ─── */
+(function(){
+  const el = document.getElementById('build');
+  if(!el) return;
+  const d = new Date();
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth()+1).padStart(2,'0');
+  const day = String(d.getUTCDate()).padStart(2,'0');
+  el.textContent = `built ${y}.${m}.${day}`;
+})();
+
+/* ─── reveal on scroll ─── */
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('[data-reveal]').forEach(e=>e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{ rootMargin:'-8% 0px -8% 0px', threshold:0.05 });
+  document.querySelectorAll('[data-reveal]').forEach(e=>io.observe(e));
+})();
+
+/* ─── kanji micro-glitch on hover ─── */
+(function(){
+  const k = document.querySelector('.kanji');
+  if(!k) return;
+  let raf=0;
+  k.addEventListener('mouseenter', ()=>{
+    cancelAnimationFrame(raf);
+    let t=0;
+    const step=()=>{
+      t++;
+      const dx=(Math.random()-.5)*3, dy=(Math.random()-.5)*2;
+      k.style.transform=`translate(${dx}px,${dy}px)`;
+      if(t<8) raf=requestAnimationFrame(step);
+      else k.style.transform='';
+    };
+    step();
+  });
+})();
+</script>
+</body>
+</html>

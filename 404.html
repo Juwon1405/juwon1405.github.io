@@ -1,13 +1,75 @@
----
-layout: default
-title: 404 - Page not found
-permalink: /404.html
----
-
-<div class="text-center">
-  <h1>Whoops, this page doesn't exist.</h1>
-  <h1>Move along. (404 error)</h1>
-  <br/>
-
-  <img src="{{ 'assets/img/404-southpark.jpg' | relative_url }}" alt="Not found" />
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — segfault · 優心</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='16' y='23' font-family='serif' font-size='22' font-weight='600' fill='%23ff5e3a' text-anchor='middle'>!</text></svg>">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#ece8e1; --dim:#6a6660; --line:#1c1a17;
+    --acc:#5cffa5; --warn:#ff5e3a;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --serif:'Instrument Serif', serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:grid; place-items:center;
+    background:var(--bg); color:var(--fg);
+    font-family:var(--mono); padding:2rem;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .panel{
+    max-width: 640px; width:100%;
+    border:1px solid var(--line); padding: 2rem 2rem 2.2rem;
+    background: rgba(16,16,16,.5);
+  }
+  .head{
+    display:flex; gap:.8rem; align-items:center;
+    font-size:11.5px; color:var(--dim); letter-spacing:.1em; text-transform:uppercase;
+    padding-bottom:.7rem; border-bottom:1px dashed var(--line); margin-bottom:1.6rem;
+  }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--warn); box-shadow:0 0 12px var(--warn) }
+  h1{
+    font-family:var(--serif); font-weight:400;
+    font-size: clamp(3rem, 8vw, 5rem); line-height:1; margin:0 0 1rem;
+    letter-spacing:-.02em;
+  }
+  h1 em{ color:var(--warn); font-style:italic }
+  .msg{ color:#b8b3aa; font-size:14px; line-height:1.7; margin:0 0 1.6rem; max-width:50ch }
+  .stack{ font-size:12.5px; color:var(--dim); padding:.9rem 1rem; border:1px dashed var(--line); margin-bottom:1.6rem }
+  .stack b{ color:var(--warn); font-weight:500 }
+  a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.05em;
+    text-transform:uppercase; text-decoration:none; color:#000;
+    background:var(--acc); padding:.7rem 1.1rem; display:inline-block;
+    border:1px solid var(--acc);
+    transition:.2s;
+  }
+  a:hover{ background:transparent; color:var(--acc) }
+  .hint{ margin-top:1rem; font-size:11.5px; color:var(--dim) }
+  .hint code{ color:#b8b3aa }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="head"><span class="dot"></span> SIGSEGV · status 404</div>
+    <h1>page <em>not</em> found.</h1>
+    <p class="msg">The path you requested doesn't exist on this host. It may have moved, been removed, or never existed in the first place.</p>
+    <div class="stack">
+<b>traceback (most recent call last):</b><br>
+&nbsp;&nbsp;File "<i>request.py</i>", line 404, in <i>resolve</i><br>
+&nbsp;&nbsp;&nbsp;&nbsp;raise NotFound("no such resource")<br>
+<b>HTTPError: 404 — Resource Not Found</b>
+    </div>
+    <a href="/">← return to root</a>
+    <p class="hint">or try <code>github.com/Juwon1405</code></p>
+  </div>
+</body>
+</html>
