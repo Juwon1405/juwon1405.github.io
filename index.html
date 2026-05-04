@@ -534,6 +534,7 @@ footer a:hover{ color:var(--acc) }
     <span class="hide-sm" id="clock">--:--:--&nbsp;JST</span>
     <span class="right">
       <a href="#work">work</a>
+      <a href="#published">published</a>
       <a href="#stack">stack</a>
       <a href="#now">now</a>
       <a href="#contact">contact</a>
@@ -756,11 +757,72 @@ footer a:hover{ color:var(--acc) }
     </div>
   </section>
 
+  <!-- ─────────────── published & recognized ─────────────── -->
+  <section id="published">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="num">04</span><h2>published &amp; recognized · /credit</h2><span class="line"></span>
+      </div>
+
+      <!-- book -->
+      <div class="work-list" data-reveal>
+        <a class="work-row" href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">
+          <span class="yr">2019</span>
+          <span class="nm">📖 Network Attack Packet Analysis</span>
+          <span class="desc">Lead-author technical book — DDoS, web exploitation, malicious traffic, wireless intrusion, system exploitation, large-volume packet analysis. <span class="tag">Freelec · ISBN 9788965402589 · ~370 pp · co-author</span></span>
+          <span class="stars"><b>book</b> · ko</span>
+        </a>
+      </div>
+
+      <p style="margin:0.4rem 0 1.6rem;font-family:var(--mono);font-size:11px;color:var(--fg-3)" data-reveal data-delay="1">
+        <span style="color:var(--fg-3)">→ also on</span>
+        <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=217703927" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">aladin</a> ·
+        <a href="https://product.kyobobook.co.kr/detail/S000001019678" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">kyobo</a> ·
+        <a href="https://books.google.com/books?id=SIrIywEACAAJ" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">google books</a>
+      </p>
+
+      <!-- recognition cards -->
+      <div class="now-grid" data-reveal data-delay="2">
+        <article class="now-card">
+          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>2017 · gold prize</div>
+          <h4>🥇 Korea OSS Developer Contest</h4>
+          <p>National OSS award organized by NIPA (National IT Industry Promotion Agency). Awarded for original open-source contribution in security tooling.</p>
+          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">NIPA</span></div>
+        </article>
+
+        <article class="now-card">
+          <div class="label"><span class="dot" style="background:var(--acc-3);box-shadow:0 0 10px var(--acc-3)"></span>2018 · patent</div>
+          <h4>📜 Security Event Correlation</h4>
+          <p>Patent filed: apparatus and method for correlation analysis of security events. Authored during Netmarble Corp. infrastructure security tenure.</p>
+          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">Netmarble Corp.</span></div>
+        </article>
+
+        <article class="now-card">
+          <div class="label"><span class="dot"></span>2017 · 4th place</div>
+          <h4>🎯 CCE National Cyber Defense</h4>
+          <p>Reached the final round (4th overall) of the CCE National Cyber Defense Competition organized by the National Intelligence Service of Korea.</p>
+          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">NIS Korea</span></div>
+        </article>
+
+        <article class="now-card">
+          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>2015 · special prize</div>
+          <h4>🐛 LINE Bug Bounty</h4>
+          <p>Special Prize in the LINE Corp. Bug Bounty Program — vulnerability disclosure and remediation collaboration.</p>
+          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">LINE Corp.</span></div>
+        </article>
+      </div>
+
+      <p style="margin:1.6rem 0 0;font-family:var(--mono);font-size:12px;color:var(--fg-2)" data-reveal data-delay="3">
+        <span style="color:var(--fg-3)">→</span> <a href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener" style="color:var(--fg-1);text-decoration:none;border-bottom:1px dashed var(--fg-3)">YouTube · DoubleS1405</a> &nbsp; <span style="color:var(--fg-3)">long-running KR-language infosec lecture channel · 2014→present</span>
+      </p>
+    </div>
+  </section>
+
   <!-- ─────────────── stack ─────────────── -->
   <section id="stack">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="num">04</span><h2>stack · /tools</h2><span class="line"></span>
+        <span class="num">05</span><h2>stack · /tools</h2><span class="line"></span>
       </div>
 
       <div class="stack" data-reveal>
@@ -812,14 +874,14 @@ footer a:hover{ color:var(--acc) }
   <section id="now">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="num">05</span><h2>currently · /now</h2><span class="line"></span>
+        <span class="num">06</span><h2>currently · /now</h2><span class="line"></span>
       </div>
 
       <div class="now-grid">
         <article class="now-card" data-reveal>
           <div class="label"><span class="dot"></span>shipping</div>
           <h4>SANS FIND EVIL! 2026</h4>
-          <p>Final pass on agentic-dart v0.5 — wiring the deterministic correlation engine to the agent loop and tightening the MCP tool boundaries.</p>
+          <p>agentic-dart v0.5.2 shipped — 60 read-only MCP tools (35 native + 25 SIFT adapters), 31/31 tests on Python 3.10–3.13, audit-chained loop. Final QA passes + demo recording before the deadline.</p>
           <div class="countdown" id="cd">due in <b>—</b> · 2026-06-15</div>
         </article>
 
@@ -844,7 +906,7 @@ footer a:hover{ color:var(--acc) }
   <section id="contact" style="border-bottom:0">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="num">06</span><h2>get in touch · /contact</h2><span class="line"></span>
+        <span class="num">07</span><h2>get in touch · /contact</h2><span class="line"></span>
       </div>
 
       <div class="contact">
