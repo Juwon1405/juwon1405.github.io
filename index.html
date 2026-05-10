@@ -3,63 +3,89 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Bang Juwon — DFIR & Detection Engineering, Tokyo</title>
-<meta name="description" content="Senior DFIR specialist building autonomous detection systems. Architecture-first AI agents for forensic investigation." />
+<title>Bang Juwon — Senior DFIR Specialist, Tokyo</title>
+<meta name="description" content="Senior DFIR specialist & detection engineer in Tokyo. Author, patent holder, and SANS hackathon contestant. Building autonomous forensic agents." />
 <meta name="author" content="Bang Juwon (방주원 · 優心)" />
 <meta name="color-scheme" content="light dark" />
-<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
-<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0d0d0e" media="(prefers-color-scheme: dark)" />
 
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Bang Juwon — DFIR & Detection Engineering" />
-<meta property="og:description" content="Senior DFIR specialist building autonomous detection systems. Tokyo." />
+<meta property="og:title" content="Bang Juwon — Senior DFIR Specialist" />
+<meta property="og:description" content="Author of Network Attack Packet Analysis. NIPA gold prize. Patent holder. Now building autonomous forensic agents in Tokyo." />
 <meta property="og:url" content="https://juwon1405.github.io/" />
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/126803957?v=4" />
 <meta name="twitter:card" content="summary" />
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='400' fill='%23fafaf7' text-anchor='middle'>j</text></svg>" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0d0e'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='400' font-style='italic' fill='%23f7f5f0' text-anchor='middle'>j</text></svg>" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<!--
+  Type system:
+    Display: Fraunces — variable serif with optical-size and SOFT axes.
+             Used by Stripe Press, smart editorial sites. Lush at large
+             sizes, restrained at body size.
+    Body:    Geist — new variable sans from Vercel, replacing Inter Tight.
+             Slightly warmer, more characterful, 2026-current.
+    Mono:    Geist Mono — paired companion, used semantically only.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,30..100;1,9..144,300..600,30..100&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/* ─────────────────────────────────────────────────────────────────
+   DESIGN TOKENS — quiet luxury
+   ───────────────────────────────────────────────────────────────── */
+
 :root[data-theme="light"]{
-  --bg: #fafaf7;
-  --bg-2: #f3f1ec;
-  --bg-card: #ffffff;
-  --fg: #0a0a0a;
-  --fg-1: #2a2a2a;
-  --fg-2: #6b6b6b;
-  --fg-3: #a8a8a8;
-  --line: #e8e4dc;
-  --line-2: #d4cec1;
-  --link: #0a0a0a;
+  --bg:        #f7f5f0;        /* warm parchment, not stark white */
+  --bg-2:      #efece5;
+  --bg-card:   #fdfcf8;
+  --paper:     #fefdfa;
+  --fg:        #0d0d0e;
+  --fg-1:      #2a2a2c;
+  --fg-2:      #6a6a6f;
+  --fg-3:      #a0a0a8;
+  --fg-4:      #c8c5be;
+  --line:      #e2ddd2;
+  --line-2:    #c9c3b3;
+  --accent:    #b8311f;        /* a single editorial red, used 1-2 places */
+  --gold:      #8b6914;        /* warm bronze for awards/recognition */
+  --green:     #2e7d4f;        /* status/live indicator, more saturated */
+  --shadow-sm: 0 1px 2px rgba(13,13,14,.04);
+  --shadow-md: 0 4px 16px -4px rgba(13,13,14,.08), 0 1px 2px rgba(13,13,14,.04);
 }
 :root[data-theme="dark"]{
-  --bg: #0a0a0a;
-  --bg-2: #141414;
-  --bg-card: #1a1a1a;
-  --fg: #fafaf7;
-  --fg-1: #d4d0c8;
-  --fg-2: #8a8a8a;
-  --fg-3: #5a5a5a;
-  --line: #222;
-  --line-2: #2e2e2e;
-  --link: #fafaf7;
+  --bg:        #0d0d0e;
+  --bg-2:      #16161a;
+  --bg-card:   #1c1c20;
+  --paper:     #1a1a1e;
+  --fg:        #f7f5f0;
+  --fg-1:      #d8d5cc;
+  --fg-2:      #8a8a90;
+  --fg-3:      #5a5a62;
+  --fg-4:      #3c3c42;
+  --line:      #25252a;
+  --line-2:    #34343c;
+  --accent:    #ff6b56;
+  --gold:      #d4a341;
+  --green:     #4ade80;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.5);
+  --shadow-md: 0 4px 16px -4px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.5);
 }
 
 :root{
-  --serif: 'Fraunces', ui-serif, Georgia, serif;
-  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  --maxw: 1240px;
+  --serif: 'Fraunces', ui-serif, 'Big Caslon', Georgia, serif;
+  --sans:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono:  'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --maxw: 1320px;
+  --rail: 1080px;     /* narrower content rail for editorial reading */
   --pad: clamp(1.5rem, 4vw, 3rem);
-  --section-y: clamp(5rem, 10vw, 9rem);
+  --section-y: clamp(5rem, 11vw, 10rem);
 }
 
-*,*::before,*::after{ box-sizing:border-box }
-html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth }
+*,*::before,*::after{ box-sizing: border-box }
+html{ -webkit-text-size-adjust: 100%; scroll-behavior: smooth }
 body{
   margin: 0;
   font-family: var(--sans);
@@ -71,9 +97,13 @@ body{
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'ss01' on, 'ss02' on, 'cv11' on;
+  font-variant-numeric: oldstyle-nums;
 }
 
 ::selection{ background: var(--fg); color: var(--bg) }
+
+/* Typography ────────────────────────────────────────────────── */
 
 h1,h2,h3,h4{
   font-family: var(--serif);
@@ -81,281 +111,429 @@ h1,h2,h3,h4{
   letter-spacing: -0.025em;
   line-height: 1.05;
   margin: 0;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
 }
 
 .eyebrow{
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--fg-2);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.75rem;
+  display: inline-flex; align-items: center; gap: .65rem;
+}
+.eyebrow::before{
+  content: ''; display: inline-block;
+  width: 18px; height: 1px; background: var(--fg-2);
 }
 
 p{ margin: 0 0 1em }
-a{ color: var(--link); text-decoration: none; transition: opacity .15s ease }
-a:hover{ opacity: .65 }
+a{ color: inherit; text-decoration: none; transition: opacity .15s ease, color .15s ease }
+a:hover{ opacity: .7 }
 
 code, .mono{
   font-family: var(--mono);
-  font-size: 0.92em;
+  font-size: 0.9em;
+  letter-spacing: -0.01em;
 }
 
+/* Layout primitives ────────────────────────────────────────── */
+
 .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) }
+.rail{ max-width: var(--rail); margin: 0 auto; padding: 0 var(--pad) }
 .section{ padding: var(--section-y) 0; border-bottom: 1px solid var(--line) }
 .section:last-of-type{ border-bottom: 0 }
+
+.two-col{
+  display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 5rem);
+}
+@media (min-width: 920px){
+  .two-col{ grid-template-columns: 220px 1fr; gap: clamp(3rem, 6vw, 6rem) }
+}
+.col-label{ position: sticky; top: 5rem; align-self: start }
+.col-label h2{
+  font-family: var(--mono); font-size: 11.5px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-2);
+  line-height: 1.4;
+}
+.col-label .num{
+  display: block; font-family: var(--serif); font-size: 2.4rem;
+  font-style: italic; font-weight: 300; color: var(--fg-3);
+  line-height: 1; margin-bottom: .75rem;
+  font-variation-settings: 'opsz' 144;
+}
+
+/* Navigation ───────────────────────────────────────────────── */
 
 .nav{
   position: sticky; top: 0; z-index: 50;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  background: color-mix(in oklab, var(--bg) 75%, transparent);
   border-bottom: 1px solid var(--line);
 }
 .nav-inner{
-  max-width: var(--maxw); margin: 0 auto; padding: 1.1rem var(--pad);
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 1rem var(--pad);
   display: flex; align-items: center; justify-content: space-between; gap: 2rem;
 }
 .brand{
-  font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
-  letter-spacing: -0.02em; line-height: 1;
-  font-style: italic;
+  font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+  letter-spacing: -0.02em; line-height: 1; font-style: italic;
+  display: inline-flex; align-items: baseline; gap: .55rem;
 }
-.brand .dot{ color: var(--fg-3); margin: 0 .35em; font-style: normal }
+.brand .kanji{
+  font-style: normal; font-family: var(--sans); font-weight: 500;
+  font-size: 12.5px; color: var(--fg-2); letter-spacing: 0;
+}
 .nav-links{
   display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0;
-  font-size: 14px; font-weight: 500;
+  font-size: 13.5px; font-weight: 400;
 }
-.nav-links a{ color: var(--fg-1) }
+.nav-links a{ color: var(--fg-1); transition: color .15s ease }
 .nav-links a:hover{ color: var(--fg); opacity: 1 }
+.nav-right{ display: flex; align-items: center; gap: 1rem }
 .theme-toggle{
   background: transparent; border: 1px solid var(--line-2); color: var(--fg-1);
-  font: inherit; font-size: 13px; padding: .35rem .75rem; border-radius: 999px;
+  font: inherit; font-size: 13px; padding: .35rem .65rem; border-radius: 999px;
   cursor: pointer; line-height: 1; transition: all .2s ease;
-  display: inline-flex; align-items: center; gap: .4rem;
+  display: inline-flex; align-items: center; gap: .35rem; min-width: 36px; justify-content: center;
 }
 .theme-toggle:hover{ border-color: var(--fg-1); color: var(--fg) }
-@media (max-width: 720px){
+@media (max-width: 760px){
   .nav-links{ display: none }
 }
 
+/* Hero ──────────────────────────────────────────────────────── */
+
 .hero{
-  padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 9vw, 8rem);
+  padding: clamp(5rem, 11vw, 9rem) 0 clamp(4rem, 8vw, 7rem);
   border-bottom: 1px solid var(--line);
+  position: relative; overflow: hidden;
 }
 .hero-grid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
+  display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: end;
 }
-@media (min-width: 900px){
-  .hero-grid{ grid-template-columns: 1.4fr 1fr; align-items: end }
+@media (min-width: 920px){
+  .hero-grid{ grid-template-columns: 1.5fr 1fr }
+}
+
+.hero-tag{
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-family: var(--mono); font-size: 11.5px;
+  letter-spacing: 0.06em; color: var(--fg-2);
+  margin-bottom: 2rem;
+  padding: .35rem .75rem;
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.hero-tag .pulse{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green); position: relative;
+}
+.hero-tag .pulse::after{
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px solid var(--green); opacity: .4;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{ transform: scale(1); opacity: .4 }
+  50%{ transform: scale(1.6); opacity: 0 }
 }
 
 .hero h1{
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(2.75rem, 7.5vw, 6rem);
+  letter-spacing: -0.045em;
   line-height: 0.95;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
 }
 .hero h1 .ital{ font-style: italic; font-weight: 300 }
 .hero h1 .light{ color: var(--fg-2); font-weight: 300 }
+.hero h1 .accent{ color: var(--accent) }
+
+.hero-blurb{
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.45; max-width: 32ch;
+  color: var(--fg-1);
+  margin-top: 2rem;
+  font-variation-settings: 'opsz' 36;
+}
 
 .hero-meta{
-  display: flex; flex-direction: column; gap: 1rem;
-  font-size: 15px; color: var(--fg-1);
+  display: flex; flex-direction: column; gap: 0;
+  font-size: 14px;
   border-top: 1px solid var(--line);
-  padding-top: 1.75rem;
+  padding-top: 1.5rem;
 }
 .hero-meta-row{
-  display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem;
+  display: grid; grid-template-columns: 100px 1fr; gap: 1rem;
   align-items: baseline;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--line);
 }
+.hero-meta-row:last-child{ border-bottom: 0 }
 .hero-meta-key{
-  color: var(--fg-2); font-size: 12px; font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase;
+  font-family: var(--mono); color: var(--fg-3); font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
 }
 .hero-meta-val{ color: var(--fg) }
-.hero-meta-val .accent{ font-family: var(--serif); font-style: italic; font-size: 1.05em }
+.hero-meta-val .accent{ color: var(--accent); font-style: italic; font-family: var(--serif) }
 
-.hero-tag{
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: 13px; color: var(--fg-2); margin-bottom: 1.5rem;
-  font-weight: 500;
-}
-.hero-tag::before{
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: #20c997;
-  box-shadow: 0 0 0 3px color-mix(in oklab, #20c997 25%, transparent);
-}
+/* Hero KPI strip — book / awards / years ─────────────────── */
 
-.two-col{
-  display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 5rem);
+.hero-kpis{
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: 1fr; gap: 2rem;
 }
-@media (min-width: 900px){
-  .two-col{ grid-template-columns: 280px 1fr }
+@media (min-width: 720px){
+  .hero-kpis{ grid-template-columns: repeat(4, 1fr) }
 }
+.kpi{
+  display: flex; flex-direction: column; gap: .5rem;
+  border-left: 1px solid var(--line);
+  padding-left: 1.25rem;
+}
+.kpi:first-child{ border-left: 0; padding-left: 0 }
+@media (max-width: 720px){
+  .kpi{ border-left: 0; padding-left: 0; padding-top: 1.5rem; border-top: 1px solid var(--line) }
+  .kpi:first-child{ border-top: 0; padding-top: 0 }
+}
+.kpi-num{
+  font-family: var(--serif); font-size: clamp(2.25rem, 4vw, 3.25rem);
+  letter-spacing: -0.03em; line-height: 1;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30;
+  color: var(--fg);
+}
+.kpi-num .small{ font-size: .55em; color: var(--fg-3); margin-left: .15em }
+.kpi-label{
+  font-family: var(--mono); font-size: 11px; color: var(--fg-2);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.kpi-sub{ font-size: 13.5px; color: var(--fg-1); line-height: 1.4 }
 
-.col-label h2{
-  font-size: 1.1rem; font-family: var(--sans); font-weight: 500;
-  letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2);
-  line-height: 1;
-}
+/* Lede / prose ────────────────────────────────────────────── */
 
 .lede{
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
   font-weight: 300;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  line-height: 1.3;
+  letter-spacing: -0.022em;
   color: var(--fg);
-  max-width: 38ch;
+  max-width: 32ch;
+  font-variation-settings: 'opsz' 96;
 }
 .lede em{ font-style: italic; color: var(--fg) }
 
-.prose{ font-size: 17px; line-height: 1.7; color: var(--fg-1); max-width: 62ch }
+.prose{ font-size: 16.5px; line-height: 1.7; color: var(--fg-1); max-width: 60ch }
 .prose p + p{ margin-top: 1.2em }
 .prose strong{ color: var(--fg); font-weight: 500 }
+.prose em{ color: var(--fg) }
 
-.feature-card{
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: clamp(2rem, 4vw, 3rem);
-  display: grid; grid-template-columns: 1fr; gap: 2.5rem;
-}
-@media (min-width: 900px){
-  .feature-card{ grid-template-columns: 1.4fr 1fr; gap: 4rem }
-}
+/* Published — book + awards ──────────────────────────────── */
 
-.feature-head{
-  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: 1rem;
+.book-feature{
+  display: grid; grid-template-columns: 1fr; gap: 2rem;
+  margin-bottom: 4rem;
 }
-.feature-name{
-  font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.75rem);
-  letter-spacing: -0.025em; line-height: 1;
-}
-.feature-name .slash{ color: var(--fg-3); font-weight: 300 }
-.version-pill{
-  display: inline-flex; align-items: center; gap: .35rem;
-  font-family: var(--mono); font-size: 12px;
-  background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: 999px; padding: .3rem .75rem; color: var(--fg-1);
-  letter-spacing: -0.01em;
-}
-.version-pill .version-dot{
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #20c997;
+@media (min-width: 720px){
+  .book-feature{ grid-template-columns: 1fr 1.4fr; gap: 3.5rem }
 }
 
-.feature-lede{
-  font-family: var(--serif); font-size: 1.35rem; line-height: 1.4;
-  letter-spacing: -0.015em; color: var(--fg);
-  font-weight: 300; margin-bottom: 2rem; max-width: 48ch;
-}
-.feature-lede em{ font-style: italic }
-
-.feature-cta{ display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2rem }
-.btn{
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: 14px; font-weight: 500;
-  padding: .65rem 1.1rem; border-radius: 8px;
-  border: 1px solid var(--line-2); background: transparent;
-  color: var(--fg); transition: all .15s ease;
-  letter-spacing: -0.005em;
-}
-.btn:hover{ border-color: var(--fg-1); opacity: 1 }
-.btn.primary{ background: var(--fg); color: var(--bg); border-color: var(--fg) }
-.btn.primary:hover{ background: var(--fg-1); border-color: var(--fg-1); opacity: 1 }
-.btn .arrow{ display: inline-block; transition: transform .15s ease }
-.btn:hover .arrow{ transform: translateX(2px) }
-
-.feature-list{
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: .75rem;
-  font-size: 14px; color: var(--fg-1);
-}
-.feature-list li{
-  display: grid; grid-template-columns: 130px 1fr; gap: 1rem;
-  padding-bottom: .75rem; border-bottom: 1px solid var(--line);
-}
-.feature-list li:last-child{ border-bottom: 0 }
-.feature-list .pkg{ font-family: var(--mono); color: var(--fg); font-size: 13px }
-.feature-list .desc{ color: var(--fg-2) }
-
-.specs-panel{
-  background: var(--bg-2);
+.book-cover{
+  background: linear-gradient(155deg, var(--paper) 0%, var(--bg-2) 100%);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 320px; aspect-ratio: 3/4;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  transition: transform .4s ease, box-shadow .4s ease;
 }
-.specs-row{
-  display: grid; grid-template-columns: 1fr auto; gap: 1rem;
-  padding: .65rem 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 13.5px;
+.book-cover:hover{
+  transform: translateY(-4px) rotate(-.5deg);
+  box-shadow: 0 12px 32px -8px rgba(13,13,14,.12), 0 1px 2px rgba(13,13,14,.04);
 }
-.specs-row:last-child{ border-bottom: 0 }
-.specs-key{ color: var(--fg-2) }
-.specs-val{ color: var(--fg); font-family: var(--mono); font-size: 12.5px; text-align: right }
-.specs-val.serif{ font-family: var(--serif); font-style: italic; font-size: 14.5px }
-.specs-bar{
-  height: 2px; background: var(--line);
-  margin: .25rem 0 .5rem; border-radius: 999px; overflow: hidden;
+.book-cover .small-label{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--fg-2);
 }
-.specs-bar::after{
-  content: ''; display: block; height: 100%;
-  width: var(--pct, 50%);
-  background: var(--fg);
+.book-cover .title{
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.1;
+  letter-spacing: -0.02em; color: var(--fg);
+  font-variation-settings: 'opsz' 96, 'SOFT' 50;
+}
+.book-cover .meta{
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+  line-height: 1.6;
+}
+.book-cover .accent-bar{
+  position: absolute; left: 2rem; top: 2.5rem;
+  width: 32px; height: 2px; background: var(--accent);
 }
 
-.row-list{ border-top: 1px solid var(--line) }
-.row-link{
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  align-items: baseline;
-  gap: 2rem;
-  padding: 1.5rem 0;
+.book-detail h3{
+  font-size: clamp(1.5rem, 2.6vw, 1.85rem); margin-bottom: .75rem;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50;
+}
+.book-detail .role{
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em;
+  color: var(--fg-2); text-transform: uppercase; margin-bottom: 1.5rem;
+}
+.book-detail .desc{
+  font-size: 15.5px; line-height: 1.6; color: var(--fg-1);
+  margin-bottom: 1.5rem; max-width: 48ch;
+}
+.book-detail .links{
+  font-family: var(--mono); font-size: 12.5px; color: var(--fg-2);
+  margin: 0;
+}
+.book-detail .links a{
+  color: var(--fg-1); border-bottom: 1px solid var(--fg-4); padding-bottom: 1px;
+  margin-right: 1rem; transition: all .15s ease;
+}
+.book-detail .links a:hover{
+  color: var(--fg); border-bottom-color: var(--fg); opacity: 1;
+}
+
+/* Awards grid — magazine layout ──────────────────────────── */
+
+.awards-grid{
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 720px){
+  .awards-grid{ grid-template-columns: repeat(2, 1fr) }
+  .award-card:nth-child(odd){ border-right: 1px solid var(--line) }
+}
+.award-card{
+  padding: 2rem 2rem 2rem 0;
   border-bottom: 1px solid var(--line);
-  color: var(--fg);
+  position: relative;
   transition: padding-left .25s ease;
 }
-.row-link:hover{ opacity: 1; padding-left: .5rem }
-.row-num{
-  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
-  letter-spacing: 0.05em;
+@media (min-width: 720px){
+  .award-card{ padding: 2rem 2.5rem }
+  .award-card:nth-child(odd){ padding-left: 0 }
+  .award-card:nth-child(even){ padding-right: 0 }
 }
-.row-title{
-  font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.35rem);
-  letter-spacing: -0.015em; font-weight: 400;
+.award-card:hover{ padding-left: .5rem }
+@media (min-width: 720px){
+  .award-card:hover{ padding-left: 1rem }
+  .award-card:nth-child(even):hover{ padding-left: 3rem }
 }
-.row-title .lang{
-  display: inline-block; font-family: var(--sans); font-size: 11px;
-  font-weight: 500; padding: .15rem .5rem; border-radius: 4px;
-  background: var(--bg-2); color: var(--fg-2);
-  margin-left: .75rem; vertical-align: middle;
-  letter-spacing: 0;
+.award-year{
+  font-family: var(--serif); font-style: italic; font-weight: 300;
+  font-size: 1.05rem; color: var(--gold);
+  font-variation-settings: 'opsz' 36;
+  margin-bottom: .35rem;
 }
-.row-meta{
-  font-family: var(--mono); font-size: 12px; color: var(--fg-2);
-  white-space: nowrap;
-}
-.row-meta .arrow{
-  margin-left: .5rem; opacity: .5; transition: all .2s ease;
+.award-prize{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-2); margin-bottom: 1rem;
   display: inline-block;
 }
-.row-link:hover .row-meta .arrow{ opacity: 1; transform: translate(2px,-2px) }
-
-@media (max-width: 720px){
-  .row-link{ grid-template-columns: 1fr; gap: .5rem }
-  .row-num{ display: none }
-  .row-meta{ font-size: 11px }
+.award-title{
+  font-family: var(--serif); font-size: 1.3rem; line-height: 1.2;
+  letter-spacing: -0.018em; margin-bottom: .65rem;
 }
+.award-org{
+  font-size: 13px; color: var(--fg-2); margin-bottom: .85rem;
+  font-style: italic;
+}
+.award-desc{
+  font-size: 14px; line-height: 1.55; color: var(--fg-1); margin: 0;
+}
+
+/* Selected work — editorial rows ────────────────────────── */
+
+.work-list{
+  border-top: 1px solid var(--line);
+}
+.work-row{
+  display: grid;
+  grid-template-columns: 60px 1.2fr 1.5fr auto;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg);
+  position: relative;
+  transition: padding-left .3s cubic-bezier(.16,1,.3,1);
+}
+.work-row:hover{ padding-left: 1rem; opacity: 1 }
+.work-row.featured{
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--accent) 4%, transparent) 0%,
+    transparent 60%);
+  border-left: 2px solid var(--accent);
+  padding-left: 1.5rem;
+}
+.work-row.featured:hover{ padding-left: 2rem }
+.work-row .yr{
+  font-family: var(--mono); font-size: 11.5px; color: var(--fg-3);
+  letter-spacing: 0.05em;
+}
+.work-row .nm{
+  font-family: var(--serif); font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  letter-spacing: -0.018em; line-height: 1.2;
+}
+.work-row .nm .badge{
+  display: inline-block; font-family: var(--mono); font-size: 10.5px;
+  font-weight: 400; padding: .15rem .5rem; border-radius: 4px;
+  background: var(--accent); color: white;
+  margin-left: .65rem; vertical-align: middle;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.work-row .nm .version{
+  display: inline-block; font-family: var(--mono); font-size: 11px;
+  font-weight: 400; padding: .15rem .5rem; border-radius: 4px;
+  background: var(--bg-2); color: var(--fg-2);
+  margin-left: .5rem; vertical-align: middle;
+  letter-spacing: -0.005em;
+}
+.work-row .desc{
+  font-size: 14px; color: var(--fg-1); line-height: 1.5;
+}
+.work-row .desc .tag{
+  display: inline-block; font-family: var(--mono); font-size: 10.5px;
+  color: var(--fg-3); margin-left: .5rem;
+  letter-spacing: 0;
+}
+.work-row .arrow{
+  font-family: var(--mono); font-size: 16px; color: var(--fg-3);
+  transition: all .25s cubic-bezier(.16,1,.3,1);
+}
+.work-row:hover .arrow{ transform: translate(3px,-3px); color: var(--fg) }
+
+@media (max-width: 760px){
+  .work-row{ grid-template-columns: 1fr; gap: .5rem; padding: 1.5rem 0 }
+  .work-row .yr{ display: block }
+  .work-row .arrow{ display: none }
+}
+
+.work-coda{
+  margin-top: 2rem; padding-top: 2rem;
+  border-top: 1px dashed var(--line-2);
+  font-family: var(--mono); font-size: 13px; color: var(--fg-2);
+}
+.work-coda a{ color: var(--fg-1); border-bottom: 1px solid var(--fg-4) }
+.work-coda a:hover{ color: var(--fg); border-bottom-color: var(--fg); opacity: 1 }
+
+/* Stack ────────────────────────────────────────────────── */
 
 .stack-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 0;
 }
 .stack-col{
@@ -364,67 +542,25 @@ code, .mono{
 }
 .stack-col:first-child{ border-left: 0; padding-left: 0 }
 .stack-col h4{
-  font-family: var(--sans); font-size: 12px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--fg-2); margin-bottom: 1rem;
+  font-family: var(--mono); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: 1.25rem;
   line-height: 1.4;
 }
 .stack-col ul{
   list-style: none; padding: 0; margin: 0;
   font-size: 14px; color: var(--fg-1);
-  display: flex; flex-direction: column; gap: .5rem;
+  display: flex; flex-direction: column; gap: .55rem;
 }
 .stack-col li{ line-height: 1.5 }
 .stack-col li.primary{ color: var(--fg); font-weight: 500 }
-@media (max-width: 720px){
+.stack-col li .muted{ color: var(--fg-3); font-size: .85em }
+@media (max-width: 760px){
   .stack-col{ border-left: 0; padding-left: 0; padding-top: 1.5rem; padding-bottom: 1.5rem; border-top: 1px solid var(--line) }
   .stack-col:first-child{ border-top: 0; padding-top: 0 }
 }
 
-.now-card{
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 2rem;
-  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
-}
-@media (min-width: 720px){
-  .now-card{ grid-template-columns: 240px 1fr }
-}
-.now-meta h4{
-  font-family: var(--serif); font-size: 1.4rem; line-height: 1.2;
-  letter-spacing: -0.02em; margin-bottom: .5rem;
-}
-.now-meta .countdown{
-  font-family: var(--mono); font-size: 12.5px; color: var(--fg-2);
-  display: inline-flex; align-items: center; gap: .5rem;
-}
-.now-meta .countdown b{ color: var(--fg); font-weight: 500 }
-
-.contact-grid{
-  display: grid; grid-template-columns: 1fr; gap: 2rem;
-}
-@media (min-width: 720px){
-  .contact-grid{ grid-template-columns: repeat(3, 1fr) }
-}
-.contact-card{
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 1.5rem;
-  background: var(--bg-card);
-  transition: border-color .15s ease;
-}
-.contact-card:hover{ border-color: var(--line-2); opacity: 1 }
-.contact-card .label{
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--fg-2); margin-bottom: .5rem;
-}
-.contact-card .value{
-  font-family: var(--mono); font-size: 14px; color: var(--fg);
-}
-
-/* Facts panel — about section ────────────────────────────── */
+/* About facts ─────────────────────────────────────────── */
 
 .facts{
   margin: 3rem 0 0; padding: 0;
@@ -435,13 +571,13 @@ code, .mono{
   .facts{ grid-template-columns: repeat(2, 1fr) }
 }
 .facts > div{
-  display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem;
-  padding: .9rem 0; border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: 100px 1fr; gap: 1.5rem;
+  padding: .85rem 0; border-bottom: 1px solid var(--line);
   align-items: baseline;
 }
 .facts dt{
-  font-family: var(--sans); font-size: 11px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--fg-2);
 }
 .facts dd{
@@ -449,155 +585,193 @@ code, .mono{
 }
 .muted{ color: var(--fg-3) }
 .status-on{
-  display: inline-block; color: #20c997; font-size: .9em;
+  display: inline-block; color: var(--green); font-size: .9em;
   vertical-align: middle; margin-right: .15em;
 }
 
-/* Book row — published section ───────────────────────────── */
+/* Now ────────────────────────────────────────────────── */
 
-.book-row{
-  display: block; padding: 1.75rem;
-  background: var(--bg-card); border: 1px solid var(--line);
-  border-radius: 10px; color: var(--fg);
-  transition: border-color .2s ease;
+.now-card{
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: var(--shadow-sm);
 }
-.book-row:hover{ border-color: var(--line-2); opacity: 1 }
-.book-meta{
-  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
-  margin-bottom: .75rem;
-  font-size: 12.5px;
+.now-head{
+  display: flex; align-items: baseline; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem; border-bottom: 1px solid var(--line);
 }
-.book-year{
-  font-family: var(--mono); color: var(--fg-2);
+.now-head h4{
+  font-family: var(--serif); font-size: 1.35rem; line-height: 1.2;
+  letter-spacing: -0.02em;
 }
-.book-publisher{ color: var(--fg-3) }
-.book-title{
-  font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 1.85rem);
-  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: .75rem;
+.countdown{
+  font-family: var(--mono); font-size: 11.5px; color: var(--fg-2);
+  display: inline-flex; align-items: center; gap: .5rem;
+  letter-spacing: 0.05em;
 }
-.book-desc{
-  font-size: 15px; color: var(--fg-1); line-height: 1.55;
-  margin-bottom: 1rem;
-}
-.book-links{
-  font-family: var(--mono); font-size: 12px; color: var(--fg-2);
-  margin: 0;
-}
-.book-links a{
-  color: var(--fg-1); text-decoration: none;
-  border-bottom: 1px dashed var(--fg-3);
-}
-.book-links a:hover{ color: var(--fg); opacity: 1 }
-.dot-sep{ color: var(--fg-3); margin: 0 .25em }
+.countdown b{ color: var(--fg); font-weight: 500 }
+.now-card .prose{ font-size: 15px; line-height: 1.65 }
 
-/* Awards grid ────────────────────────────────────────────── */
+/* Contact ─────────────────────────────────────────────── */
 
-.awards-grid{
-  display: grid; grid-template-columns: 1fr; gap: 1rem;
+.contact-grid{
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border-top: 1px solid var(--line);
 }
 @media (min-width: 720px){
-  .awards-grid{ grid-template-columns: repeat(2, 1fr) }
+  .contact-grid{ grid-template-columns: repeat(3, 1fr) }
 }
-.award-card{
-  padding: 1.5rem; background: var(--bg-card);
-  border: 1px solid var(--line); border-radius: 10px;
-  transition: border-color .2s ease;
+.contact-card{
+  padding: 1.75rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  transition: background .2s ease;
 }
-.award-card:hover{ border-color: var(--line-2) }
-.award-year{
-  font-family: var(--mono); font-size: 11.5px;
-  color: var(--fg-2); letter-spacing: 0.05em;
-  margin-bottom: .5rem;
+@media (min-width: 720px){
+  .contact-card{ border-right: 1px solid var(--line) }
+  .contact-card:last-child{ border-right: 0 }
 }
-.award-title{
-  font-family: var(--serif); font-size: 1.2rem;
-  letter-spacing: -0.015em; line-height: 1.25;
-  margin-bottom: .35rem;
+.contact-card:hover{ background: var(--bg-card) }
+.contact-card .label{
+  font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: .75rem;
 }
-.award-meta{
-  font-family: var(--sans); font-size: 12.5px;
-  color: var(--fg-2); margin-bottom: .65rem;
+.contact-card .value{
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 1.15rem; color: var(--fg);
+  letter-spacing: -0.015em;
+  font-variation-settings: 'opsz' 36;
 }
-.award-prize{
-  color: var(--fg); font-weight: 500;
-}
-.award-desc{
-  font-size: 13.5px; color: var(--fg-1); line-height: 1.5;
-  margin: 0;
-}
+
+/* Footer ──────────────────────────────────────────────── */
 
 footer{
   padding: 3rem 0;
-  border-top: 1px solid var(--line);
-  font-size: 13px; color: var(--fg-2);
+  font-size: 12.5px; color: var(--fg-2);
 }
 footer .wrap{
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 1rem;
 }
-footer .build{ font-family: var(--mono); font-size: 11.5px }
+footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05em }
+
+/* Reveal ───────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: no-preference){
-  .reveal{ opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease }
+  .reveal{ opacity: 0; transform: translateY(10px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1) }
   .reveal.in{ opacity: 1; transform: none }
 }
+
 </style>
 </head>
 <body>
 
+<!-- Navigation ─────────────────────────────────────────── -->
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#" class="brand"><em>Bang Juwon</em><span class="dot">·</span><span style="font-style:normal;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--fg-2)">優心</span></a>
+    <a href="#" class="brand"><em>Bang Juwon</em><span class="kanji">優心</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#flagship">Flagship</a></li>
-      <li><a href="#work">Work</a></li>
       <li><a href="#published">Published</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#stack">Stack</a></li>
       <li><a href="#now">Now</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-      <span id="themeIcon">○</span>
-    </button>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span id="themeIcon">○</span>
+      </button>
+    </div>
   </div>
 </nav>
 
+<!-- Hero ───────────────────────────────────────────────── -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-tag reveal">Available · selectively, for high-impact work</div>
+
+    <div class="hero-tag reveal">
+      <span class="pulse"></span>
+      <span>Tokyo · open to research collaboration</span>
+    </div>
+
     <div class="hero-grid">
       <div class="reveal">
         <h1>
-          DFIR <span class="ital">&amp;</span><br>
-          detection,<br>
-          <span class="light">architectured.</span>
+          Senior <span class="ital">DFIR</span><br>
+          &amp; detection,<br>
+          <span class="light">in the seam</span><br>
+          <span class="light">of </span><span class="accent">automation.</span>
         </h1>
+        <p class="hero-blurb">
+          Eight years finding evil &mdash; now building agents that find it
+          autonomously, and structurally cannot lie about what they found.
+        </p>
       </div>
+
       <div class="hero-meta reveal">
         <div class="hero-meta-row">
-          <span class="hero-meta-key">Currently</span>
-          <span class="hero-meta-val">Senior DFIR Specialist, Tokyo</span>
+          <span class="hero-meta-key">Name</span>
+          <span class="hero-meta-val">Bang Juwon &middot; <span class="muted">방주원 &middot; 優心</span></span>
         </div>
         <div class="hero-meta-row">
-          <span class="hero-meta-key">Building</span>
-          <span class="hero-meta-val"><span class="accent">agentic-dart</span> &mdash; autonomous forensic agent</span>
+          <span class="hero-meta-key">Role</span>
+          <span class="hero-meta-val">Senior DFIR Specialist</span>
         </div>
         <div class="hero-meta-row">
-          <span class="hero-meta-key">Focus</span>
-          <span class="hero-meta-val">Read-only AI agents · MITRE ATT&amp;CK · MCP</span>
+          <span class="hero-meta-key">Based</span>
+          <span class="hero-meta-val">Tokyo, JP <span class="muted">(KR ↔ JP)</span></span>
         </div>
         <div class="hero-meta-row">
-          <span class="hero-meta-key">Submitting</span>
-          <span class="hero-meta-val">SANS FIND EVIL! 2026 &mdash; June</span>
+          <span class="hero-meta-key">Field</span>
+          <span class="hero-meta-val">DFIR · Detection · DevSecOps</span>
+        </div>
+        <div class="hero-meta-row">
+          <span class="hero-meta-key">Languages</span>
+          <span class="hero-meta-val">한국어 · 日本語 · English</span>
         </div>
       </div>
     </div>
+
+    <!-- KPI strip — what positions me as senior, not as 'agentic-dart guy' -->
+    <div class="hero-kpis reveal">
+      <div class="kpi">
+        <span class="kpi-num">8<span class="small">yrs</span></span>
+        <span class="kpi-label">Experience</span>
+        <span class="kpi-sub">DFIR &amp; detection engineering</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-num">1</span>
+        <span class="kpi-label">Book published</span>
+        <span class="kpi-sub">Network Attack Packet Analysis · 2019</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-num">5</span>
+        <span class="kpi-label">Awards &amp; patents</span>
+        <span class="kpi-sub">NIPA · NIS · LINE · Netmarble</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-num">6+</span>
+        <span class="kpi-label">Open-source</span>
+        <span class="kpi-sub">DFIR tooling on GitHub</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
+<!-- About ──────────────────────────────────────────────── -->
 <section id="about" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>About</h2></div>
+    <div class="col-label">
+      <span class="num"><em>01</em></span>
+      <h2>About</h2>
+    </div>
     <div>
       <p class="lede reveal">
         I work in the seam between <em>incident response</em> and
@@ -617,282 +791,277 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
           most "AI for security" demos fail because they're prompt engineering with
           extra steps. The interesting problem is the <em>architecture</em>: tool
           boundaries, deterministic correlation, evidence chains, audit trails.
+          Guardrails belong in the surface, not the system prompt.
         </p>
         <p>
-          The work I'm proudest of right now is <a href="#flagship">agentic-dart</a>,
-          submitted to the SANS FIND EVIL! 2026 hackathon and converging into the
-          baseline for an internal Agentic DFIR PoC.
+          Eight years of doing this includes a co-authored book on packet-level
+          attack analysis (Korea, 2019), a national OSS gold prize, a security-event
+          correlation patent, and now a SANS hackathon entry that's also doubling
+          as the baseline for an internal Agentic DFIR PoC.
         </p>
       </div>
 
       <dl class="facts reveal">
-        <div><dt>Location</dt><dd>Tokyo, JP <span class="muted">(KR ↔ JP)</span></dd></div>
-        <div><dt>Field</dt><dd>DFIR · Detection · DevSecOps</dd></div>
-        <div><dt>Languages</dt><dd>한국어 · 日本語 · English</dd></div>
         <div><dt>GitHub</dt><dd><a href="https://github.com/Juwon1405" target="_blank" rel="noopener">@Juwon1405</a></dd></div>
         <div><dt>Mail</dt><dd><a href="mailto:juwon1405.jp@gmail.com">juwon1405.jp@gmail.com</a></dd></div>
+        <div><dt>YouTube</dt><dd><a href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener">DoubleS1405</a> <span class="muted">(KR infosec, since 2014)</span></dd></div>
         <div><dt>Status</dt><dd><span class="status-on">●</span> open to research collaboration</dd></div>
       </dl>
     </div>
   </div>
 </section>
 
-<section id="flagship" class="section">
-  <div class="wrap">
-    <p class="eyebrow reveal">Flagship project · 2026</p>
-    <div class="feature-card reveal">
-      <div>
-        <div class="feature-head">
-          <h3 class="feature-name">agentic <span class="slash">/</span> dart</h3>
-          <span class="version-pill"><span class="version-dot"></span>v0.5.4 &middot; live</span>
-        </div>
-        <p class="feature-lede">
-          An autonomous DFIR agent that thinks like a senior analyst &mdash;
-          <em>and structurally cannot</em> do anything destructive.
-          Sixty-one read-only forensic tools, cryptographically chained reasoning,
-          ten of twelve MITRE ATT&amp;CK tactics covered.
-        </p>
-        <div class="feature-cta">
-          <a class="btn primary" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">View repository <span class="arrow">→</span></a>
-          <a class="btn" href="https://github.com/Juwon1405/agentic-dart/wiki" target="_blank" rel="noopener">Technical wiki</a>
-          <a class="btn" href="https://findevil.devpost.com/" target="_blank" rel="noopener">SANS submission</a>
-        </div>
-        <ul class="feature-list">
-          <li><span class="pkg">dart_audit</span><span class="desc">Tamper-evident SHA-256 chained collection &amp; chain-of-custody</span></li>
-          <li><span class="pkg">dart_mcp</span><span class="desc">Read-only MCP tool layer (61 functions, stdio &amp; HTTP)</span></li>
-          <li><span class="pkg">dart_agent</span><span class="desc">Hypothesis-driven orchestration loop (deterministic + live)</span></li>
-          <li><span class="pkg">dart_corr</span><span class="desc">Cross-artifact correlation with mechanical contradiction handling</span></li>
-          <li><span class="pkg">dart_playbook</span><span class="desc">10-phase senior-analyst playbook (1,182 LOC, 42 references)</span></li>
-        </ul>
-      </div>
-      <aside class="specs-panel">
-        <div class="specs-row"><span class="specs-key">Version</span><span class="specs-val serif">v0.5.4</span></div>
-        <div class="specs-row"><span class="specs-key">MCP tools</span><span class="specs-val">61 / 61</span></div>
-        <div class="specs-row"><span class="specs-key">Tests passing</span><span class="specs-val">43 / 43</span></div>
-        <div class="specs-row"><span class="specs-key">ATT&amp;CK tactics</span><span class="specs-val">10 / 12</span></div>
-        <div class="specs-bar" style="--pct: 83.3%"></div>
-        <div class="specs-row"><span class="specs-key">Issues tracked</span><span class="specs-val">51</span></div>
-        <div class="specs-row"><span class="specs-key">Wiki pages</span><span class="specs-val">28</span></div>
-        <div class="specs-row"><span class="specs-key">Playbook</span><span class="specs-val">10 phases</span></div>
-        <div class="specs-row"><span class="specs-key">CI matrix</span><span class="specs-val">Py 3.10–3.13</span></div>
-        <div class="specs-row"><span class="specs-key">Submission</span><span class="specs-val serif">SANS · June 15</span></div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<section id="work" class="section">
-  <div class="wrap two-col">
-    <div class="col-label"><h2>Selected work</h2></div>
-    <div class="row-list">
-      <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
-        <span class="row-num">01</span>
-        <span class="row-title">mac-forensics-platform <span class="lang">Python · Flask</span></span>
-        <span class="row-meta">2026 <span class="arrow">↗</span></span>
-      </a>
-      <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
-        <span class="row-num">02</span>
-        <span class="row-title">mac-artifact-collector <span class="lang">Bash · Zsh</span></span>
-        <span class="row-meta">2026 <span class="arrow">↗</span></span>
-      </a>
-      <a class="row-link" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
-        <span class="row-num">03</span>
-        <span class="row-title">gendfir-rag <span class="lang">Python · LLM · RAG</span></span>
-        <span class="row-meta">2026 <span class="arrow">↗</span></span>
-      </a>
-      <a class="row-link" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
-        <span class="row-num">04</span>
-        <span class="row-title">GitNote <span class="lang">Notes · InfoSec & CS</span></span>
-        <span class="row-meta">ongoing <span class="arrow">↗</span></span>
-      </a>
-      <a class="row-link" href="https://github.com/Juwon1405/Juwon1405" target="_blank" rel="noopener">
-        <span class="row-num">05</span>
-        <span class="row-title">Juwon1405 <span class="lang">profile · landing</span></span>
-        <span class="row-meta">2026 <span class="arrow">↗</span></span>
-      </a>
-      <a class="row-link" href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener">
-        <span class="row-num">+</span>
-        <span class="row-title">All repositories on GitHub</span>
-        <span class="row-meta">browse <span class="arrow">↗</span></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Published & recognized — book, awards, patent ─────────── -->
+<!-- Published — book + awards ─────────────────────────── -->
 <section id="published" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>Published<br>& recognized</h2></div>
+    <div class="col-label">
+      <span class="num"><em>02</em></span>
+      <h2>Published<br>&amp; recognized</h2>
+    </div>
     <div>
-      <p class="eyebrow reveal">Book</p>
-      <a class="book-row reveal" href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">
-        <div class="book-meta">
-          <span class="book-year">2019</span>
-          <span class="book-publisher">Freelec · ISBN 9788965402589 · ~370 pp · co-author</span>
-        </div>
-        <h3 class="book-title">Network Attack Packet Analysis</h3>
-        <p class="book-desc">
-          Lead-author technical book covering DDoS, web exploitation, malicious
-          traffic analysis, wireless intrusion, system exploitation, and
-          large-volume packet forensics.
-        </p>
-        <p class="book-links">
-          <span class="muted">also on:</span>
-          <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=217703927" target="_blank" rel="noopener">aladin</a>
-          <span class="dot-sep">·</span>
-          <a href="https://product.kyobobook.co.kr/detail/S000001019678" target="_blank" rel="noopener">kyobo</a>
-          <span class="dot-sep">·</span>
-          <a href="https://books.google.com/books?id=SIrIywEACAAJ" target="_blank" rel="noopener">google books</a>
-        </p>
-      </a>
+      <p class="eyebrow reveal">A book, four awards, one patent</p>
 
-      <p class="eyebrow reveal" style="margin-top:3rem">Awards & recognition</p>
+      <!-- Book feature -->
+      <div class="book-feature reveal">
+        <a class="book-cover" href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">
+          <span class="accent-bar"></span>
+          <span class="small-label">Freelec · 2019</span>
+          <span class="title">Network<br>Attack<br>Packet<br>Analysis</span>
+          <span class="meta">방주원 · 共著<br>ISBN 9788965402589<br>~370 pp</span>
+        </a>
+        <div class="book-detail">
+          <h3>Network Attack Packet Analysis</h3>
+          <p class="role">Lead-author technical book · 2019</p>
+          <p class="desc">
+            A practitioner's manual covering DDoS, web exploitation, malicious
+            traffic analysis, wireless intrusion, system exploitation, and
+            large-volume packet forensics. Written for SOC analysts and DFIR
+            beginners stepping up.
+          </p>
+          <p class="links">
+            <a href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">yes24</a>
+            <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=217703927" target="_blank" rel="noopener">aladin</a>
+            <a href="https://product.kyobobook.co.kr/detail/S000001019678" target="_blank" rel="noopener">kyobo</a>
+            <a href="https://books.google.com/books?id=SIrIywEACAAJ" target="_blank" rel="noopener">google books</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Awards grid -->
+      <p class="eyebrow reveal">Awards &amp; recognition</p>
       <div class="awards-grid reveal">
         <article class="award-card">
           <div class="award-year">2017</div>
+          <span class="award-prize">Gold Prize</span>
           <h4 class="award-title">Korea OSS Developer Contest</h4>
-          <p class="award-meta"><span class="award-prize">Gold prize</span> &middot; NIPA</p>
-          <p class="award-desc">National OSS award organized by the National IT Industry Promotion Agency for original open-source contribution in security tooling.</p>
+          <p class="award-org">National IT Industry Promotion Agency (NIPA)</p>
+          <p class="award-desc">National open-source award for original contribution in security tooling.</p>
         </article>
         <article class="award-card">
           <div class="award-year">2018</div>
+          <span class="award-prize">Patent filed</span>
           <h4 class="award-title">Security Event Correlation</h4>
-          <p class="award-meta"><span class="award-prize">Patent filed</span> &middot; Netmarble Corp.</p>
-          <p class="award-desc">Apparatus and method for correlation analysis of security events. Authored during infrastructure security tenure.</p>
+          <p class="award-org">Netmarble Corp.</p>
+          <p class="award-desc">Apparatus &amp; method for correlation analysis of security events. Authored during infrastructure security tenure.</p>
         </article>
         <article class="award-card">
           <div class="award-year">2017</div>
+          <span class="award-prize">4th Place · Finals</span>
           <h4 class="award-title">CCE National Cyber Defense</h4>
-          <p class="award-meta"><span class="award-prize">4th place, finals</span> &middot; NIS Korea</p>
-          <p class="award-desc">Final round of the CCE National Cyber Defense Competition organized by the National Intelligence Service of Korea.</p>
+          <p class="award-org">National Intelligence Service of Korea</p>
+          <p class="award-desc">Final round of the national-level Cyber Conflict Exercise.</p>
         </article>
         <article class="award-card">
           <div class="award-year">2015</div>
+          <span class="award-prize">Special Prize</span>
           <h4 class="award-title">LINE Bug Bounty</h4>
-          <p class="award-meta"><span class="award-prize">Special prize</span> &middot; LINE Corp.</p>
-          <p class="award-desc">Vulnerability disclosure and remediation collaboration via the LINE Corp. Bug Bounty Program.</p>
+          <p class="award-org">LINE Corp.</p>
+          <p class="award-desc">Vulnerability disclosure &amp; remediation collaboration.</p>
         </article>
       </div>
-
-      <p class="eyebrow reveal" style="margin-top:3rem">Long-running</p>
-      <a class="row-link reveal" href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0;border-bottom:0">
-        <span class="row-title" style="font-size:1.1rem">YouTube &middot; DoubleS1405</span>
-        <span class="row-meta">KR-language infosec lectures · 2014→present <span class="arrow">↗</span></span>
-      </a>
     </div>
   </div>
 </section>
 
+<!-- Work — selected projects (agentic-dart featured but not dominant) -->
+<section id="work" class="section">
+  <div class="wrap two-col">
+    <div class="col-label">
+      <span class="num"><em>03</em></span>
+      <h2>Selected work</h2>
+    </div>
+    <div>
+      <p class="eyebrow reveal">Six open-source projects, one currently shipping</p>
+
+      <div class="work-list reveal">
+        <a class="work-row featured" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">agentic-dart<span class="badge">Live</span><span class="version">v0.5.4</span></span>
+          <span class="desc">Autonomous DFIR agent &mdash; 61 read-only MCP tools, audit-chained reasoning, 10/12 ATT&amp;CK tactics. SANS FIND EVIL! 2026 entry.<span class="tag">Python · MCP · LLM</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">mac-forensics-platform</span>
+          <span class="desc">Flask-based DFIR platform. Ingests collector ZIPs &amp; disk images (DD/RAW/E01/AFF/DMG), parses 30+ artifact categories, ships PDF reports.<span class="tag">Python · Flask</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">mac-artifact-collector</span>
+          <span class="desc">Single-file zero-dependency macOS DFIR collector. Selective module exec, supply-chain IOC sweeps.<span class="tag">Bash · Zsh</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">gendfir-rag</span>
+          <span class="desc">Unofficial replication of <em>Loumachi, Ghanem &amp; Ferrag (2024)</em> &mdash; RAG + LLM pipeline for DFIR timeline analysis. Equation-by-equation, fully unit-tested.<span class="tag">Python · LLM · RAG</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
+          <span class="yr">ongoing</span>
+          <span class="nm">GitNote</span>
+          <span class="desc">Curated long-running ledger of InfoSec &amp; CS notes.<span class="tag">Notes</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row" href="https://github.com/Juwon1405/Juwon1405" target="_blank" rel="noopener">
+          <span class="yr">2026</span>
+          <span class="nm">Juwon1405</span>
+          <span class="desc">GitHub profile config &mdash; landing README, pinned repos.<span class="tag">Markdown</span></span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+
+      <p class="work-coda reveal">
+        <a href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Stack ─────────────────────────────────────────────── -->
 <section id="stack" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>Stack</h2></div>
-    <div class="stack-grid">
-      <div class="stack-col">
-        <h4>Languages</h4>
-        <ul>
-          <li class="primary">Python</li>
-          <li class="primary">Bash · Zsh</li>
-          <li>TypeScript</li>
-          <li>Go <span class="muted">(learning)</span></li>
-          <li>SQL · KQL · DuckDB</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h4>Detection & IR</h4>
-        <ul>
-          <li class="primary">MITRE ATT&amp;CK</li>
-          <li class="primary">YARA · Sigma</li>
-          <li>Splunk · XSOAR</li>
-          <li>Arkime · Suricata</li>
-          <li>Velociraptor · KAPE</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h4>Forensics</h4>
-        <ul>
-          <li class="primary">SIFT Workstation</li>
-          <li>Plaso · log2timeline</li>
-          <li>Volatility 3</li>
-          <li>The Sleuth Kit</li>
-          <li>Eric Zimmerman tools</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h4>AI & infra</h4>
-        <ul>
-          <li class="primary">Anthropic API · MCP</li>
-          <li class="primary">Claude Code</li>
-          <li>LangGraph · Ollama</li>
-          <li>AWS · Bedrock</li>
-          <li>Docker · k8s · git</li>
-        </ul>
+    <div class="col-label">
+      <span class="num"><em>04</em></span>
+      <h2>Stack</h2>
+    </div>
+    <div>
+      <div class="stack-grid">
+        <div class="stack-col">
+          <h4>Languages</h4>
+          <ul>
+            <li class="primary">Python</li>
+            <li class="primary">Bash · Zsh</li>
+            <li>TypeScript</li>
+            <li>Go <span class="muted">(learning)</span></li>
+            <li>SQL · KQL · DuckDB</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h4>Detection &amp; IR</h4>
+          <ul>
+            <li class="primary">MITRE ATT&amp;CK</li>
+            <li class="primary">YARA · Sigma</li>
+            <li>Splunk · XSOAR</li>
+            <li>Arkime · Suricata</li>
+            <li>Velociraptor · KAPE</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h4>Forensics</h4>
+          <ul>
+            <li class="primary">SIFT Workstation</li>
+            <li>Plaso · log2timeline</li>
+            <li>Volatility 3</li>
+            <li>The Sleuth Kit</li>
+            <li>Eric Zimmerman tools</li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <h4>AI &amp; infra</h4>
+          <ul>
+            <li class="primary">Anthropic API · MCP</li>
+            <li class="primary">Claude Code</li>
+            <li>LangGraph · Ollama</li>
+            <li>AWS · Bedrock</li>
+            <li>Docker · k8s · git</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Now ───────────────────────────────────────────────── -->
 <section id="now" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>Now</h2></div>
-    <div class="now-card reveal">
-      <div class="now-meta">
-        <h4>SANS FIND EVIL! 2026</h4>
-        <div class="countdown" id="cd">due in <b>—</b></div>
-      </div>
-      <div class="prose" style="font-size:15.5px">
-        <p>
-          <strong>agentic-dart v0.5.4 shipped.</strong> Sixty-one read-only MCP tools
-          (36 native + 25 SIFT adapters), 43 of 43 tests passing, audit-chained reasoning loop.
-        </p>
-        <p>
-          Three evaluation tiers now live: synthetic reference, noise-injected realistic at
-          ~1:30 IOC-to-benign ratio, and the <strong>NIST CFReDS Hacking Case</strong> &mdash;
-          a community-trusted external benchmark. The CFReDS recall jumped from 0.10/0.40
-          (v0.5.3) to <strong>0.50/0.80</strong> (v0.5.4) after <code>parse_registry_hive</code> shipped.
-          Remaining gaps are tracked as Phase 2 issues.
-        </p>
-        <p style="color:var(--fg-2);font-size:14px;margin-top:1.5rem">
-          Final QA, demo recording, and the Devpost form before the deadline.
-        </p>
+    <div class="col-label">
+      <span class="num"><em>05</em></span>
+      <h2>Now</h2>
+    </div>
+    <div>
+      <div class="now-card reveal">
+        <div class="now-head">
+          <h4>Shipping <em>agentic-dart</em> for SANS FIND EVIL! 2026</h4>
+          <span class="countdown" id="cd">due in <b>—</b></span>
+        </div>
+        <div class="prose">
+          <p>
+            <strong>v0.5.4 live.</strong> 61 read-only MCP tools, 43/43 tests, audit-chained reasoning loop.
+            Three evaluation tiers now in: synthetic reference, noise-injected realistic at ~1:30 IOC-to-benign,
+            and the <em>NIST CFReDS Hacking Case</em> external benchmark
+            (recall 0.10/0.40 → 0.50/0.80 after <code>parse_registry_hive</code> shipped).
+          </p>
+          <p style="color:var(--fg-2);font-size:14px">
+            Final QA, demo recording, and the Devpost form before the deadline.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Contact ───────────────────────────────────────────── -->
 <section id="contact" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>Contact</h2></div>
+    <div class="col-label">
+      <span class="num"><em>06</em></span>
+      <h2>Contact</h2>
+    </div>
     <div>
       <p class="lede reveal" style="margin-bottom:2.5rem">
         Open to conversations on <em>DFIR automation, agentic SOC,
         MCP tool design,</em> and replication studies.
       </p>
-      <div class="contact-grid">
+      <div class="contact-grid reveal">
         <a class="contact-card" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
           <div class="label">GitHub</div>
           <div class="value">@Juwon1405</div>
         </a>
-        <a class="contact-card" href="https://github.com/Juwon1405/agentic-dart/issues" target="_blank" rel="noopener">
-          <div class="label">Issues</div>
-          <div class="value">agentic-dart / issues</div>
+        <a class="contact-card" href="mailto:juwon1405.jp@gmail.com">
+          <div class="label">Email</div>
+          <div class="value">juwon1405.jp</div>
         </a>
-        <a class="contact-card" href="https://findevil.devpost.com/" target="_blank" rel="noopener">
-          <div class="label">Submission</div>
-          <div class="value">findevil.devpost.com</div>
+        <a class="contact-card" href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener">
+          <div class="label">YouTube</div>
+          <div class="value">DoubleS1405</div>
         </a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Footer ────────────────────────────────────────────── -->
 <footer>
   <div class="wrap">
-    <span>© 2026 Bang Juwon · 方ジュウォン · 優心</span>
+    <span>© 2026 Bang Juwon &middot; 方ジュウォン &middot; <em style="font-family:var(--serif);font-style:italic">優心</em></span>
     <span class="build" id="build">built —</span>
   </div>
 </footer>
 
 <script>
+/* Theme toggle */
 (function(){
   const root = document.documentElement;
   const btn = document.getElementById('themeToggle');
@@ -916,6 +1085,7 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
   });
 })();
 
+/* Reveal */
 (function(){
   if(!('IntersectionObserver' in window)){
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
@@ -925,10 +1095,11 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
     entries.forEach(e => {
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
+/* Countdown to Devpost EDT deadline */
 (function(){
   const el = document.getElementById('cd');
   if(!el) return;
@@ -943,6 +1114,7 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
   upd(); setInterval(upd, 60000);
 })();
 
+/* Build date */
 (function(){
   const el = document.getElementById('build');
   if(!el) return;
