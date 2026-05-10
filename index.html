@@ -424,6 +424,108 @@ code, .mono{
   font-family: var(--mono); font-size: 14px; color: var(--fg);
 }
 
+/* Facts panel — about section ────────────────────────────── */
+
+.facts{
+  margin: 3rem 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 720px){
+  .facts{ grid-template-columns: repeat(2, 1fr) }
+}
+.facts > div{
+  display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem;
+  padding: .9rem 0; border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.facts dt{
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg-2);
+}
+.facts dd{
+  margin: 0; font-size: 14.5px; color: var(--fg);
+}
+.muted{ color: var(--fg-3) }
+.status-on{
+  display: inline-block; color: #20c997; font-size: .9em;
+  vertical-align: middle; margin-right: .15em;
+}
+
+/* Book row — published section ───────────────────────────── */
+
+.book-row{
+  display: block; padding: 1.75rem;
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 10px; color: var(--fg);
+  transition: border-color .2s ease;
+}
+.book-row:hover{ border-color: var(--line-2); opacity: 1 }
+.book-meta{
+  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: .75rem;
+  font-size: 12.5px;
+}
+.book-year{
+  font-family: var(--mono); color: var(--fg-2);
+}
+.book-publisher{ color: var(--fg-3) }
+.book-title{
+  font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 1.85rem);
+  letter-spacing: -0.02em; line-height: 1.15; margin-bottom: .75rem;
+}
+.book-desc{
+  font-size: 15px; color: var(--fg-1); line-height: 1.55;
+  margin-bottom: 1rem;
+}
+.book-links{
+  font-family: var(--mono); font-size: 12px; color: var(--fg-2);
+  margin: 0;
+}
+.book-links a{
+  color: var(--fg-1); text-decoration: none;
+  border-bottom: 1px dashed var(--fg-3);
+}
+.book-links a:hover{ color: var(--fg); opacity: 1 }
+.dot-sep{ color: var(--fg-3); margin: 0 .25em }
+
+/* Awards grid ────────────────────────────────────────────── */
+
+.awards-grid{
+  display: grid; grid-template-columns: 1fr; gap: 1rem;
+}
+@media (min-width: 720px){
+  .awards-grid{ grid-template-columns: repeat(2, 1fr) }
+}
+.award-card{
+  padding: 1.5rem; background: var(--bg-card);
+  border: 1px solid var(--line); border-radius: 10px;
+  transition: border-color .2s ease;
+}
+.award-card:hover{ border-color: var(--line-2) }
+.award-year{
+  font-family: var(--mono); font-size: 11.5px;
+  color: var(--fg-2); letter-spacing: 0.05em;
+  margin-bottom: .5rem;
+}
+.award-title{
+  font-family: var(--serif); font-size: 1.2rem;
+  letter-spacing: -0.015em; line-height: 1.25;
+  margin-bottom: .35rem;
+}
+.award-meta{
+  font-family: var(--sans); font-size: 12.5px;
+  color: var(--fg-2); margin-bottom: .65rem;
+}
+.award-prize{
+  color: var(--fg); font-weight: 500;
+}
+.award-desc{
+  font-size: 13.5px; color: var(--fg-1); line-height: 1.5;
+  margin: 0;
+}
+
 footer{
   padding: 3rem 0;
   border-top: 1px solid var(--line);
@@ -450,6 +552,7 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
       <li><a href="#about">About</a></li>
       <li><a href="#flagship">Flagship</a></li>
       <li><a href="#work">Work</a></li>
+      <li><a href="#published">Published</a></li>
       <li><a href="#now">Now</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -497,23 +600,23 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
     <div class="col-label"><h2>About</h2></div>
     <div>
       <p class="lede reveal">
-        I build forensic AI agents that <em>cannot</em> lie about
-        what they found &mdash; because they can only call read-only tools,
-        and every call is cryptographically chained.
+        I work in the seam between <em>incident response</em> and
+        <em>automation</em> &mdash; building agents that read forensic
+        artifacts, correlate them against MITRE ATT&amp;CK, and propose
+        response actions a human can sign off on.
       </p>
       <div class="prose reveal" style="margin-top:2.5rem">
         <p>
-          Eight years in incident response and detection engineering, four of them in Tokyo.
-          I work on the part of security that is mostly underestimated &mdash; the
-          investigative loop that runs <strong>after</strong> a SIEM lights up. Cross-artifact
-          correlation, timeline reconstruction, contradiction handling. The work that
-          separates a senior analyst from a junior one.
+          <strong>Day to day &mdash;</strong>
+          detection engineering, host &amp; network forensics, MCP tool design,
+          vendor evaluation, and the unglamorous infrastructure work that makes any
+          of it possible.
         </p>
         <p>
-          Lately I've been moving that loop into autonomous agents &mdash; not as a buzzword,
-          but as an <strong>architectural problem</strong>. Most agentic systems
-          ship with prompt-based guardrails. Those don't survive contact with adversaries.
-          The systems I'm building put the boundary in the tool surface, not the prompt.
+          <strong>Working theory &mdash;</strong>
+          most "AI for security" demos fail because they're prompt engineering with
+          extra steps. The interesting problem is the <em>architecture</em>: tool
+          boundaries, deterministic correlation, evidence chains, audit trails.
         </p>
         <p>
           The work I'm proudest of right now is <a href="#flagship">agentic-dart</a>,
@@ -521,6 +624,15 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
           baseline for an internal Agentic DFIR PoC.
         </p>
       </div>
+
+      <dl class="facts reveal">
+        <div><dt>Location</dt><dd>Tokyo, JP <span class="muted">(KR ↔ JP)</span></dd></div>
+        <div><dt>Field</dt><dd>DFIR · Detection · DevSecOps</dd></div>
+        <div><dt>Languages</dt><dd>한국어 · 日本語 · English</dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/Juwon1405" target="_blank" rel="noopener">@Juwon1405</a></dd></div>
+        <div><dt>Mail</dt><dd><a href="mailto:juwon1405.jp@gmail.com">juwon1405.jp@gmail.com</a></dd></div>
+        <div><dt>Status</dt><dd><span class="status-on">●</span> open to research collaboration</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -571,27 +683,101 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
 
 <section id="work" class="section">
   <div class="wrap two-col">
-    <div class="col-label"><h2>Other work</h2></div>
+    <div class="col-label"><h2>Selected work</h2></div>
     <div class="row-list">
       <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
         <span class="row-num">01</span>
-        <span class="row-title">mac-forensics-platform <span class="lang">Python</span></span>
-        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+        <span class="row-title">mac-forensics-platform <span class="lang">Python · Flask</span></span>
+        <span class="row-meta">2026 <span class="arrow">↗</span></span>
       </a>
       <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
         <span class="row-num">02</span>
-        <span class="row-title">mac-artifact-collector <span class="lang">Bash</span></span>
-        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+        <span class="row-title">mac-artifact-collector <span class="lang">Bash · Zsh</span></span>
+        <span class="row-meta">2026 <span class="arrow">↗</span></span>
       </a>
       <a class="row-link" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
         <span class="row-num">03</span>
-        <span class="row-title">gendfir-rag <span class="lang">Python · LLM</span></span>
-        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+        <span class="row-title">gendfir-rag <span class="lang">Python · LLM · RAG</span></span>
+        <span class="row-meta">2026 <span class="arrow">↗</span></span>
       </a>
-      <a class="row-link" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
+      <a class="row-link" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
         <span class="row-num">04</span>
-        <span class="row-title">Other repositories on GitHub</span>
-        <span class="row-meta">All <span class="arrow">↗</span></span>
+        <span class="row-title">GitNote <span class="lang">Notes · InfoSec & CS</span></span>
+        <span class="row-meta">ongoing <span class="arrow">↗</span></span>
+      </a>
+      <a class="row-link" href="https://github.com/Juwon1405/Juwon1405" target="_blank" rel="noopener">
+        <span class="row-num">05</span>
+        <span class="row-title">Juwon1405 <span class="lang">profile · landing</span></span>
+        <span class="row-meta">2026 <span class="arrow">↗</span></span>
+      </a>
+      <a class="row-link" href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener">
+        <span class="row-num">+</span>
+        <span class="row-title">All repositories on GitHub</span>
+        <span class="row-meta">browse <span class="arrow">↗</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Published & recognized — book, awards, patent ─────────── -->
+<section id="published" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>Published<br>& recognized</h2></div>
+    <div>
+      <p class="eyebrow reveal">Book</p>
+      <a class="book-row reveal" href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">
+        <div class="book-meta">
+          <span class="book-year">2019</span>
+          <span class="book-publisher">Freelec · ISBN 9788965402589 · ~370 pp · co-author</span>
+        </div>
+        <h3 class="book-title">Network Attack Packet Analysis</h3>
+        <p class="book-desc">
+          Lead-author technical book covering DDoS, web exploitation, malicious
+          traffic analysis, wireless intrusion, system exploitation, and
+          large-volume packet forensics.
+        </p>
+        <p class="book-links">
+          <span class="muted">also on:</span>
+          <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=217703927" target="_blank" rel="noopener">aladin</a>
+          <span class="dot-sep">·</span>
+          <a href="https://product.kyobobook.co.kr/detail/S000001019678" target="_blank" rel="noopener">kyobo</a>
+          <span class="dot-sep">·</span>
+          <a href="https://books.google.com/books?id=SIrIywEACAAJ" target="_blank" rel="noopener">google books</a>
+        </p>
+      </a>
+
+      <p class="eyebrow reveal" style="margin-top:3rem">Awards & recognition</p>
+      <div class="awards-grid reveal">
+        <article class="award-card">
+          <div class="award-year">2017</div>
+          <h4 class="award-title">Korea OSS Developer Contest</h4>
+          <p class="award-meta"><span class="award-prize">Gold prize</span> &middot; NIPA</p>
+          <p class="award-desc">National OSS award organized by the National IT Industry Promotion Agency for original open-source contribution in security tooling.</p>
+        </article>
+        <article class="award-card">
+          <div class="award-year">2018</div>
+          <h4 class="award-title">Security Event Correlation</h4>
+          <p class="award-meta"><span class="award-prize">Patent filed</span> &middot; Netmarble Corp.</p>
+          <p class="award-desc">Apparatus and method for correlation analysis of security events. Authored during infrastructure security tenure.</p>
+        </article>
+        <article class="award-card">
+          <div class="award-year">2017</div>
+          <h4 class="award-title">CCE National Cyber Defense</h4>
+          <p class="award-meta"><span class="award-prize">4th place, finals</span> &middot; NIS Korea</p>
+          <p class="award-desc">Final round of the CCE National Cyber Defense Competition organized by the National Intelligence Service of Korea.</p>
+        </article>
+        <article class="award-card">
+          <div class="award-year">2015</div>
+          <h4 class="award-title">LINE Bug Bounty</h4>
+          <p class="award-meta"><span class="award-prize">Special prize</span> &middot; LINE Corp.</p>
+          <p class="award-desc">Vulnerability disclosure and remediation collaboration via the LINE Corp. Bug Bounty Program.</p>
+        </article>
+      </div>
+
+      <p class="eyebrow reveal" style="margin-top:3rem">Long-running</p>
+      <a class="row-link reveal" href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0;border-bottom:0">
+        <span class="row-title" style="font-size:1.1rem">YouTube &middot; DoubleS1405</span>
+        <span class="row-meta">KR-language infosec lectures · 2014→present <span class="arrow">↗</span></span>
       </a>
     </div>
   </div>
@@ -605,36 +791,40 @@ footer .build{ font-family: var(--mono); font-size: 11.5px }
         <h4>Languages</h4>
         <ul>
           <li class="primary">Python</li>
+          <li class="primary">Bash · Zsh</li>
           <li>TypeScript</li>
-          <li>Bash</li>
-          <li>SQL · DuckDB</li>
+          <li>Go <span class="muted">(learning)</span></li>
+          <li>SQL · KQL · DuckDB</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Detection & IR</h4>
+        <ul>
+          <li class="primary">MITRE ATT&amp;CK</li>
+          <li class="primary">YARA · Sigma</li>
+          <li>Splunk · XSOAR</li>
+          <li>Arkime · Suricata</li>
+          <li>Velociraptor · KAPE</li>
         </ul>
       </div>
       <div class="stack-col">
         <h4>Forensics</h4>
         <ul>
           <li class="primary">SIFT Workstation</li>
-          <li>Volatility 3</li>
           <li>Plaso · log2timeline</li>
+          <li>Volatility 3</li>
+          <li>The Sleuth Kit</li>
           <li>Eric Zimmerman tools</li>
-          <li>YARA · Sigma</li>
         </ul>
       </div>
       <div class="stack-col">
-        <h4>AI / agents</h4>
+        <h4>AI & infra</h4>
         <ul>
           <li class="primary">Anthropic API · MCP</li>
-          <li>Claude Code</li>
-          <li>RAG &amp; tool-use loops</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h4>Frameworks</h4>
-        <ul>
-          <li class="primary">MITRE ATT&amp;CK</li>
-          <li>Diamond Model</li>
-          <li>Mandiant attack lifecycle</li>
-          <li>NIST SP 800-86 / 150</li>
+          <li class="primary">Claude Code</li>
+          <li>LangGraph · Ollama</li>
+          <li>AWS · Bedrock</li>
+          <li>Docker · k8s · git</li>
         </ul>
       </div>
     </div>
