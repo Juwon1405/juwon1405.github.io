@@ -1,1026 +1,768 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>優心 · YuShin — Bang Juwon</title>
-<meta name="description" content="DFIR &amp; Detection Engineering. Building autonomous detection systems with MCP-based forensic agents. Architecture-first, not prompt-first." />
-<meta name="author" content="Bang Juwon (優心 / YuShin)" />
-<meta name="color-scheme" content="dark" />
-<meta name="theme-color" content="#0a0a0a" />
+<title>Bang Juwon — DFIR & Detection Engineering, Tokyo</title>
+<meta name="description" content="Senior DFIR specialist building autonomous detection systems. Architecture-first AI agents for forensic investigation." />
+<meta name="author" content="Bang Juwon (방주원 · 優心)" />
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="優心 · YuShin — Bang Juwon" />
-<meta property="og:description" content="DFIR &amp; Detection Engineering — Tokyo. Autonomous detection systems, MCP-based forensic agents." />
+<meta property="og:title" content="Bang Juwon — DFIR & Detection Engineering" />
+<meta property="og:description" content="Senior DFIR specialist building autonomous detection systems. Tokyo." />
 <meta property="og:url" content="https://juwon1405.github.io/" />
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/126803957?v=4" />
 <meta name="twitter:card" content="summary" />
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='16' y='23' font-family='serif' font-size='22' font-weight='600' fill='%2300ff95' text-anchor='middle'>優</text></svg>" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='16' y='22' font-family='Georgia,serif' font-size='18' font-weight='400' fill='%23fafaf7' text-anchor='middle'>j</text></svg>" />
 
-<!-- Fonts: distinctive choices, no Inter/Roboto -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
 <style>
-/* ───── tokens ───── */
-:root{
-  --bg:#0a0a0a;
-  --bg-2:#101010;
-  --bg-3:#161616;
-  --fg:#ece8e1;
-  --fg-1:#b8b3aa;
-  --fg-2:#6a6660;
-  --fg-3:#3a3833;
-  --line:#1c1a17;
-  --line-2:#2a2722;
-  --acc:#5cffa5;        /* phosphor green */
-  --acc-2:#ff5e3a;      /* burnt orange */
-  --acc-3:#a78bff;      /* used very sparingly */
-  --serif:'Instrument Serif', ui-serif, Georgia, serif;
-  --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --jp:'Noto Sans JP', var(--mono);
-  --maxw:1280px;
-  --pad:clamp(1.25rem, 3vw, 2.5rem);
-  --rad:2px;
+:root[data-theme="light"]{
+  --bg: #fafaf7;
+  --bg-2: #f3f1ec;
+  --bg-card: #ffffff;
+  --fg: #0a0a0a;
+  --fg-1: #2a2a2a;
+  --fg-2: #6b6b6b;
+  --fg-3: #a8a8a8;
+  --line: #e8e4dc;
+  --line-2: #d4cec1;
+  --link: #0a0a0a;
+}
+:root[data-theme="dark"]{
+  --bg: #0a0a0a;
+  --bg-2: #141414;
+  --bg-card: #1a1a1a;
+  --fg: #fafaf7;
+  --fg-1: #d4d0c8;
+  --fg-2: #8a8a8a;
+  --fg-3: #5a5a5a;
+  --line: #222;
+  --line-2: #2e2e2e;
+  --link: #fafaf7;
 }
 
-*,*::before,*::after{box-sizing:border-box}
+:root{
+  --serif: 'Fraunces', ui-serif, Georgia, serif;
+  --sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --maxw: 1240px;
+  --pad: clamp(1.5rem, 4vw, 3rem);
+  --section-y: clamp(5rem, 10vw, 9rem);
+}
+
+*,*::before,*::after{ box-sizing:border-box }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth }
 body{
-  margin:0;
-  font-family:var(--mono);
-  font-weight:400;
-  font-size:14.5px;
-  line-height:1.6;
-  letter-spacing:-0.005em;
-  color:var(--fg);
-  background:var(--bg);
-  overflow-x:hidden;
-  font-feature-settings:"calt" 1, "ss01" 1;
-}
-::selection{ background:var(--acc); color:#000 }
-
-/* ───── ambient backdrop ───── */
-.bg-grid{
-  position:fixed; inset:0; z-index:-3; pointer-events:none;
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse at top, #000 30%, transparent 80%);
-}
-.bg-glow{
-  position:fixed; inset:0; z-index:-2; pointer-events:none;
-  background:
-    radial-gradient(900px 500px at 8% -5%, rgba(92,255,165,.07), transparent 60%),
-    radial-gradient(700px 400px at 95% 15%, rgba(255,94,58,.05), transparent 60%),
-    radial-gradient(800px 600px at 50% 110%, rgba(167,139,255,.04), transparent 60%);
-}
-.bg-grain{
-  position:fixed; inset:0; z-index:-1; pointer-events:none;
-  opacity:.06; mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .8 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-.scanline{
-  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:.35;
-  background:repeating-linear-gradient(to bottom, transparent 0 2px, rgba(255,255,255,.012) 2px 3px);
+  margin: 0;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ───── container ───── */
-.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--pad) }
+::selection{ background: var(--fg); color: var(--bg) }
 
-/* ───── top status bar ───── */
-.statusbar{
-  position:sticky; top:0; z-index:50;
-  border-bottom:1px solid var(--line);
-  backdrop-filter: blur(10px) saturate(120%);
-  -webkit-backdrop-filter: blur(10px) saturate(120%);
-  background:rgba(10,10,10,.72);
-}
-.statusbar .row{
-  display:flex; align-items:center; gap:1rem;
-  padding:.6rem 0;
-  font-size:11.5px; color:var(--fg-2);
-  letter-spacing:.02em;
-}
-.statusbar .dot{
-  width:7px; height:7px; border-radius:50%;
-  background:var(--acc); box-shadow:0 0 12px var(--acc);
-  animation:pulse 2s ease-in-out infinite;
-  display:inline-block;
-}
-@keyframes pulse{
-  0%,100%{ opacity:1; transform:scale(1) }
-  50%{ opacity:.55; transform:scale(.85) }
-}
-.statusbar .sep{ color:var(--fg-3) }
-.statusbar .right{ margin-left:auto; display:flex; gap:1rem }
-.statusbar a{ color:var(--fg-1); text-decoration:none }
-.statusbar a:hover{ color:var(--acc) }
-@media (max-width:680px){
-  .statusbar .hide-sm{ display:none }
-}
-
-/* ───── headline ───── */
-.hero{
-  position:relative;
-  padding: clamp(3rem, 9vh, 7rem) 0 clamp(3rem, 8vh, 6rem);
-  border-bottom:1px solid var(--line);
-}
-.hero-grid{
-  display:grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,420px);
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items:end;
-}
-@media (max-width:880px){
-  .hero-grid{ grid-template-columns:1fr; gap:2.5rem }
+h1,h2,h3,h4{
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 0;
 }
 
 .eyebrow{
-  display:flex; align-items:center; gap:.7rem;
-  font-size:11.5px; color:var(--fg-2); letter-spacing:.08em;
-  text-transform:uppercase;
-  margin-bottom:1.2rem;
-}
-.eyebrow .tag{
-  border:1px solid var(--line-2); padding:.18rem .55rem;
-  border-radius:1px; color:var(--fg-1);
-  background:linear-gradient(180deg, var(--bg-3), var(--bg-2));
-}
-.eyebrow .tag.live{ color:var(--acc); border-color:rgba(92,255,165,.25) }
-
-.kanji{
-  font-family:var(--jp);
-  font-weight:700;
-  font-size: clamp(7rem, 18vw, 15rem);
-  line-height:.85;
-  letter-spacing:-.04em;
-  margin:0;
-  color:var(--fg);
-  position:relative;
-  display:inline-block;
-}
-.kanji span{ display:inline-block; position:relative }
-.kanji .k1{ color:var(--fg) }
-.kanji .k2{
-  font-style:italic; font-family:var(--serif); font-weight:400;
-  color:var(--acc);
-  margin-left:.04em;
-}
-.kanji::after{
-  content:""; position:absolute; left:0; right:0; bottom:-.15em;
-  height:1px; background:linear-gradient(90deg, var(--acc) 0%, transparent 70%);
-  opacity:.6;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin: 0 0 1.5rem;
 }
 
-.name-line{
-  margin:1.4rem 0 0;
-  font-family:var(--mono);
-  color:var(--fg-1);
-  font-size:14px;
-  letter-spacing:.02em;
-}
-.name-line .slash{ color:var(--fg-3); margin:0 .55rem }
-.name-line strong{ color:var(--fg); font-weight:500 }
+p{ margin: 0 0 1em }
+a{ color: var(--link); text-decoration: none; transition: opacity .15s ease }
+a:hover{ opacity: .65 }
 
-.tagline{
-  margin:2rem 0 0; max-width:46ch;
-  font-family:var(--serif);
-  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
-  line-height:1.18;
-  color:var(--fg);
-  font-weight:400;
-  letter-spacing:-.012em;
-}
-.tagline em{ color:var(--acc); font-style:italic }
-.tagline .strike{ color:var(--fg-2); text-decoration:line-through; text-decoration-thickness:1.5px }
-
-/* hero side: terminal card */
-.term{
-  font-family:var(--mono);
-  font-size:12.5px;
-  border:1px solid var(--line-2);
-  background:linear-gradient(180deg, rgba(22,22,22,.6), rgba(16,16,16,.6));
-  border-radius:var(--rad);
-  overflow:hidden;
-  box-shadow: 0 30px 60px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.02) inset;
-}
-.term-head{
-  display:flex; align-items:center; gap:.5rem;
-  padding:.55rem .8rem;
-  border-bottom:1px solid var(--line);
-  background:var(--bg-3);
-  color:var(--fg-2); font-size:11px; letter-spacing:.04em;
-}
-.term-head .b{ width:9px; height:9px; border-radius:50%; background:var(--fg-3) }
-.term-head .b:nth-child(1){ background:#ff5e3a }
-.term-head .b:nth-child(2){ background:#ffc233 }
-.term-head .b:nth-child(3){ background:#5cffa5 }
-.term-head .title{ margin-left:auto; opacity:.7 }
-.term-body{ padding:1rem 1rem 1.1rem; }
-.term-body p{ margin:.18rem 0 }
-.term-body .prompt{ color:var(--acc) }
-.term-body .key{ color:var(--fg-2) }
-.term-body .val{ color:var(--fg) }
-.term-body .ok{ color:var(--acc) }
-.term-body .warn{ color:var(--acc-2) }
-.cursor{
-  display:inline-block; width:.55ch; height:1em; vertical-align:-.15em;
-  background:var(--acc); margin-left:.15ch;
-  animation: blink 1.05s steps(2) infinite;
-}
-@keyframes blink{ 50%{ opacity:0 } }
-
-/* ───── section primitives ───── */
-section{ padding: clamp(3rem, 8vh, 6rem) 0; border-bottom:1px solid var(--line) }
-.section-head{
-  display:flex; align-items:baseline; gap:1rem;
-  margin: 0 0 2.2rem;
-  font-size:12px; color:var(--fg-2); letter-spacing:.16em; text-transform:uppercase;
-}
-.section-head .num{ color:var(--fg-3); font-variant-numeric:tabular-nums }
-.section-head .line{ flex:1; height:1px; background:var(--line-2) }
-.section-head h2{
-  font-family:var(--mono); font-weight:500; font-size:12px;
-  margin:0; color:var(--fg-1); letter-spacing:.16em;
+code, .mono{
+  font-family: var(--mono);
+  font-size: 0.92em;
 }
 
-/* ───── about ───── */
-.about{
-  display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:3rem;
-}
-@media (max-width:880px){ .about{ grid-template-columns:1fr; gap:2rem } }
-.about p{
-  font-family:var(--serif);
-  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
-  line-height:1.5;
-  color:var(--fg);
-  margin:0 0 1rem;
-  max-width:54ch;
-}
-.about p .acc{ color:var(--acc) }
-.about p .dim{ color:var(--fg-2) }
-.facts{ font-family:var(--mono); font-size:13px; color:var(--fg-1) }
-.fact{
-  display:grid; grid-template-columns:7.5rem 1fr; gap:1rem;
-  padding:.55rem 0; border-top:1px solid var(--line);
-}
-.fact:last-child{ border-bottom:1px solid var(--line) }
-.fact .k{ color:var(--fg-2); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; padding-top:2px }
-.fact .v{ color:var(--fg) }
-.fact .v a{ color:var(--fg); text-decoration:none; border-bottom:1px dashed var(--fg-3) }
-.fact .v a:hover{ color:var(--acc); border-color:var(--acc) }
+.wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) }
+.section{ padding: var(--section-y) 0; border-bottom: 1px solid var(--line) }
+.section:last-of-type{ border-bottom: 0 }
 
-/* ───── featured ───── */
-.featured{
-  position:relative;
-  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items:start;
+.nav{
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  border-bottom: 1px solid var(--line);
 }
-@media (max-width:980px){ .featured{ grid-template-columns:1fr } }
-.featured .meta{
-  font-size:11px; color:var(--fg-2); letter-spacing:.12em; text-transform:uppercase;
-  display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:1.1rem;
+.nav-inner{
+  max-width: var(--maxw); margin: 0 auto; padding: 1.1rem var(--pad);
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
 }
-.featured .meta .pill{
-  border:1px solid var(--line-2); padding:.18rem .55rem; border-radius:1px;
-  color:var(--fg-1); background:var(--bg-2);
+.brand{
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+  letter-spacing: -0.02em; line-height: 1;
+  font-style: italic;
 }
-.featured .meta .pill.acc{ color:var(--acc); border-color:rgba(92,255,165,.25) }
-.featured h3{
-  font-family:var(--serif); font-weight:400;
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem); line-height:1.05;
-  margin: 0 0 .9rem;
-  letter-spacing:-.014em;
+.brand .dot{ color: var(--fg-3); margin: 0 .35em; font-style: normal }
+.nav-links{
+  display: flex; gap: 2rem; list-style: none; padding: 0; margin: 0;
+  font-size: 14px; font-weight: 500;
 }
-.featured h3 .slash{ color:var(--acc); font-style:italic }
-.featured .lede{
-  font-family:var(--serif); font-size:1.3rem; line-height:1.45;
-  color:var(--fg-1); margin:0 0 1.6rem; max-width:48ch;
+.nav-links a{ color: var(--fg-1) }
+.nav-links a:hover{ color: var(--fg); opacity: 1 }
+.theme-toggle{
+  background: transparent; border: 1px solid var(--line-2); color: var(--fg-1);
+  font: inherit; font-size: 13px; padding: .35rem .75rem; border-radius: 999px;
+  cursor: pointer; line-height: 1; transition: all .2s ease;
+  display: inline-flex; align-items: center; gap: .4rem;
 }
-.featured .ctas{ display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.5rem }
+.theme-toggle:hover{ border-color: var(--fg-1); color: var(--fg) }
+@media (max-width: 720px){
+  .nav-links{ display: none }
+}
+
+.hero{
+  padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 9vw, 8rem);
+  border-bottom: 1px solid var(--line);
+}
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+@media (min-width: 900px){
+  .hero-grid{ grid-template-columns: 1.4fr 1fr; align-items: end }
+}
+
+.hero h1{
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+.hero h1 .ital{ font-style: italic; font-weight: 300 }
+.hero h1 .light{ color: var(--fg-2); font-weight: 300 }
+
+.hero-meta{
+  display: flex; flex-direction: column; gap: 1rem;
+  font-size: 15px; color: var(--fg-1);
+  border-top: 1px solid var(--line);
+  padding-top: 1.75rem;
+}
+.hero-meta-row{
+  display: grid; grid-template-columns: 110px 1fr; gap: 1.5rem;
+  align-items: baseline;
+}
+.hero-meta-key{
+  color: var(--fg-2); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hero-meta-val{ color: var(--fg) }
+.hero-meta-val .accent{ font-family: var(--serif); font-style: italic; font-size: 1.05em }
+
+.hero-tag{
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: 13px; color: var(--fg-2); margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+.hero-tag::before{
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #20c997;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #20c997 25%, transparent);
+}
+
+.two-col{
+  display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 5rem);
+}
+@media (min-width: 900px){
+  .two-col{ grid-template-columns: 280px 1fr }
+}
+
+.col-label h2{
+  font-size: 1.1rem; font-family: var(--sans); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-2);
+  line-height: 1;
+}
+
+.lede{
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  max-width: 38ch;
+}
+.lede em{ font-style: italic; color: var(--fg) }
+
+.prose{ font-size: 17px; line-height: 1.7; color: var(--fg-1); max-width: 62ch }
+.prose p + p{ margin-top: 1.2em }
+.prose strong{ color: var(--fg); font-weight: 500 }
+
+.feature-card{
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+}
+@media (min-width: 900px){
+  .feature-card{ grid-template-columns: 1.4fr 1fr; gap: 4rem }
+}
+
+.feature-head{
+  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.feature-name{
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: -0.025em; line-height: 1;
+}
+.feature-name .slash{ color: var(--fg-3); font-weight: 300 }
+.version-pill{
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-family: var(--mono); font-size: 12px;
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 999px; padding: .3rem .75rem; color: var(--fg-1);
+  letter-spacing: -0.01em;
+}
+.version-pill .version-dot{
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #20c997;
+}
+
+.feature-lede{
+  font-family: var(--serif); font-size: 1.35rem; line-height: 1.4;
+  letter-spacing: -0.015em; color: var(--fg);
+  font-weight: 300; margin-bottom: 2rem; max-width: 48ch;
+}
+.feature-lede em{ font-style: italic }
+
+.feature-cta{ display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2rem }
 .btn{
-  font-family:var(--mono); font-size:12px; letter-spacing:.05em;
-  text-transform:uppercase; text-decoration:none;
-  padding:.7rem 1.05rem; border-radius:1px;
-  border:1px solid var(--line-2);
-  color:var(--fg); background:var(--bg-2);
-  display:inline-flex; align-items:center; gap:.55rem;
-  transition:transform .25s ease, color .2s, border-color .2s, background .2s;
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: 14px; font-weight: 500;
+  padding: .65rem 1.1rem; border-radius: 8px;
+  border: 1px solid var(--line-2); background: transparent;
+  color: var(--fg); transition: all .15s ease;
+  letter-spacing: -0.005em;
 }
-.btn:hover{ color:var(--acc); border-color:var(--acc); transform:translateY(-1px) }
-.btn.solid{ background:var(--acc); color:#000; border-color:var(--acc) }
-.btn.solid:hover{ background:transparent; color:var(--acc) }
-.btn .arrow{ transition:transform .2s }
-.btn:hover .arrow{ transform:translateX(3px) }
+.btn:hover{ border-color: var(--fg-1); opacity: 1 }
+.btn.primary{ background: var(--fg); color: var(--bg); border-color: var(--fg) }
+.btn.primary:hover{ background: var(--fg-1); border-color: var(--fg-1); opacity: 1 }
+.btn .arrow{ display: inline-block; transition: transform .15s ease }
+.btn:hover .arrow{ transform: translateX(2px) }
 
-.specs{
-  font-family:var(--mono); font-size:12.5px; color:var(--fg-1);
-  border:1px solid var(--line-2); border-radius:var(--rad);
-  background:linear-gradient(180deg, rgba(22,22,22,.4), rgba(16,16,16,.4));
+.feature-list{
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: .75rem;
+  font-size: 14px; color: var(--fg-1);
 }
-.specs .row{
-  display:grid; grid-template-columns: 1fr auto;
-  padding:.7rem 1rem; border-bottom:1px dashed var(--line);
-  align-items:center;
+.feature-list li{
+  display: grid; grid-template-columns: 130px 1fr; gap: 1rem;
+  padding-bottom: .75rem; border-bottom: 1px solid var(--line);
 }
-.specs .row:last-child{ border-bottom:0 }
-.specs .row .k{ color:var(--fg-2); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase }
-.specs .row .v{ color:var(--fg); font-variant-numeric:tabular-nums }
-.specs .row .v.acc{ color:var(--acc) }
-.specs .progress{
-  height:3px; background:var(--line); position:relative; overflow:hidden;
-}
-.specs .progress::after{
-  content:""; position:absolute; left:0; top:0; bottom:0;
-  width:var(--pct, 0%);
-  background:linear-gradient(90deg, var(--acc), var(--acc-3));
-  transition:width 1.4s cubic-bezier(.2,.8,.2,1);
-}
-.kicker{
-  font-family:var(--mono); font-size:11px; color:var(--fg-2);
-  letter-spacing:.16em; text-transform:uppercase; margin:1.4rem 0 .55rem;
-}
+.feature-list li:last-child{ border-bottom: 0 }
+.feature-list .pkg{ font-family: var(--mono); color: var(--fg); font-size: 13px }
+.feature-list .desc{ color: var(--fg-2) }
 
-/* ───── work list ───── */
-.work-list{ font-family:var(--mono) }
-.work-row{
-  display:grid;
-  grid-template-columns: 4.5rem minmax(0,16rem) minmax(0,1fr) 6rem;
-  gap:1.2rem;
-  padding: 1.15rem 0;
-  border-top:1px solid var(--line);
-  align-items:baseline;
-  position:relative;
-  transition: padding-left .35s cubic-bezier(.2,.8,.2,1);
+.specs-panel{
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
 }
-.work-row:last-child{ border-bottom:1px solid var(--line) }
-.work-row::before{
-  content:""; position:absolute; left:-.75rem; top:50%; width:.35rem; height:.35rem;
-  background:var(--acc); transform:translateY(-50%) scale(0); transition:transform .25s;
-  border-radius:1px;
+.specs-row{
+  display: grid; grid-template-columns: 1fr auto; gap: 1rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
 }
-.work-row:hover{ padding-left:1.1rem; background:linear-gradient(90deg, rgba(92,255,165,.025), transparent 50%) }
-.work-row:hover::before{ transform:translateY(-50%) scale(1) }
-.work-row .yr{ color:var(--fg-3); font-size:12px; font-variant-numeric:tabular-nums }
-.work-row .nm{
-  color:var(--fg); font-size:14.5px; font-weight:500; letter-spacing:-.01em;
-  text-decoration:none; display:inline-block;
+.specs-row:last-child{ border-bottom: 0 }
+.specs-key{ color: var(--fg-2) }
+.specs-val{ color: var(--fg); font-family: var(--mono); font-size: 12.5px; text-align: right }
+.specs-val.serif{ font-family: var(--serif); font-style: italic; font-size: 14.5px }
+.specs-bar{
+  height: 2px; background: var(--line);
+  margin: .25rem 0 .5rem; border-radius: 999px; overflow: hidden;
 }
-.work-row:hover .nm{ color:var(--acc) }
-.work-row .desc{ color:var(--fg-1); font-size:13px; line-height:1.5; max-width:60ch }
-.work-row .desc .tag{ color:var(--fg-2) }
-.work-row .stars{
-  color:var(--fg-2); font-size:11.5px; letter-spacing:.04em; text-align:right;
-  font-variant-numeric:tabular-nums;
-}
-.work-row .stars b{ color:var(--fg); font-weight:500 }
-@media (max-width:880px){
-  .work-row{
-    grid-template-columns:1fr; gap:.35rem;
-  }
-  .work-row .yr{ font-size:11px }
-  .work-row .stars{ text-align:left; margin-top:.2rem }
+.specs-bar::after{
+  content: ''; display: block; height: 100%;
+  width: var(--pct, 50%);
+  background: var(--fg);
 }
 
-/* ───── stack ───── */
-.stack{
-  display:grid; grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:0;
-  border:1px solid var(--line-2); border-radius:var(--rad);
+.row-list{ border-top: 1px solid var(--line) }
+.row-link{
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--fg);
+  transition: padding-left .25s ease;
 }
-.stack .col{
-  padding:1.2rem 1.3rem;
-  border-right:1px solid var(--line);
+.row-link:hover{ opacity: 1; padding-left: .5rem }
+.row-num{
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3);
+  letter-spacing: 0.05em;
 }
-.stack .col:last-child{ border-right:0 }
-.stack .col h4{
-  margin:0 0 .9rem;
-  font-family:var(--mono); font-size:11px; color:var(--fg-2);
-  letter-spacing:.14em; text-transform:uppercase; font-weight:500;
+.row-title{
+  font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.35rem);
+  letter-spacing: -0.015em; font-weight: 400;
 }
-.stack .col ul{ margin:0; padding:0; list-style:none }
-.stack .col li{
-  font-family:var(--mono); font-size:13px; color:var(--fg);
-  padding:.32rem 0; border-bottom:1px dashed transparent;
-  display:flex; align-items:center; gap:.55rem;
+.row-title .lang{
+  display: inline-block; font-family: var(--sans); font-size: 11px;
+  font-weight: 500; padding: .15rem .5rem; border-radius: 4px;
+  background: var(--bg-2); color: var(--fg-2);
+  margin-left: .75rem; vertical-align: middle;
+  letter-spacing: 0;
 }
-.stack .col li::before{
-  content:"·"; color:var(--fg-3); font-size:18px; line-height:0; transform:translateY(-2px);
+.row-meta{
+  font-family: var(--mono); font-size: 12px; color: var(--fg-2);
+  white-space: nowrap;
 }
-.stack .col li.acc::before{ color:var(--acc) }
-@media (max-width:880px){
-  .stack{ grid-template-columns:repeat(2,1fr) }
-  .stack .col:nth-child(2){ border-right:0 }
-  .stack .col:nth-child(-n+2){ border-bottom:1px solid var(--line) }
+.row-meta .arrow{
+  margin-left: .5rem; opacity: .5; transition: all .2s ease;
+  display: inline-block;
 }
-@media (max-width:520px){
-  .stack{ grid-template-columns:1fr }
-  .stack .col{ border-right:0; border-bottom:1px solid var(--line) }
-  .stack .col:last-child{ border-bottom:0 }
+.row-link:hover .row-meta .arrow{ opacity: 1; transform: translate(2px,-2px) }
+
+@media (max-width: 720px){
+  .row-link{ grid-template-columns: 1fr; gap: .5rem }
+  .row-num{ display: none }
+  .row-meta{ font-size: 11px }
 }
 
-/* ───── now ───── */
-.now-grid{
-  display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:1.5rem;
+.stack-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0;
 }
-@media (max-width:880px){ .now-grid{ grid-template-columns:1fr } }
+.stack-col{
+  border-left: 1px solid var(--line);
+  padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+}
+.stack-col:first-child{ border-left: 0; padding-left: 0 }
+.stack-col h4{
+  font-family: var(--sans); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: 1rem;
+  line-height: 1.4;
+}
+.stack-col ul{
+  list-style: none; padding: 0; margin: 0;
+  font-size: 14px; color: var(--fg-1);
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.stack-col li{ line-height: 1.5 }
+.stack-col li.primary{ color: var(--fg); font-weight: 500 }
+@media (max-width: 720px){
+  .stack-col{ border-left: 0; padding-left: 0; padding-top: 1.5rem; padding-bottom: 1.5rem; border-top: 1px solid var(--line) }
+  .stack-col:first-child{ border-top: 0; padding-top: 0 }
+}
+
 .now-card{
-  border:1px solid var(--line-2);
-  padding:1.4rem 1.4rem 1.6rem;
-  border-radius:var(--rad);
-  background:linear-gradient(180deg, var(--bg-2), var(--bg));
-  position:relative; overflow:hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 2rem;
+  display: grid; grid-template-columns: 1fr; gap: 1.5rem;
 }
-.now-card .label{
-  font-family:var(--mono); font-size:11px; color:var(--fg-2);
-  letter-spacing:.14em; text-transform:uppercase; margin-bottom:.5rem;
-  display:flex; align-items:center; gap:.5rem;
+@media (min-width: 720px){
+  .now-card{ grid-template-columns: 240px 1fr }
 }
-.now-card .label .dot{
-  width:6px; height:6px; border-radius:50%; background:var(--acc); box-shadow:0 0 10px var(--acc);
+.now-meta h4{
+  font-family: var(--serif); font-size: 1.4rem; line-height: 1.2;
+  letter-spacing: -0.02em; margin-bottom: .5rem;
 }
-.now-card h4{
-  margin:0 0 .7rem; font-family:var(--serif); font-weight:400;
-  font-size:1.4rem; line-height:1.2; color:var(--fg);
-  letter-spacing:-.01em;
+.now-meta .countdown{
+  font-family: var(--mono); font-size: 12.5px; color: var(--fg-2);
+  display: inline-flex; align-items: center; gap: .5rem;
 }
-.now-card p{
-  margin:0; color:var(--fg-1); font-size:13px; line-height:1.6;
-}
-.now-card .countdown{
-  margin-top:1rem; padding-top:.9rem; border-top:1px dashed var(--line-2);
-  font-family:var(--mono); font-size:11.5px; color:var(--fg-2);
-}
-.now-card .countdown b{ color:var(--acc-2); font-weight:500 }
+.now-meta .countdown b{ color: var(--fg); font-weight: 500 }
 
-/* ───── contact ───── */
-.contact{
-  display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-  gap:3rem; align-items:end;
+.contact-grid{
+  display: grid; grid-template-columns: 1fr; gap: 2rem;
 }
-@media (max-width:880px){ .contact{ grid-template-columns:1fr; gap:2rem } }
-.contact h2.big{
-  font-family:var(--serif); font-weight:400;
-  font-size: clamp(2.6rem, 6vw, 4.8rem); line-height:1; letter-spacing:-.02em;
-  margin:0 0 1.2rem;
+@media (min-width: 720px){
+  .contact-grid{ grid-template-columns: repeat(3, 1fr) }
 }
-.contact h2.big em{ color:var(--acc); font-style:italic }
-.contact p{ font-family:var(--serif); font-size:1.25rem; color:var(--fg-1); margin:0 0 1.5rem; max-width:42ch }
-.links{ font-family:var(--mono); font-size:13px }
-.links .lk{
-  display:grid; grid-template-columns:6.5rem 1fr auto;
-  gap:1rem; align-items:center;
-  padding:.85rem 0; border-top:1px solid var(--line);
-  text-decoration:none; color:var(--fg);
-  transition:padding-left .25s, color .2s;
+.contact-card{
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  transition: border-color .15s ease;
 }
-.links .lk:last-child{ border-bottom:1px solid var(--line) }
-.links .lk:hover{ color:var(--acc); padding-left:.6rem }
-.links .lk .k{ color:var(--fg-2); font-size:11px; letter-spacing:.1em; text-transform:uppercase }
-.links .lk .v{ font-size:14px }
-.links .lk .arrow{ color:var(--fg-3); transition:transform .25s, color .2s }
-.links .lk:hover .arrow{ color:var(--acc); transform:translate(3px,-3px) }
+.contact-card:hover{ border-color: var(--line-2); opacity: 1 }
+.contact-card .label{
+  font-family: var(--sans); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg-2); margin-bottom: .5rem;
+}
+.contact-card .value{
+  font-family: var(--mono); font-size: 14px; color: var(--fg);
+}
 
-/* ───── footer ───── */
 footer{
-  padding:2rem 0 3rem; color:var(--fg-2);
-  font-family:var(--mono); font-size:11.5px; letter-spacing:.04em;
+  padding: 3rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--fg-2);
 }
-footer .row{ display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center }
-footer .right{ margin-left:auto }
-footer a{ color:var(--fg-1); text-decoration:none }
-footer a:hover{ color:var(--acc) }
-@media (max-width:680px){
-  footer .right{ margin-left:0 }
+footer .wrap{
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
 }
+footer .build{ font-family: var(--mono); font-size: 11.5px }
 
-/* ───── scroll reveals ───── */
-[data-reveal]{ opacity:0; transform:translateY(14px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1) }
-[data-reveal].in{ opacity:1; transform:none }
-[data-reveal][data-delay="1"]{ transition-delay:.08s }
-[data-reveal][data-delay="2"]{ transition-delay:.16s }
-[data-reveal][data-delay="3"]{ transition-delay:.24s }
-[data-reveal][data-delay="4"]{ transition-delay:.32s }
-[data-reveal][data-delay="5"]{ transition-delay:.40s }
-
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ animation:none !important; transition:none !important }
-  [data-reveal]{ opacity:1; transform:none }
+@media (prefers-reduced-motion: no-preference){
+  .reveal{ opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease }
+  .reveal.in{ opacity: 1; transform: none }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow"></div>
-<div class="bg-grain"></div>
-<div class="scanline"></div>
-
-<!-- ─────────────── status bar ─────────────── -->
-<header class="statusbar">
-  <div class="wrap row">
-    <span class="dot" aria-hidden="true"></span>
-    <span><b style="color:var(--fg);font-weight:500">SYS</b> <span class="sep">/</span> online</span>
-    <span class="hide-sm sep">·</span>
-    <span class="hide-sm">35.6762°N&nbsp;139.6503°E <span class="sep">·</span> Tokyo, JP</span>
-    <span class="hide-sm sep">·</span>
-    <span class="hide-sm" id="clock">--:--:--&nbsp;JST</span>
-    <span class="right">
-      <a href="#work">work</a>
-      <a href="#published">published</a>
-      <a href="#stack">stack</a>
-      <a href="#now">now</a>
-      <a href="#contact">contact</a>
-    </span>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand"><em>Bang Juwon</em><span class="dot">·</span><span style="font-style:normal;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--fg-2)">優心</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#flagship">Flagship</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#now">Now</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">○</span>
+    </button>
   </div>
-</header>
+</nav>
 
-<main>
-
-  <!-- ─────────────── hero ─────────────── -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-
-        <div>
-          <div class="eyebrow" data-reveal>
-            <span class="tag live">● ACTIVE</span>
-            <span>Bang Juwon</span>
-            <span class="sep" style="color:var(--fg-3)">/</span>
-            <span>バン ジュウォン</span>
-            <span class="sep" style="color:var(--fg-3)">/</span>
-            <span>방주원</span>
-          </div>
-
-          <h1 class="kanji" data-reveal data-delay="1" aria-label="YuShin">
-            <span class="k1">優</span><span class="k2">心</span>
-          </h1>
-
-          <p class="name-line" data-reveal data-delay="2">
-            <strong>YuShin</strong>
-            <span class="slash">/</span> ゆうしん
-            <span class="slash">/</span> 優心
-            <span class="slash">/</span> 유신
-          </p>
-
-          <p class="tagline" data-reveal data-delay="3">
-            DFIR &amp; Detection Engineer based in Tokyo.<br>
-            Building <em>autonomous</em> detection systems with MCP-based forensic agents.<br>
-            <span class="strike">prompt-first</span> &nbsp;<em>architecture-first.</em>
-          </p>
-        </div>
-
-        <aside class="term" data-reveal data-delay="4" aria-label="System info">
-          <div class="term-head">
-            <span class="b"></span><span class="b"></span><span class="b"></span>
-            <span class="title">~/yushin · zsh</span>
-          </div>
-          <div class="term-body">
-            <p><span class="prompt">$</span> whoami --verbose</p>
-            <p><span class="key">name      </span><span class="val">Bang Juwon (優心)</span></p>
-            <p><span class="key">role      </span><span class="val">Senior DFIR · Detection Eng.</span></p>
-            <p><span class="key">based     </span><span class="val">Tokyo, JP</span> <span class="key">since</span> <span class="val">2022</span></p>
-            <p><span class="key">focus     </span><span class="val">agentic DFIR · MCP · ATT&amp;CK</span></p>
-            <p><span class="key">stack     </span><span class="val">python · bash · ts · llm · mcp</span></p>
-            <p><span class="key">flagship  </span><span class="val">agentic-dart</span> <span class="ok">[v0.5.4]</span></p>
-            <p><span class="key">submission</span><span class="val">SANS FIND EVIL! 2026</span> <span class="warn">[due 06-15]</span></p>
-            <p><span class="prompt">$</span> _<span class="cursor"></span></p>
-          </div>
-        </aside>
-
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-tag reveal">Available · selectively, for high-impact work</div>
+    <div class="hero-grid">
+      <div class="reveal">
+        <h1>
+          DFIR <span class="ital">&amp;</span><br>
+          detection,<br>
+          <span class="light">architectured.</span>
+        </h1>
       </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── about ─────────────── -->
-  <section id="about">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">01</span><h2>about</h2><span class="line"></span>
-      </div>
-      <div class="about">
-        <div data-reveal data-delay="1">
-          <p>
-            I work in the seam between <span class="acc">incident response</span> and <span class="acc">automation</span>:
-            building agents that read forensic artifacts, correlate them against MITRE ATT&amp;CK,
-            and propose response actions that a human can sign off on.
-          </p>
-          <p>
-            <span class="dim">Day to day —</span>
-            detection engineering, host &amp; network forensics, MCP tool design, vendor evaluation,
-            and the unglamorous infrastructure work that makes any of it possible.
-          </p>
-          <p>
-            <span class="dim">Working theory —</span>
-            most "AI for security" demos fail because they're prompt engineering with extra steps.
-            The interesting problem is the <em style="font-style:italic;color:var(--acc)">architecture</em>:
-            tool boundaries, deterministic correlation, evidence chains, audit trails.
-          </p>
+      <div class="hero-meta reveal">
+        <div class="hero-meta-row">
+          <span class="hero-meta-key">Currently</span>
+          <span class="hero-meta-val">Senior DFIR Specialist, Tokyo</span>
         </div>
-
-        <div class="facts" data-reveal data-delay="2">
-          <div class="fact"><span class="k">Loc</span><span class="v">Tokyo, JP <span style="color:var(--fg-3)">(KR ↔ JP)</span></span></div>
-          <div class="fact"><span class="k">Field</span><span class="v">DFIR · Detection · DevSecOps</span></div>
-          <div class="fact"><span class="k">Lang</span><span class="v">한국어 · 日本語 · English</span></div>
-          <div class="fact"><span class="k">GitHub</span><span class="v"><a href="https://github.com/Juwon1405" target="_blank" rel="noopener">@Juwon1405</a></span></div>
-          <div class="fact"><span class="k">Mail</span><span class="v"><a href="mailto:juwon1405.jp@gmail.com">juwon1405.jp@gmail.com</a></span></div>
-          <div class="fact"><span class="k">Status</span><span class="v" style="color:var(--acc)">● open to research collab</span></div>
+        <div class="hero-meta-row">
+          <span class="hero-meta-key">Building</span>
+          <span class="hero-meta-val"><span class="accent">agentic-dart</span> &mdash; autonomous forensic agent</span>
+        </div>
+        <div class="hero-meta-row">
+          <span class="hero-meta-key">Focus</span>
+          <span class="hero-meta-val">Read-only AI agents · MITRE ATT&amp;CK · MCP</span>
+        </div>
+        <div class="hero-meta-row">
+          <span class="hero-meta-key">Submitting</span>
+          <span class="hero-meta-val">SANS FIND EVIL! 2026 &mdash; June</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─────────────── featured ─────────────── -->
-  <section id="featured">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">02</span><h2>featured · /flagship</h2><span class="line"></span>
-      </div>
-
-      <div class="featured">
-        <div>
-          <div class="meta" data-reveal>
-            <span class="pill acc">● live · v0.5.4</span>
-            <span class="pill">SANS FIND EVIL! 2026</span>
-            <span class="pill">Python · MCP · LLM</span>
-          </div>
-
-          <h3 data-reveal data-delay="1">
-            agentic <span class="slash">/</span> dart
-          </h3>
-
-          <p class="lede" data-reveal data-delay="2">
-            An autonomous detection &amp; response agent. Five packages, sixty-one MCP tool functions
-            (thirty-six native + twenty-five SIFT adapters), ten of twelve ATT&amp;CK tactics covered.
-            The architecture is the point.
-          </p>
-
-          <div class="ctas" data-reveal data-delay="3">
-            <a class="btn solid" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
-              View repo <span class="arrow">→</span>
-            </a>
-            <a class="btn" href="https://github.com/Juwon1405/agentic-dart/wiki" target="_blank" rel="noopener">
-              Wiki <span class="arrow">↗</span>
-            </a>
-            <a class="btn" href="https://github.com/Juwon1405/agentic-dart/issues" target="_blank" rel="noopener">
-              Issues <span class="arrow">↗</span>
-            </a>
-          </div>
-
-          <p class="kicker">Decomposed</p>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--fg-1);line-height:1.95" data-reveal data-delay="4">
-            <div><span style="color:var(--acc)">dart_audit</span><span style="color:var(--fg-3)"> — </span>collection &amp; chain-of-custody</div>
-            <div><span style="color:var(--acc)">dart_mcp</span><span style="color:var(--fg-3)"> — </span>tool layer (61 functions, stdio/HTTP)</div>
-            <div><span style="color:var(--acc)">dart_agent</span><span style="color:var(--fg-3)"> — </span>orchestration &amp; reasoning loop</div>
-            <div><span style="color:var(--acc)">dart_corr</span><span style="color:var(--fg-3)"> — </span>deterministic correlation engine</div>
-            <div><span style="color:var(--acc)">dart_playbook</span><span style="color:var(--fg-3)"> — </span>YAML, 10 phases, 1182 lines</div>
-          </div>
-        </div>
-
-        <div class="specs" data-reveal data-delay="2">
-          <div class="row"><span class="k">version</span><span class="v acc">v0.5.4</span></div>
-          <div class="row"><span class="k">tools</span><span class="v">61 / 61</span></div>
-          <div class="row"><span class="k">tests</span><span class="v">43 / 43 passing</span></div>
-          <div class="row"><span class="k">ATT&amp;CK tactics</span><span class="v">10 / 12</span></div>
-          <div class="progress" style="--pct:83.3%"></div>
-          <div class="row"><span class="k">issues tracked</span><span class="v">51</span></div>
-          <div class="row"><span class="k">milestones</span><span class="v">4</span></div>
-          <div class="row"><span class="k">wiki pages</span><span class="v">28</span></div>
-          <div class="row"><span class="k">playbook</span><span class="v">10 phases · 1182 LOC</span></div>
-          <div class="row"><span class="k">submission</span><span class="v" style="color:var(--acc-2)">SANS · 2026-06-15</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── work list ─────────────── -->
-  <section id="work">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">03</span><h2>selected work · /repo</h2><span class="line"></span>
-      </div>
-
-      <div class="work-list" id="work-list" data-reveal>
-        <!-- agentic-dart -->
-        <a class="work-row" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">agentic-dart</span>
-          <span class="desc">Autonomous DFIR agent. <span class="tag">Python · MCP · LLM · YAML playbook</span></span>
-          <span class="stars"><b>★ 4</b> · python</span>
-        </a>
-        <!-- mac-forensics-platform -->
-        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">yushin-mac-forensics-platform</span>
-          <span class="desc">Flask DFIR platform — ingests collector ZIPs &amp; disk images (DD/RAW/E01/AFF/DMG), parses 30+ artifact categories, ships PDF incident reports. <span class="tag">Optional Ollama / OpenAI analysis</span></span>
-          <span class="stars"><b>★ 1</b> · python</span>
-        </a>
-        <!-- mac-artifact-collector -->
-        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">yushin-mac-artifact-collector</span>
-          <span class="desc">macOS DFIR collector. Single-file, zero-dependency, modular. <span class="tag">Selective module exec · supply-chain IOC sweeps</span></span>
-          <span class="stars"><b>★ 1</b> · shell</span>
-        </a>
-        <!-- gendfir-rag -->
-        <a class="work-row" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">yushin-gendfir-rag</span>
-          <span class="desc">Unofficial replication of <i>Loumachi, Ghanem &amp; Ferrag (2024)</i> — RAG + LLM pipeline for DFIR timeline analysis. <span class="tag">Equation-by-equation, fully unit-tested</span></span>
-          <span class="stars"><b>★ 1</b> · python</span>
-        </a>
-        <!-- gitnote -->
-        <a class="work-row" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">GitNote</span>
-          <span class="desc">Curated notes — InfoSec &amp; CS. <span class="tag">Long-running learning ledger</span></span>
-          <span class="stars"><b>★ 1</b> · misc</span>
-        </a>
-        <!-- profile -->
-        <a class="work-row" href="https://github.com/Juwon1405/Juwon1405" target="_blank" rel="noopener">
-          <span class="yr">2026</span>
-          <span class="nm">Juwon1405</span>
-          <span class="desc">GitHub profile config. <span class="tag">README · pinned · landing</span></span>
-          <span class="stars">★ 1 · md</span>
-        </a>
-      </div>
-
-      <p style="margin:1.6rem 0 0;font-family:var(--mono);font-size:12px;color:var(--fg-2)">
-        <span style="color:var(--fg-3)">→</span> <a href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener" style="color:var(--fg-1);text-decoration:none;border-bottom:1px dashed var(--fg-3)">all repositories on github</a>
+<section id="about" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>About</h2></div>
+    <div>
+      <p class="lede reveal">
+        I build forensic AI agents that <em>cannot</em> lie about
+        what they found &mdash; because they can only call read-only tools,
+        and every call is cryptographically chained.
       </p>
-    </div>
-  </section>
-
-  <!-- ─────────────── published & recognized ─────────────── -->
-  <section id="published">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">04</span><h2>published &amp; recognized · /credit</h2><span class="line"></span>
+      <div class="prose reveal" style="margin-top:2.5rem">
+        <p>
+          Eight years in incident response and detection engineering, four of them in Tokyo.
+          I work on the part of security that is mostly underestimated &mdash; the
+          investigative loop that runs <strong>after</strong> a SIEM lights up. Cross-artifact
+          correlation, timeline reconstruction, contradiction handling. The work that
+          separates a senior analyst from a junior one.
+        </p>
+        <p>
+          Lately I've been moving that loop into autonomous agents &mdash; not as a buzzword,
+          but as an <strong>architectural problem</strong>. Most agentic systems
+          ship with prompt-based guardrails. Those don't survive contact with adversaries.
+          The systems I'm building put the boundary in the tool surface, not the prompt.
+        </p>
+        <p>
+          The work I'm proudest of right now is <a href="#flagship">agentic-dart</a>,
+          submitted to the SANS FIND EVIL! 2026 hackathon and converging into the
+          baseline for an internal Agentic DFIR PoC.
+        </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!-- book -->
-      <div class="work-list" data-reveal>
-        <a class="work-row" href="https://www.yes24.com/Product/Goods/83538369" target="_blank" rel="noopener">
-          <span class="yr">2019</span>
-          <span class="nm">📖 Network Attack Packet Analysis</span>
-          <span class="desc">Lead-author technical book — DDoS, web exploitation, malicious traffic, wireless intrusion, system exploitation, large-volume packet analysis. <span class="tag">Freelec · ISBN 9788965402589 · ~370 pp · co-author</span></span>
-          <span class="stars"><b>book</b> · ko</span>
+<section id="flagship" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Flagship project · 2026</p>
+    <div class="feature-card reveal">
+      <div>
+        <div class="feature-head">
+          <h3 class="feature-name">agentic <span class="slash">/</span> dart</h3>
+          <span class="version-pill"><span class="version-dot"></span>v0.5.4 &middot; live</span>
+        </div>
+        <p class="feature-lede">
+          An autonomous DFIR agent that thinks like a senior analyst &mdash;
+          <em>and structurally cannot</em> do anything destructive.
+          Sixty-one read-only forensic tools, cryptographically chained reasoning,
+          ten of twelve MITRE ATT&amp;CK tactics covered.
+        </p>
+        <div class="feature-cta">
+          <a class="btn primary" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">View repository <span class="arrow">→</span></a>
+          <a class="btn" href="https://github.com/Juwon1405/agentic-dart/wiki" target="_blank" rel="noopener">Technical wiki</a>
+          <a class="btn" href="https://findevil.devpost.com/" target="_blank" rel="noopener">SANS submission</a>
+        </div>
+        <ul class="feature-list">
+          <li><span class="pkg">dart_audit</span><span class="desc">Tamper-evident SHA-256 chained collection &amp; chain-of-custody</span></li>
+          <li><span class="pkg">dart_mcp</span><span class="desc">Read-only MCP tool layer (61 functions, stdio &amp; HTTP)</span></li>
+          <li><span class="pkg">dart_agent</span><span class="desc">Hypothesis-driven orchestration loop (deterministic + live)</span></li>
+          <li><span class="pkg">dart_corr</span><span class="desc">Cross-artifact correlation with mechanical contradiction handling</span></li>
+          <li><span class="pkg">dart_playbook</span><span class="desc">10-phase senior-analyst playbook (1,182 LOC, 42 references)</span></li>
+        </ul>
+      </div>
+      <aside class="specs-panel">
+        <div class="specs-row"><span class="specs-key">Version</span><span class="specs-val serif">v0.5.4</span></div>
+        <div class="specs-row"><span class="specs-key">MCP tools</span><span class="specs-val">61 / 61</span></div>
+        <div class="specs-row"><span class="specs-key">Tests passing</span><span class="specs-val">43 / 43</span></div>
+        <div class="specs-row"><span class="specs-key">ATT&amp;CK tactics</span><span class="specs-val">10 / 12</span></div>
+        <div class="specs-bar" style="--pct: 83.3%"></div>
+        <div class="specs-row"><span class="specs-key">Issues tracked</span><span class="specs-val">51</span></div>
+        <div class="specs-row"><span class="specs-key">Wiki pages</span><span class="specs-val">28</span></div>
+        <div class="specs-row"><span class="specs-key">Playbook</span><span class="specs-val">10 phases</span></div>
+        <div class="specs-row"><span class="specs-key">CI matrix</span><span class="specs-val">Py 3.10–3.13</span></div>
+        <div class="specs-row"><span class="specs-key">Submission</span><span class="specs-val serif">SANS · June 15</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>Other work</h2></div>
+    <div class="row-list">
+      <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
+        <span class="row-num">01</span>
+        <span class="row-title">mac-forensics-platform <span class="lang">Python</span></span>
+        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+      </a>
+      <a class="row-link" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
+        <span class="row-num">02</span>
+        <span class="row-title">mac-artifact-collector <span class="lang">Bash</span></span>
+        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+      </a>
+      <a class="row-link" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
+        <span class="row-num">03</span>
+        <span class="row-title">gendfir-rag <span class="lang">Python · LLM</span></span>
+        <span class="row-meta">2025 <span class="arrow">↗</span></span>
+      </a>
+      <a class="row-link" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
+        <span class="row-num">04</span>
+        <span class="row-title">Other repositories on GitHub</span>
+        <span class="row-meta">All <span class="arrow">↗</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>Stack</h2></div>
+    <div class="stack-grid">
+      <div class="stack-col">
+        <h4>Languages</h4>
+        <ul>
+          <li class="primary">Python</li>
+          <li>TypeScript</li>
+          <li>Bash</li>
+          <li>SQL · DuckDB</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Forensics</h4>
+        <ul>
+          <li class="primary">SIFT Workstation</li>
+          <li>Volatility 3</li>
+          <li>Plaso · log2timeline</li>
+          <li>Eric Zimmerman tools</li>
+          <li>YARA · Sigma</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>AI / agents</h4>
+        <ul>
+          <li class="primary">Anthropic API · MCP</li>
+          <li>Claude Code</li>
+          <li>RAG &amp; tool-use loops</li>
+        </ul>
+      </div>
+      <div class="stack-col">
+        <h4>Frameworks</h4>
+        <ul>
+          <li class="primary">MITRE ATT&amp;CK</li>
+          <li>Diamond Model</li>
+          <li>Mandiant attack lifecycle</li>
+          <li>NIST SP 800-86 / 150</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="now" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>Now</h2></div>
+    <div class="now-card reveal">
+      <div class="now-meta">
+        <h4>SANS FIND EVIL! 2026</h4>
+        <div class="countdown" id="cd">due in <b>—</b></div>
+      </div>
+      <div class="prose" style="font-size:15.5px">
+        <p>
+          <strong>agentic-dart v0.5.4 shipped.</strong> Sixty-one read-only MCP tools
+          (36 native + 25 SIFT adapters), 43 of 43 tests passing, audit-chained reasoning loop.
+        </p>
+        <p>
+          Three evaluation tiers now live: synthetic reference, noise-injected realistic at
+          ~1:30 IOC-to-benign ratio, and the <strong>NIST CFReDS Hacking Case</strong> &mdash;
+          a community-trusted external benchmark. The CFReDS recall jumped from 0.10/0.40
+          (v0.5.3) to <strong>0.50/0.80</strong> (v0.5.4) after <code>parse_registry_hive</code> shipped.
+          Remaining gaps are tracked as Phase 2 issues.
+        </p>
+        <p style="color:var(--fg-2);font-size:14px;margin-top:1.5rem">
+          Final QA, demo recording, and the Devpost form before the deadline.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="wrap two-col">
+    <div class="col-label"><h2>Contact</h2></div>
+    <div>
+      <p class="lede reveal" style="margin-bottom:2.5rem">
+        Open to conversations on <em>DFIR automation, agentic SOC,
+        MCP tool design,</em> and replication studies.
+      </p>
+      <div class="contact-grid">
+        <a class="contact-card" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
+          <div class="label">GitHub</div>
+          <div class="value">@Juwon1405</div>
+        </a>
+        <a class="contact-card" href="https://github.com/Juwon1405/agentic-dart/issues" target="_blank" rel="noopener">
+          <div class="label">Issues</div>
+          <div class="value">agentic-dart / issues</div>
+        </a>
+        <a class="contact-card" href="https://findevil.devpost.com/" target="_blank" rel="noopener">
+          <div class="label">Submission</div>
+          <div class="value">findevil.devpost.com</div>
         </a>
       </div>
-
-      <p style="margin:0.4rem 0 1.6rem;font-family:var(--mono);font-size:11px;color:var(--fg-3)" data-reveal data-delay="1">
-        <span style="color:var(--fg-3)">→ also on</span>
-        <a href="https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=217703927" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">aladin</a> ·
-        <a href="https://product.kyobobook.co.kr/detail/S000001019678" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">kyobo</a> ·
-        <a href="https://books.google.com/books?id=SIrIywEACAAJ" target="_blank" rel="noopener" style="color:var(--fg-2);text-decoration:none;border-bottom:1px dashed var(--fg-3)">google books</a>
-      </p>
-
-      <!-- recognition cards -->
-      <div class="now-grid" data-reveal data-delay="2">
-        <article class="now-card">
-          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>2017 · gold prize</div>
-          <h4>🥇 Korea OSS Developer Contest</h4>
-          <p>National OSS award organized by NIPA (National IT Industry Promotion Agency). Awarded for original open-source contribution in security tooling.</p>
-          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">NIPA</span></div>
-        </article>
-
-        <article class="now-card">
-          <div class="label"><span class="dot" style="background:var(--acc-3);box-shadow:0 0 10px var(--acc-3)"></span>2018 · patent</div>
-          <h4>📜 Security Event Correlation</h4>
-          <p>Patent filed: apparatus and method for correlation analysis of security events. Authored during Netmarble Corp. infrastructure security tenure.</p>
-          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">Netmarble Corp.</span></div>
-        </article>
-
-        <article class="now-card">
-          <div class="label"><span class="dot"></span>2017 · 4th place</div>
-          <h4>🎯 CCE National Cyber Defense</h4>
-          <p>Reached the final round (4th overall) of the CCE National Cyber Defense Competition organized by the National Intelligence Service of Korea.</p>
-          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">NIS Korea</span></div>
-        </article>
-
-        <article class="now-card">
-          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>2015 · special prize</div>
-          <h4>🐛 LINE Bug Bounty</h4>
-          <p>Special Prize in the LINE Corp. Bug Bounty Program — vulnerability disclosure and remediation collaboration.</p>
-          <div class="countdown">org <span style="color:var(--fg-3)">→</span> <span style="color:var(--fg-1)">LINE Corp.</span></div>
-        </article>
-      </div>
-
-      <p style="margin:1.6rem 0 0;font-family:var(--mono);font-size:12px;color:var(--fg-2)" data-reveal data-delay="3">
-        <span style="color:var(--fg-3)">→</span> <a href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener" style="color:var(--fg-1);text-decoration:none;border-bottom:1px dashed var(--fg-3)">YouTube · DoubleS1405</a> &nbsp; <span style="color:var(--fg-3)">long-running KR-language infosec lecture channel · 2014→present</span>
-      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ─────────────── stack ─────────────── -->
-  <section id="stack">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">05</span><h2>stack · /tools</h2><span class="line"></span>
-      </div>
-
-      <div class="stack" data-reveal>
-        <div class="col">
-          <h4>languages</h4>
-          <ul>
-            <li class="acc">Python</li>
-            <li class="acc">Bash · Zsh</li>
-            <li>TypeScript</li>
-            <li>Go <span style="color:var(--fg-3)">(learning)</span></li>
-            <li>SQL · KQL</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h4>detection &amp; ir</h4>
-          <ul>
-            <li class="acc">MITRE ATT&amp;CK</li>
-            <li class="acc">YARA · Sigma</li>
-            <li>Splunk · XSOAR</li>
-            <li>Arkime · Suricata</li>
-            <li>Velociraptor · KAPE</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h4>forensics</h4>
-          <ul>
-            <li>Plaso · log2timeline</li>
-            <li>Volatility 3</li>
-            <li>The Sleuth Kit</li>
-            <li>macOS · Linux · Win</li>
-            <li>memory · disk · network</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h4>ai &amp; infra</h4>
-          <ul>
-            <li class="acc">Anthropic API · MCP</li>
-            <li class="acc">LangGraph · Ollama</li>
-            <li>AWS · Bedrock</li>
-            <li>Docker · k8s · git</li>
-            <li>Confluence · Jira</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── now ─────────────── -->
-  <section id="now">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">06</span><h2>currently · /now</h2><span class="line"></span>
-      </div>
-
-      <div class="now-grid">
-        <article class="now-card" data-reveal>
-          <div class="label"><span class="dot"></span>shipping</div>
-          <h4>SANS FIND EVIL! 2026</h4>
-          <p>agentic-dart v0.5.4 shipped — <strong>61 read-only MCP tools (36 native + 25 SIFT adapters)</strong>, 43/43 tests on Python 3.10–3.13, audit-chained loop. Three evaluation tiers: synthetic reference + noise-injected realistic (~1:30 IOC:benign) both at recall=1.0/FPR=0/hallucination=0, plus <strong>NIST CFReDS Hacking Case (community external benchmark)</strong> jumping from 0.10/0.40 (v0.5.3) → <strong>0.50/0.80</strong> (v0.5.4) after `parse_registry_hive` shipped (issue #52 closed). Remaining CFReDS gaps tracked as #53/#54/#55. Final QA passes + demo recording before the deadline.</p>
-          <div class="countdown" id="cd">due in <b>—</b> · 2026-06-15</div>
-        </article>
-
-        <article class="now-card" data-reveal data-delay="1">
-          <div class="label"><span class="dot" style="background:var(--acc-2);box-shadow:0 0 10px var(--acc-2)"></span>reading</div>
-          <h4>Architecture &gt; Prompts</h4>
-          <p>Going deep on tool-use semantics, evidence chains, and where deterministic systems should hand off to a reasoning model — and where they shouldn't.</p>
-          <div class="countdown">notes <span style="color:var(--fg-3)">→</span> <a href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener" style="color:var(--fg-1)">GitNote</a></div>
-        </article>
-
-        <article class="now-card" data-reveal data-delay="2">
-          <div class="label"><span class="dot" style="background:var(--acc-3);box-shadow:0 0 10px var(--acc-3)"></span>open to</div>
-          <h4>Research &amp; Collab</h4>
-          <p>DFIR automation, agentic SOC, MCP tool design, replication studies. If your work touches any of those — get in touch.</p>
-          <div class="countdown">mail <span style="color:var(--fg-3)">→</span> <a href="mailto:juwon1405.jp@gmail.com" style="color:var(--fg-1)">juwon1405.jp@gmail.com</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─────────────── contact ─────────────── -->
-  <section id="contact" style="border-bottom:0">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="num">07</span><h2>get in touch · /contact</h2><span class="line"></span>
-      </div>
-
-      <div class="contact">
-        <div data-reveal>
-          <h2 class="big">
-            Let's <em>build</em><br>something<br>worth shipping.
-          </h2>
-          <p>If you work on detection, IR, or agentic systems — or just want to argue about tool boundaries over coffee in Tokyo — drop a line.</p>
-        </div>
-
-        <nav class="links" data-reveal data-delay="1" aria-label="Contact links">
-          <a class="lk" href="mailto:juwon1405.jp@gmail.com">
-            <span class="k">mail</span><span class="v">juwon1405.jp@gmail.com</span><span class="arrow">↗</span>
-          </a>
-          <a class="lk" href="https://github.com/Juwon1405" target="_blank" rel="noopener">
-            <span class="k">github</span><span class="v">@Juwon1405</span><span class="arrow">↗</span>
-          </a>
-          <a class="lk" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
-            <span class="k">flagship</span><span class="v">agentic-dart</span><span class="arrow">↗</span>
-          </a>
-          <a class="lk" href="https://github.com/Juwon1405?tab=repositories" target="_blank" rel="noopener">
-            <span class="k">repos</span><span class="v">all repositories</span><span class="arrow">↗</span>
-          </a>
-        </nav>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ─────────────── footer ─────────────── -->
 <footer>
-  <div class="wrap row">
-    <span>© 2026 <b style="color:var(--fg)">Bang Juwon</b> · 優心 · YuShin</span>
-    <span style="color:var(--fg-3)">/</span>
-    <span>No tracking. No analytics. Just HTML.</span>
-    <span class="right">
-      <span id="build">built —</span>
-      <span style="color:var(--fg-3)">·</span>
-      <a href="https://github.com/Juwon1405/juwon1405.github.io" target="_blank" rel="noopener">source</a>
-    </span>
+  <div class="wrap">
+    <span>© 2026 Bang Juwon · 方ジュウォン · 優心</span>
+    <span class="build" id="build">built —</span>
   </div>
 </footer>
 
 <script>
-/* ─── Tokyo clock ─── */
 (function(){
-  const el = document.getElementById('clock');
-  if(!el) return;
-  const fmt = new Intl.DateTimeFormat('en-GB',{
-    timeZone:'Asia/Tokyo', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const saved = localStorage.getItem('theme');
+  if(saved){ root.setAttribute('data-theme', saved); }
+  else if(matchMedia('(prefers-color-scheme: dark)').matches){
+    root.setAttribute('data-theme', 'dark');
+  }
+  const refresh = () => {
+    const t = root.getAttribute('data-theme') || 'light';
+    icon.textContent = t === 'dark' ? '●' : '○';
+  };
+  refresh();
+  btn.addEventListener('click', () => {
+    const cur = root.getAttribute('data-theme') || 'light';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    refresh();
   });
-  const tick = ()=>{ el.textContent = fmt.format(new Date()) + ' JST'; };
-  tick(); setInterval(tick, 1000);
 })();
 
-/* ─── SANS countdown ─── */
+(function(){
+  if(!('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
 (function(){
   const el = document.getElementById('cd');
   if(!el) return;
-  const target = new Date('2026-06-15T23:45:00-04:00').getTime();  // Devpost EDT deadline
-  const upd = ()=>{
+  const target = new Date('2026-06-15T23:45:00-04:00').getTime();
+  const upd = () => {
     const ms = target - Date.now();
-    const days = Math.max(0, Math.floor(ms/86400000));
-    const hrs = Math.max(0, Math.floor((ms%86400000)/3600000));
-    el.innerHTML = `due in <b>${days}d ${hrs}h</b> · 2026-06-15`;
+    if(ms <= 0){ el.innerHTML = '<b>submission window closed</b>'; return; }
+    const days = Math.floor(ms / 86400000);
+    const hrs = Math.floor((ms % 86400000) / 3600000);
+    el.innerHTML = `due in <b>${days}d ${hrs}h</b>`;
   };
   upd(); setInterval(upd, 60000);
 })();
 
-/* ─── build date ─── */
 (function(){
   const el = document.getElementById('build');
   if(!el) return;
   const d = new Date();
   const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth()+1).padStart(2,'0');
-  const day = String(d.getUTCDate()).padStart(2,'0');
+  const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(d.getUTCDate()).padStart(2, '0');
   el.textContent = `built ${y}.${m}.${day}`;
 })();
-
-/* ─── reveal on scroll ─── */
-(function(){
-  if(!('IntersectionObserver' in window)){
-    document.querySelectorAll('[data-reveal]').forEach(e=>e.classList.add('in'));
-    return;
-  }
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-    });
-  },{ rootMargin:'-8% 0px -8% 0px', threshold:0.05 });
-  document.querySelectorAll('[data-reveal]').forEach(e=>io.observe(e));
-})();
-
-/* ─── kanji micro-glitch on hover ─── */
-(function(){
-  const k = document.querySelector('.kanji');
-  if(!k) return;
-  let raf=0;
-  k.addEventListener('mouseenter', ()=>{
-    cancelAnimationFrame(raf);
-    let t=0;
-    const step=()=>{
-      t++;
-      const dx=(Math.random()-.5)*3, dy=(Math.random()-.5)*2;
-      k.style.transform=`translate(${dx}px,${dy}px)`;
-      if(t<8) raf=requestAnimationFrame(step);
-      else k.style.transform='';
-    };
-    step();
-  });
-})();
 </script>
+
 </body>
 </html>
