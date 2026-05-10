@@ -589,7 +589,7 @@ footer a:hover{ color:var(--acc) }
             <p><span class="key">based     </span><span class="val">Tokyo, JP</span> <span class="key">since</span> <span class="val">2022</span></p>
             <p><span class="key">focus     </span><span class="val">agentic DFIR · MCP · ATT&amp;CK</span></p>
             <p><span class="key">stack     </span><span class="val">python · bash · ts · llm · mcp</span></p>
-            <p><span class="key">flagship  </span><span class="val">agentic-dart</span> <span class="ok">[v0.4.1]</span></p>
+            <p><span class="key">flagship  </span><span class="val">agentic-dart</span> <span class="ok">[v0.5.4]</span></p>
             <p><span class="key">submission</span><span class="val">SANS FIND EVIL! 2026</span> <span class="warn">[due 06-15]</span></p>
             <p><span class="prompt">$</span> _<span class="cursor"></span></p>
           </div>
@@ -647,7 +647,7 @@ footer a:hover{ color:var(--acc) }
       <div class="featured">
         <div>
           <div class="meta" data-reveal>
-            <span class="pill acc">● live · v0.4.1</span>
+            <span class="pill acc">● live · v0.5.4</span>
             <span class="pill">SANS FIND EVIL! 2026</span>
             <span class="pill">Python · MCP · LLM</span>
           </div>
@@ -657,8 +657,9 @@ footer a:hover{ color:var(--acc) }
           </h3>
 
           <p class="lede" data-reveal data-delay="2">
-            An autonomous detection &amp; response agent. Five packages, thirty-five MCP tool functions,
-            eleven of twelve ATT&amp;CK tactics covered. The architecture is the point.
+            An autonomous detection &amp; response agent. Five packages, sixty-one MCP tool functions
+            (thirty-six native + twenty-five SIFT adapters), ten of twelve ATT&amp;CK tactics covered.
+            The architecture is the point.
           </p>
 
           <div class="ctas" data-reveal data-delay="3">
@@ -676,23 +677,23 @@ footer a:hover{ color:var(--acc) }
           <p class="kicker">Decomposed</p>
           <div style="font-family:var(--mono);font-size:13px;color:var(--fg-1);line-height:1.95" data-reveal data-delay="4">
             <div><span style="color:var(--acc)">dart_audit</span><span style="color:var(--fg-3)"> — </span>collection &amp; chain-of-custody</div>
-            <div><span style="color:var(--acc)">dart_mcp</span><span style="color:var(--fg-3)"> — </span>tool layer (35 functions, stdio/HTTP)</div>
+            <div><span style="color:var(--acc)">dart_mcp</span><span style="color:var(--fg-3)"> — </span>tool layer (61 functions, stdio/HTTP)</div>
             <div><span style="color:var(--acc)">dart_agent</span><span style="color:var(--fg-3)"> — </span>orchestration &amp; reasoning loop</div>
             <div><span style="color:var(--acc)">dart_corr</span><span style="color:var(--fg-3)"> — </span>deterministic correlation engine</div>
-            <div><span style="color:var(--acc)">dart_playbook</span><span style="color:var(--fg-3)"> — </span>YAML, 10 phases, 845 lines</div>
+            <div><span style="color:var(--acc)">dart_playbook</span><span style="color:var(--fg-3)"> — </span>YAML, 10 phases, 1182 lines</div>
           </div>
         </div>
 
         <div class="specs" data-reveal data-delay="2">
-          <div class="row"><span class="k">version</span><span class="v acc">v0.4.1</span></div>
-          <div class="row"><span class="k">tools</span><span class="v">35 / 35</span></div>
-          <div class="row"><span class="k">tests</span><span class="v">20 / 20 passing</span></div>
+          <div class="row"><span class="k">version</span><span class="v acc">v0.5.4</span></div>
+          <div class="row"><span class="k">tools</span><span class="v">61 / 61</span></div>
+          <div class="row"><span class="k">tests</span><span class="v">43 / 43 passing</span></div>
           <div class="row"><span class="k">ATT&amp;CK tactics</span><span class="v">10 / 12</span></div>
-          <div class="progress" style="--pct:91.6%"></div>
-          <div class="row"><span class="k">issues tracked</span><span class="v">38</span></div>
+          <div class="progress" style="--pct:83.3%"></div>
+          <div class="row"><span class="k">issues tracked</span><span class="v">51</span></div>
           <div class="row"><span class="k">milestones</span><span class="v">4</span></div>
-          <div class="row"><span class="k">wiki pages</span><span class="v">25</span></div>
-          <div class="row"><span class="k">playbook</span><span class="v">10 phases · 845 LOC</span></div>
+          <div class="row"><span class="k">wiki pages</span><span class="v">28</span></div>
+          <div class="row"><span class="k">playbook</span><span class="v">10 phases · 1182 LOC</span></div>
           <div class="row"><span class="k">submission</span><span class="v" style="color:var(--acc-2)">SANS · 2026-06-15</span></div>
         </div>
       </div>
@@ -967,7 +968,7 @@ footer a:hover{ color:var(--acc) }
 (function(){
   const el = document.getElementById('cd');
   if(!el) return;
-  const target = new Date('2026-06-15T23:59:59+09:00').getTime();
+  const target = new Date('2026-06-15T23:45:00-04:00').getTime();  // Devpost EDT deadline
   const upd = ()=>{
     const ms = target - Date.now();
     const days = Math.max(0, Math.floor(ms/86400000));
