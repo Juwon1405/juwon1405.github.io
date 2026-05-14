@@ -902,13 +902,13 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         <a class="work-row featured" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
           <span class="yr">2026</span>
           <span class="nm">agentic-dart<span class="badge">Live</span><span class="version">v0.6.0</span></span>
-          <span class="desc">Autonomous DFIR agent &mdash; 67 read-only MCP tools (incl. cross-platform supply-chain IOC sweeps), audit-chained reasoning, 10/12 ATT&amp;CK tactics. SANS FIND EVIL! 2026 entry.<span class="tag">Python · MCP · LLM</span></span>
+          <span class="desc">Autonomous DFIR agent &mdash; typed read-only MCP surface (native pure-Python + SIFT Workstation adapters incl. supply-chain IOC sweeps), audit-chained reasoning, broad MITRE ATT&amp;CK enterprise coverage. SANS FIND EVIL! 2026 entry.<span class="tag">Python · MCP · LLM</span></span>
           <span class="arrow">↗</span>
         </a>
         <a class="work-row" href="https://github.com/Juwon1405/agentic-dart-collector-adapter" target="_blank" rel="noopener">
           <span class="yr">2026</span>
           <span class="nm">collector-adapter<span class="badge new">New</span></span>
-          <span class="desc">Phase 1.3 of the Agentic-DART roadmap. Stdlib-only Python adapter that turns Velociraptor offline-collector ZIPs into the <code>evidence_root</code> layout Agentic-DART consumes. Seeds chain-of-custody (manifest.json + SHA-256 index). 27/27 tests, CI Linux+macOS × py3.10/11/12.<span class="tag">Python · stdlib · Apache-2.0</span></span>
+          <span class="desc">Phase 1.3 of the Agentic-DART roadmap. Stdlib-only Python adapter that turns Velociraptor offline-collector ZIPs into the <code>evidence_root</code> layout Agentic-DART consumes. Seeds chain-of-custody (manifest.json + SHA-256 index). Full test suite passes on CI Linux+macOS × py3.10/11/12.<span class="tag">Python · stdlib · MIT</span></span>
           <span class="arrow">↗</span>
         </a>
         <a class="work-row archived" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
@@ -920,7 +920,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         <a class="work-row archived" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
           <span class="yr">2026</span>
           <span class="nm">mac-forensics-platform<span class="badge archived">Archived</span></span>
-          <span class="desc">Flask-based DFIR platform. Ingests collector ZIPs &amp; disk images, parses 30+ artifact categories. Analysis layer superseded by agentic-dart; web UI revival planned in future roadmap.<span class="tag">Python · Flask</span></span>
+          <span class="desc">Flask-based macOS DFIR web platform. Paused for post-SANS repositioning as the Agentic-DART web UI &mdash; reading findings.json + audit.jsonl from an Agentic-DART run and rendering them in the browser.<span class="tag">Python · Flask</span></span>
           <span class="arrow">↗</span>
         </a>
         <a class="work-row archived" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
@@ -1019,7 +1019,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         </div>
         <div class="prose">
           <p>
-            <strong>v0.6.0 live.</strong> 67 read-only MCP tools (incl. six cross-platform supply-chain IOC sweeps ported from <a href="https://github.com/Juwon1405/yushin-mac-artifact-collector">mac-artifact-collector &#x1F4E6;</a>), 55/55 tests, audit-chained reasoning loop.
+            <strong>v0.6.0 live.</strong> Typed read-only MCP surface — native pure-Python forensic functions (now including cross-platform supply-chain IOC sweeps ported from <a href="https://github.com/Juwon1405/yushin-mac-artifact-collector">mac-artifact-collector &#x1F4E6;</a>) plus SIFT Workstation tool adapters. Full test suite passing on a fresh clone, audit-chained reasoning loop.
             Three evaluation tiers now in: synthetic reference, noise-injected realistic at ~1:30 IOC-to-benign,
             and the <em>NIST CFReDS Hacking Case</em> external benchmark
             (recall 0.10/0.40 → 0.50/0.80 after <code>parse_registry_hive</code> shipped).
