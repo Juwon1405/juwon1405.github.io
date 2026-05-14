@@ -494,6 +494,11 @@ code, .mono{
   margin-left: .65rem; vertical-align: middle;
   letter-spacing: 0.08em; text-transform: uppercase;
 }
+.work-row .nm .badge.new{ background: #00875A; }
+.work-row .nm .badge.archived{ background: #5E6C84; }
+.work-row .nm .badge.planned{ background: #FF8B00; }
+.work-row.archived{ opacity: 0.65; }
+.work-row.archived:hover{ opacity: 1; }
 .work-row .nm .version{
   display: inline-block; font-family: var(--mono); font-size: 11px;
   font-weight: 400; padding: .15rem .5rem; border-radius: 4px;
@@ -896,26 +901,32 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
       <div class="work-list reveal">
         <a class="work-row featured" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
           <span class="yr">2026</span>
-          <span class="nm">agentic-dart<span class="badge">Live</span><span class="version">v0.5.4</span></span>
-          <span class="desc">Autonomous DFIR agent &mdash; 61 read-only MCP tools, audit-chained reasoning, 10/12 ATT&amp;CK tactics. SANS FIND EVIL! 2026 entry.<span class="tag">Python · MCP · LLM</span></span>
+          <span class="nm">agentic-dart<span class="badge">Live</span><span class="version">v0.6.0</span></span>
+          <span class="desc">Autonomous DFIR agent &mdash; 67 read-only MCP tools (incl. cross-platform supply-chain IOC sweeps), audit-chained reasoning, 10/12 ATT&amp;CK tactics. SANS FIND EVIL! 2026 entry.<span class="tag">Python · MCP · LLM</span></span>
           <span class="arrow">↗</span>
         </a>
-        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
+        <a class="work-row" href="https://github.com/Juwon1405/agentic-dart-collector-adapter" target="_blank" rel="noopener">
           <span class="yr">2026</span>
-          <span class="nm">mac-forensics-platform</span>
-          <span class="desc">Flask-based DFIR platform. Ingests collector ZIPs &amp; disk images (DD/RAW/E01/AFF/DMG), parses 30+ artifact categories, ships PDF reports.<span class="tag">Python · Flask</span></span>
+          <span class="nm">collector-adapter<span class="badge new">New</span></span>
+          <span class="desc">Phase 1.3 of the Agentic-DART roadmap. Stdlib-only Python adapter that turns Velociraptor offline-collector ZIPs into the <code>evidence_root</code> layout Agentic-DART consumes. Seeds chain-of-custody (manifest.json + SHA-256 index). 27/27 tests, CI Linux+macOS × py3.10/11/12.<span class="tag">Python · stdlib · Apache-2.0</span></span>
           <span class="arrow">↗</span>
         </a>
         <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-artifact-collector" target="_blank" rel="noopener">
           <span class="yr">2026</span>
           <span class="nm">mac-artifact-collector</span>
-          <span class="desc">Single-file zero-dependency macOS DFIR collector. Selective module exec, supply-chain IOC sweeps.<span class="tag">Bash · Zsh</span></span>
+          <span class="desc">Single-file zero-dependency macOS DFIR collector. Originated the supply-chain IOC sweeps (litellm PyPI 2026-03 + generic) now ported into agentic-dart as cross-platform MCP functions.<span class="tag">Bash · Zsh</span></span>
           <span class="arrow">↗</span>
         </a>
-        <a class="work-row" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
+        <a class="work-row" href="https://github.com/Juwon1405/yushin-mac-forensics-platform" target="_blank" rel="noopener">
           <span class="yr">2026</span>
-          <span class="nm">gendfir-rag</span>
-          <span class="desc">Unofficial replication of <em>Loumachi, Ghanem &amp; Ferrag (2024)</em> &mdash; RAG + LLM pipeline for DFIR timeline analysis. Equation-by-equation, fully unit-tested.<span class="tag">Python · LLM · RAG</span></span>
+          <span class="nm">mac-forensics-platform<span class="badge planned">Repositioning</span></span>
+          <span class="desc">Flask-based DFIR platform. Ingests collector ZIPs &amp; disk images (DD/RAW/E01/AFF/DMG), parses 30+ artifact categories. Planned for repositioning as the Agentic-DART web UI post-SANS.<span class="tag">Python · Flask</span></span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work-row archived" href="https://github.com/Juwon1405/yushin-gendfir-rag" target="_blank" rel="noopener">
+          <span class="yr">2024</span>
+          <span class="nm">gendfir-rag<span class="badge archived">Archived</span></span>
+          <span class="desc">Unofficial replication of <em>Loumachi, Ghanem &amp; Ferrag (2024)</em> &mdash; RAG + LLM pipeline for DFIR timeline analysis. Superseded by agentic-dart; kept as reference artifact.<span class="tag">Python · LLM · RAG</span></span>
           <span class="arrow">↗</span>
         </a>
         <a class="work-row" href="https://github.com/Juwon1405/GitNote" target="_blank" rel="noopener">
@@ -1008,13 +1019,13 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         </div>
         <div class="prose">
           <p>
-            <strong>v0.5.4 live.</strong> 61 read-only MCP tools, 43/43 tests, audit-chained reasoning loop.
+            <strong>v0.6.0 live.</strong> 67 read-only MCP tools (incl. six cross-platform supply-chain IOC sweeps ported from <a href="https://github.com/Juwon1405/yushin-mac-artifact-collector">mac-artifact-collector</a>), 55/55 tests, audit-chained reasoning loop.
             Three evaluation tiers now in: synthetic reference, noise-injected realistic at ~1:30 IOC-to-benign,
             and the <em>NIST CFReDS Hacking Case</em> external benchmark
             (recall 0.10/0.40 → 0.50/0.80 after <code>parse_registry_hive</code> shipped).
           </p>
           <p style="color:var(--fg-2);font-size:14px">
-            Final QA, demo recording, and the Devpost form before the deadline.
+            Phase 1.3 deliverable <a href="https://github.com/Juwon1405/agentic-dart-collector-adapter">collector-adapter</a> shipped alongside (Velociraptor ZIP → evidence_root glue). Final QA, demo recording, and the Devpost form before the deadline.
           </p>
         </div>
       </div>
