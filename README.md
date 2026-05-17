@@ -6,10 +6,11 @@ Personal site of **Bang Juwon (優心 / YuShin)** — DFIR &amp; Detection Engin
 
 ## Stack
 
-- Single-page static site. No framework, no build step.
+- Single-page static site. No framework, no client-side build step.
 - `index.html` ships HTML + CSS + JS inline. That's the whole thing.
-- Fonts via Google Fonts CDN: **Instrument Serif**, **JetBrains Mono**, **Noto Sans JP**.
-- `.nojekyll` disables GitHub Pages' Jekyll pipeline so files are served as-is.
+- Fonts via Google Fonts CDN: **Fraunces** (display serif), **Geist** (sans), **Geist Mono** (mono). `404.html` uses **Instrument Serif** + **JetBrains Mono**.
+- `.nojekyll` is kept for safety, though the deploy workflow uploads the repo as a Pages artifact directly (Jekyll is not invoked).
+- CI substitutes `__BUILD_DATE__` and `sitemap.xml`'s `<lastmod>` at deploy time.
 
 ## Layout
 

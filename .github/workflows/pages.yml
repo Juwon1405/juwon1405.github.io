@@ -25,6 +25,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Stamp build date
+        run: |
+          BUILD_DATE=$(date -u +%Y.%m.%d)
+          BUILD_DATE_ISO=$(date -u +%Y-%m-%d)
+          sed -i "s/__BUILD_DATE__/${BUILD_DATE}/g" index.html
+          sed -i "s|<lastmod>.*</lastmod>|<lastmod>${BUILD_DATE_ISO}</lastmod>|g" sitemap.xml
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
