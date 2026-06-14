@@ -823,6 +823,71 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 .press .pi span:first-child{ font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3) }
 @media (max-width: 620px){ .press .pi{ grid-template-columns: 1fr; gap: .15rem } }
 
+/* ── Hero spectacle: aurora wash + cursor spotlight + live terminal ── */
+.hero-aurora{
+  position: absolute; inset: -25% -12% auto -12%; height: 150%; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 52% at 20% 18%, rgba(184,49,31,0.20), transparent 72%),
+    radial-gradient(38% 48% at 82% 14%, rgba(139,105,20,0.16), transparent 74%),
+    radial-gradient(52% 60% at 62% 90%, rgba(184,49,31,0.10), transparent 78%);
+  filter: blur(52px); opacity: .9;
+  animation: aurora 20s ease-in-out infinite alternate;
+}
+:root[data-theme="dark"] .hero-aurora{
+  background:
+    radial-gradient(42% 52% at 20% 18%, rgba(255,107,86,0.20), transparent 72%),
+    radial-gradient(38% 48% at 82% 14%, rgba(212,163,65,0.16), transparent 74%),
+    radial-gradient(52% 60% at 62% 90%, rgba(255,107,86,0.12), transparent 78%);
+  opacity: .85;
+}
+@keyframes aurora{
+  0%   { transform: translate3d(0,0,0) scale(1) }
+  50%  { transform: translate3d(2.5%,1.5%,0) scale(1.10) }
+  100% { transform: translate3d(-2.5%,-1%,0) scale(1.05) }
+}
+@media (prefers-reduced-motion: reduce){ .hero-aurora{ animation: none } }
+
+.hero-spot{
+  position: absolute; width: 540px; height: 540px; border-radius: 50%;
+  z-index: 0; pointer-events: none; left: -9999px; top: -9999px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 20%, transparent), transparent 62%);
+  filter: blur(8px); opacity: 0; transition: opacity .35s ease;
+}
+@media (prefers-reduced-motion: reduce){ .hero-spot{ display: none } }
+#bgfx{ opacity: .62 }
+:root[data-theme="dark"] #bgfx{ opacity: .72 }
+
+.term{
+  position: relative; z-index: 1;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  background: var(--bg-card); box-shadow: var(--shadow-md);
+}
+.term-bar{
+  display: flex; align-items: center; gap: .5rem;
+  padding: .7rem 1rem; border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--bg-2) 55%, var(--bg-card));
+}
+.term-bar .d{ width: 11px; height: 11px; border-radius: 50%; display: inline-block }
+.term-bar .d.r{ background: #ff5f57 } .term-bar .d.y{ background: #febc2e } .term-bar .d.g{ background: #28c840 }
+.term-bar .t{ margin-left: .6rem; font-family: var(--mono); font-size: 11.5px; color: var(--fg-3); letter-spacing: .04em }
+.term-body{
+  padding: 1.2rem 1.25rem 1.5rem; margin: 0;
+  font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--fg-1);
+  min-height: 188px; white-space: pre-wrap; word-break: break-word;
+}
+.term-body .pr{ color: var(--accent) }
+.term-body .ok{ color: var(--green) }
+.term-body .dim{ color: var(--fg-3) }
+.term-cur{
+  display: inline-block; width: 8px; height: 1.05em; vertical-align: text-bottom;
+  background: var(--fg-2); margin-left: 2px; animation: blink 1.05s step-end infinite;
+}
+@keyframes blink{ 50%{ opacity: 0 } }
+@media (prefers-reduced-motion: reduce){ .term-cur{ animation: none } }
+
 </style>
 
 <noscript>
@@ -882,7 +947,9 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 
 <!-- Hero ───────────────────────────────────────────────── -->
 <section class="hero">
+  <div class="hero-aurora" aria-hidden="true"></div>
   <canvas id="bgfx" aria-hidden="true"></canvas>
+  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
   <div class="wrap">
 
     <div class="hero-tag reveal">
@@ -926,6 +993,21 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
           <span class="hero-meta-val">한국어 · 日本語 · English</span>
         </div>
       </div>
+    </div>
+
+    <!-- Live terminal — a forensic session, typed -->
+    <div class="term reveal" aria-hidden="true">
+      <div class="term-bar">
+        <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+        <span class="t">juwon@dfir — agentic-dart — zsh</span>
+      </div>
+      <pre class="term-body" id="term"><span class="pr">$ dart-agent investigate ./evidence/case-01</span>
+<span class="dim">▸ mounting read-only MCP surface … 72 typed tools</span>
+<span class="dim">▸ building super-timeline … 1,284,402 events · ATT&amp;CK-mapped</span>
+<span class="ok">✓ T1059.001  PowerShell — base64 payload · host WIN-7X64</span>
+<span class="ok">✓ T1071.001  C2 beacon — 5s jitter → 185.xx.xx.40</span>
+<span class="ok">✓ verdict: real incident · 0 hallucinated · recall 1.000</span>
+<span class="pr">$ </span><span class="term-cur"></span></pre>
     </div>
 
     <!-- KPI strip — what positions me as senior, not as 'agentic-dart guy' -->
@@ -1615,6 +1697,62 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
     };
     requestAnimationFrame(tick);
   });
+})();
+
+/* Cursor spotlight over the hero */
+(function(){
+  const hero = document.querySelector('.hero'), spot = document.getElementById('heroSpot');
+  if(!hero || !spot) return;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    spot.style.left = (e.clientX - r.left) + 'px';
+    spot.style.top  = (e.clientY - r.top) + 'px';
+    spot.style.opacity = '1';
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { spot.style.opacity = '0'; });
+})();
+
+/* Live terminal — a forensic session, typed on a loop */
+(function(){
+  const el = document.getElementById('term');
+  if(!el) return;
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SES = [
+    { c: 'pr',  t: '$ dart-agent investigate ./evidence/case-01' },
+    { c: 'dim', t: '▸ mounting read-only MCP surface … 72 typed tools' },
+    { c: 'dim', t: '▸ building super-timeline … 1,284,402 events · ATT&CK-mapped' },
+    { c: 'ok',  t: '✓ T1059.001  PowerShell — base64 payload  · host WIN-7X64' },
+    { c: 'ok',  t: '✓ T1071.001  C2 beacon — 5s jitter → 185.xx.xx.40' },
+    { c: 'ok',  t: '✓ verdict: real incident · 0 hallucinated · recall 1.000' },
+    { c: 'pr',  t: '$ ' }
+  ];
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const render = (done, active, cursor) => {
+    let html = done.map(s => '<span class="' + s.c + '">' + esc(s.t) + '</span>').join('\n');
+    if(active){ if(html) html += '\n'; html += '<span class="' + active.c + '">' + esc(active.t) + '</span>'; }
+    if(cursor) html += '<span class="term-cur"></span>';
+    el.innerHTML = html;
+  };
+  if(reduce){ render(SES, null, true); return; }
+  let done = [], li = 0, ci = 0;
+  const type = () => {
+    const cur = SES[li];
+    ci++;
+    render(done, { c: cur.c, t: cur.t.slice(0, ci) }, true);
+    if(ci >= cur.t.length){
+      done.push(cur); li++; ci = 0;
+      if(li >= SES.length){ render(SES, null, true); return; }   // settle, no loop
+      setTimeout(type, cur.c === 'pr' ? 320 : 480);
+      return;
+    }
+    setTimeout(type, 14 + Math.random() * 28);
+  };
+  // Pre-filled in HTML so it reads premium even before/without JS; type once on first view.
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver(es => { if(es[0].isIntersecting){ io.disconnect(); el.innerHTML = ''; type(); } }, { threshold: 0.25 });
+    io.observe(el);
+  } else { type(); }
 })();
 </script>
 
