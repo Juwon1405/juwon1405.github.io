@@ -757,6 +757,72 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
   .reveal.in{ opacity: 1; transform: none }
 }
 
+/* Hero generative backdrop — interactive node-link field ───── */
+#bgfx{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+  opacity: .50;
+  -webkit-mask-image: radial-gradient(120% 90% at 70% 30%, #000 55%, transparent 100%);
+          mask-image: radial-gradient(120% 90% at 70% 30%, #000 55%, transparent 100%);
+}
+:root[data-theme="dark"] #bgfx{ opacity: .62 }
+.hero > .wrap{ position: relative; z-index: 1 }
+@media (prefers-reduced-motion: reduce){ #bgfx{ display: none } }
+
+/* count-up keeps numerals tabular while animating */
+.kpi-num .cu{ font-variant-numeric: lining-nums tabular-nums }
+
+/* Experience — career timeline ────────────────────────────── */
+.timeline{ border-top: 1px solid var(--line); margin-top: .5rem }
+.tl-row{
+  display: grid; grid-template-columns: 140px 1fr; gap: 1.75rem;
+  padding: 1.85rem 0; border-bottom: 1px solid var(--line);
+  position: relative; transition: padding-left .3s cubic-bezier(.16,1,.3,1);
+}
+.tl-row:hover{ padding-left: .75rem }
+.tl-row.current{
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--accent) 4%, transparent), transparent 55%);
+  padding-left: 1.25rem;
+}
+.tl-row.current:hover{ padding-left: 1.75rem }
+@media (max-width: 760px){
+  .tl-row{ grid-template-columns: 1fr; gap: .45rem; padding: 1.5rem 0 }
+  .tl-row.current{ padding-left: .9rem }
+}
+.tl-when{
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: .05em;
+  color: var(--fg-3); line-height: 1.5; padding-top: .35rem;
+}
+.tl-when .dot{
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--fg-4); margin-right: .5rem; vertical-align: middle;
+}
+.tl-row.current .tl-when .dot{ background: var(--green) }
+.tl-what h3{
+  font-family: var(--serif); font-size: 1.3rem; letter-spacing: -.018em;
+  line-height: 1.2; margin-bottom: .3rem;
+}
+.tl-what .org{ font-size: 13.5px; color: var(--fg-2); font-style: italic; margin-bottom: .65rem }
+.tl-what p{ font-size: 14.5px; line-height: 1.6; color: var(--fg-1); margin: 0; max-width: 56ch }
+.tl-what .chips{ margin-top: .85rem; display: flex; flex-wrap: wrap; gap: .4rem }
+.tl-what .chip{
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
+  color: var(--fg-2); border: 1px solid var(--line-2); border-radius: 999px;
+  padding: .2rem .6rem;
+}
+.tl-what .chip.gold{ color: var(--gold); border-color: color-mix(in oklab, var(--gold) 40%, var(--line-2)) }
+
+/* In the press — compact media row ────────────────────────── */
+.press{
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--line-2);
+  display: grid; grid-template-columns: 1fr; gap: .35rem;
+  font-size: 14px; color: var(--fg-1);
+}
+.press .pi{ display: grid; grid-template-columns: 150px 1fr; gap: 1rem; padding: .5rem 0 }
+.press .pi span:first-child{ font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3) }
+@media (max-width: 620px){ .press .pi{ grid-template-columns: 1fr; gap: .15rem } }
+
 </style>
 
 <noscript>
@@ -795,6 +861,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
     <a href="/" class="brand" aria-label="Juwon Bang — home"><em>Juwon Bang</em><span class="kanji">優心</span></a>
     <ul class="nav-links" id="nav-menu">
       <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
       <li><a href="#published">Published</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#stack">Stack</a></li>
@@ -815,11 +882,12 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 
 <!-- Hero ───────────────────────────────────────────────── -->
 <section class="hero">
+  <canvas id="bgfx" aria-hidden="true"></canvas>
   <div class="wrap">
 
     <div class="hero-tag reveal">
       <span class="pulse"></span>
-      <span>Tokyo · open to research collaboration</span>
+      <span data-scramble>Tokyo · open to research collaboration</span>
     </div>
 
     <div class="hero-grid">
@@ -863,22 +931,22 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
     <!-- KPI strip — what positions me as senior, not as 'agentic-dart guy' -->
     <div class="hero-kpis reveal">
       <div class="kpi">
-        <span class="kpi-num">12<span class="small">+yrs</span></span>
+        <span class="kpi-num"><span class="cu">14</span><span class="small">+yrs</span></span>
         <span class="kpi-label">In security</span>
-        <span class="kpi-sub">DFIR &amp; detection engineering, since 2014</span>
+        <span class="kpi-sub">SOC → infra → IR → CSIRT, since 2012</span>
       </div>
       <div class="kpi">
-        <span class="kpi-num">1</span>
+        <span class="kpi-num"><span class="cu">1</span></span>
         <span class="kpi-label">Book published</span>
         <span class="kpi-sub">Network Attack Packet Analysis · 2019</span>
       </div>
       <div class="kpi">
-        <span class="kpi-num">4</span>
+        <span class="kpi-num"><span class="cu">6</span></span>
         <span class="kpi-label">Awards &amp; recognitions</span>
-        <span class="kpi-sub">NIPA · NIS · LINE · Netmarble</span>
+        <span class="kpi-sub">NIPA · NIS · LINE · FSI · KISA</span>
       </div>
       <div class="kpi">
-        <span class="kpi-num">6+</span>
+        <span class="kpi-num"><span class="cu">6</span><span class="small">+</span></span>
         <span class="kpi-label">Open-source</span>
         <span class="kpi-sub">DFIR tooling on GitHub</span>
       </div>
@@ -933,15 +1001,112 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
   </div>
 </section>
 
+<!-- Experience — career timeline ──────────────────────── -->
+<section id="experience" class="section">
+  <div class="wrap two-col">
+    <div class="col-label">
+      <span class="num"><em>02</em></span>
+      <h2>Experience</h2>
+    </div>
+    <div>
+      <p class="eyebrow reveal">From 24/365 SOC to bank-grade incident response to LINE CSIRT &mdash; since 2012</p>
+
+      <div class="timeline reveal">
+        <div class="tl-row current">
+          <div class="tl-when"><span class="dot"></span>Now · Tokyo</div>
+          <div class="tl-what">
+            <h3>CSIRT &mdash; Detection &amp; Response</h3>
+            <p class="org">LY Corporation (LINE) · Tokyo, JP</p>
+            <p>Computer Security Incident Response for LINE's global services &mdash; threat detection, forensic triage, and response at internet scale. The team I watched and admired from the SOC side for years &mdash; now from the inside.</p>
+            <div class="chips">
+              <span class="chip">CSIRT</span>
+              <span class="chip">Detection &amp; Response</span>
+              <span class="chip">Global scale</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-when"><span class="dot"></span>2018 – 2022</div>
+          <div class="tl-what">
+            <h3>Incident-Response Lead <span class="muted" style="font-family:var(--mono);font-size:11px">· Manager / 과장</span></h3>
+            <p class="org">Information Security · KB Kookmin Bank</p>
+            <p>Part lead for incident response at one of Korea's largest banks &mdash; threat analysis, SOC operations, and response across domestic and overseas branches. Built the bank's <em>first</em> BGP / scrubbing-center DDoS defense (failover 180 min &rarr; 3 min), and stood up open-source network forensics (Arkime + ELK, ~1&nbsp;PB) and a Suricata IDS that replaced 13 commercial sensors.</p>
+            <div class="chips">
+              <span class="chip">Incident Response</span>
+              <span class="chip">Tera-scale DDoS</span>
+              <span class="chip gold">FIESTA 2020</span>
+              <span class="chip gold">KISA Director's Award</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-when"><span class="dot"></span>2016 – 2018</div>
+          <div class="tl-what">
+            <h3>Infrastructure Security</h3>
+            <p class="org">Security Office · Netmarble</p>
+            <p>Infrastructure &amp; cloud security (AWS / GCP / Tencent) for a major global game publisher &mdash; SIEM / WAF / IDS build-outs, web-vuln assessment, and live incident analysis. Co-inventor on a filed patent for a <em>security-event correlation</em> apparatus (2018).</p>
+            <div class="chips">
+              <span class="chip">Infra / Cloud</span>
+              <span class="chip gold">Patent · 2018</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-when"><span class="dot"></span>2014 – 2016</div>
+          <div class="tl-what">
+            <h3>Security Operations (SOC)</h3>
+            <p class="org">Service Security · NIT Service <span class="muted" style="font-family:var(--mono);font-size:11px">(Naver affiliate)</span></p>
+            <p>24/365 SOC monitoring &mdash; IDS pattern development, correlation rules, and packet-level analysis for LINE services. The packet fluency built here later became a published book.</p>
+            <div class="chips">
+              <span class="chip">SOC · 24/365</span>
+              <span class="chip">IDS / Detection</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-when"><span class="dot"></span>2012 – 2014</div>
+          <div class="tl-what">
+            <h3>Security Engineer</h3>
+            <p class="org">Information Security · Hankyung iNet</p>
+            <p>Security-solution delivery &amp; maintenance and Common Criteria (CC) certification work &mdash; vulnerability assessment and the documentation discipline behind certified products. Where it started.</p>
+            <div class="chips">
+              <span class="chip">CC Certification</span>
+              <span class="chip">Vuln Assessment</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-row">
+          <div class="tl-when"><span class="dot"></span>2014 → now</div>
+          <div class="tl-what">
+            <h3>Educator &amp; Author <span class="muted" style="font-family:var(--mono);font-size:11px">· in parallel</span></h3>
+            <p class="org">DoubleS1405 · independent</p>
+            <p>Founded and run a long-running Korean infosec study community &amp; lecture channel (DoubleS1405, since 2014), and authored <em>Network Attack Packet Analysis</em> (Freelec, 2019).</p>
+            <div class="chips">
+              <span class="chip">Lecturer</span>
+              <span class="chip">Author</span>
+              <span class="chip">Community</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="press reveal">
+        <div class="pi"><span>In the press</span><span>Featured on <strong>Pax Economy TV (팍스경제TV)</strong> for the bank's information-security work; KB Kookmin Bank's KISA Director's Award was covered in Korean tech press (2019).</span></div>
+        <div class="pi"><span>Lectures</span><span><a href="https://www.youtube.com/c/DoubleS1405" target="_blank" rel="noopener">DoubleS1405</a> &mdash; Korean infosec lectures (CTF, network forensics, packet analysis), 2014–present.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Published — book + awards ─────────────────────────── -->
 <section id="published" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>02</em></span>
+      <span class="num"><em>03</em></span>
       <h2>Published<br>&amp; recognized</h2>
     </div>
     <div>
-      <p class="eyebrow reveal">A book, four awards, one patent</p>
+      <p class="eyebrow reveal">A book, six awards, one patent</p>
 
       <!-- Book feature -->
       <div class="book-feature reveal">
@@ -1000,6 +1165,20 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
           <p class="award-org">LINE Corp.</p>
           <p class="award-desc">Vulnerability disclosure &amp; remediation collaboration.</p>
         </article>
+        <article class="award-card">
+          <div class="award-year">2020</div>
+          <span class="award-prize">FIESTA · Encouragement</span>
+          <h3 class="award-title">Financial Cyber-Threat Analysis</h3>
+          <p class="award-org">Financial Security Institute (FSI) · KB Kookmin Bank team</p>
+          <p class="award-desc">FIESTA 2020 financial-sector competition across forensics, malware, mobile, and web-hacking tracks.</p>
+        </article>
+        <article class="award-card">
+          <div class="award-year">2019</div>
+          <span class="award-prize">Director's Award</span>
+          <h3 class="award-title">KISA Incident-Response Exercise</h3>
+          <p class="award-org">Korea Internet &amp; Security Agency · KB Kookmin Bank</p>
+          <p class="award-desc">Best-practice commendation (KISA Director's Award) in the national cyber crisis-response drill; covered in Korean press, 2019.</p>
+        </article>
       </div>
     </div>
   </div>
@@ -1009,7 +1188,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="work" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>03</em></span>
+      <span class="num"><em>04</em></span>
       <h2>Selected work</h2>
     </div>
     <div>
@@ -1071,7 +1250,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="stack" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>04</em></span>
+      <span class="num"><em>05</em></span>
       <h2>Stack</h2>
     </div>
     <div>
@@ -1125,7 +1304,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="now" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>05</em></span>
+      <span class="num"><em>06</em></span>
       <h2>Now</h2>
     </div>
     <div>
@@ -1152,7 +1331,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="contact" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>06</em></span>
+      <span class="num"><em>07</em></span>
       <h2>Contact</h2>
     </div>
     <div>
@@ -1301,6 +1480,141 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
   update();
+})();
+
+/* Hero backdrop — interactive node-link field (vanilla canvas) */
+(function(){
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cv = document.getElementById('bgfx');
+  const hero = document.querySelector('.hero');
+  if(reduce || !cv || !hero) return;
+  const ctx = cv.getContext('2d');
+  let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let nodes = [], raf = 0, visible = true;
+  const mouse = { x: -9999, y: -9999 };
+
+  const palette = () => {
+    const dark = (document.documentElement.getAttribute('data-theme') || 'light') === 'dark';
+    return dark
+      ? { dot: 'rgba(247,245,240,0.55)', line: 'rgba(138,138,144,', accent: 'rgba(255,107,86,' }
+      : { dot: 'rgba(13,13,14,0.40)',   line: 'rgba(90,90,96,',    accent: 'rgba(184,49,31,' };
+  };
+
+  function resize(){
+    const r = hero.getBoundingClientRect();
+    w = r.width; h = r.height;
+    cv.width = Math.floor(w * dpr); cv.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const target = Math.min(64, Math.round((w * h) / 16000));
+    nodes = [];
+    for(let i = 0; i < target; i++){
+      nodes.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.4 + 0.6
+      });
+    }
+  }
+
+  function step(){
+    raf = 0;
+    if(!visible){ return; }
+    const p = palette();
+    ctx.clearRect(0, 0, w, h);
+    const LINK = 132, LINK2 = LINK * LINK;
+    for(let i = 0; i < nodes.length; i++){
+      const a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if(a.x < 0 || a.x > w) a.vx *= -1;
+      if(a.y < 0 || a.y > h) a.vy *= -1;
+      for(let j = i + 1; j < nodes.length; j++){
+        const b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y, d2 = dx*dx + dy*dy;
+        if(d2 < LINK2){
+          const al = (1 - d2 / LINK2) * 0.5;
+          ctx.strokeStyle = p.line + al.toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
+      // cursor links + gentle attraction
+      const mdx = a.x - mouse.x, mdy = a.y - mouse.y, md2 = mdx*mdx + mdy*mdy;
+      if(md2 < 168*168){
+        const al = (1 - md2 / (168*168));
+        ctx.strokeStyle = p.accent + (al * 0.55).toFixed(3) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+        a.vx -= (mdx / 168) * 0.006; a.vy -= (mdy / 168) * 0.006;
+      }
+      const sp = Math.hypot(a.vx, a.vy);
+      if(sp > 0.5){ a.vx *= 0.5 / sp; a.vy *= 0.5 / sp; }
+    }
+    ctx.fillStyle = p.dot;
+    for(const a of nodes){ ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill(); }
+    raf = requestAnimationFrame(step);
+  }
+  const start = () => { if(!raf && visible) raf = requestAnimationFrame(step); };
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  window.addEventListener('resize', () => { resize(); }, { passive: true });
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; start(); });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es => { visible = es[0].isIntersecting && !document.hidden; start(); },
+      { threshold: 0 }).observe(hero);
+  }
+  resize(); start();
+})();
+
+/* Count-up — KPI numerals animate from 0 on first reveal */
+(function(){
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = Array.from(document.querySelectorAll('.kpi-num .cu'));
+  if(!els.length || reduce || !('IntersectionObserver' in window)) return;
+  const run = (el) => {
+    const target = parseInt(el.textContent.trim(), 10);
+    if(isNaN(target)) return;
+    const dur = 1100, t0 = performance.now();
+    el.textContent = '0';
+    const tick = (t) => {
+      const k = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(target * e).toString();
+      if(k < 1) requestAnimationFrame(tick); else el.textContent = target.toString();
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if(en.isIntersecting){ run(en.target); io.unobserve(en.target); } });
+  }, { threshold: 0.6 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* Decrypt — scramble-in on tagged text, once, on load */
+(function(){
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll('[data-scramble]');
+  if(!els.length || reduce) return;
+  const glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>';
+  els.forEach(el => {
+    const final = el.textContent;
+    const dur = 900, t0 = performance.now();
+    const tick = (t) => {
+      const k = Math.min(1, (t - t0) / dur);
+      const reveal = Math.floor(final.length * k);
+      let out = '';
+      for(let i = 0; i < final.length; i++){
+        const c = final[i];
+        out += (i < reveal || c === ' ' || c === '·')
+          ? c : glyphs[(Math.floor((t / 30) + i * 7)) % glyphs.length];
+      }
+      el.textContent = out;
+      if(k < 1) requestAnimationFrame(tick); else el.textContent = final;
+    };
+    requestAnimationFrame(tick);
+  });
 })();
 </script>
 
