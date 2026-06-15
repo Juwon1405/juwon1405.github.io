@@ -1001,12 +1001,12 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         <span class="d r"></span><span class="d y"></span><span class="d g"></span>
         <span class="t">juwon@dfir — agentic-dart — zsh</span>
       </div>
-      <pre class="term-body" id="term"><span class="pr">$ dart-agent investigate ./evidence/case-01</span>
-<span class="dim">▸ mounting read-only MCP surface … 72 typed tools</span>
-<span class="dim">▸ building super-timeline … 1,284,402 events · ATT&amp;CK-mapped</span>
-<span class="ok">✓ T1059.001  PowerShell — base64 payload · host WIN-7X64</span>
-<span class="ok">✓ T1071.001  C2 beacon — 5s jitter → 185.xx.xx.40</span>
-<span class="ok">✓ verdict: real incident · 0 hallucinated · recall 1.000</span>
+      <pre class="term-body" id="term"><span class="pr">$ bash examples/demo-run.sh</span>
+<span class="dim">▸ dart-mcp — read-only forensic surface · 0 destructive ops</span>
+<span class="dim">▸ senior-analyst loop · every MCP call SHA-256 audit-chained</span>
+<span class="dim">▸ iter 7 — dart-corr: UNRESOLVED (timestomp 11s pre-alert) → revise</span>
+<span class="ok">✓ bypass test: execute_shell → ToolNotFound (not on the wire)</span>
+<span class="ok">✓ self-evaluation/case-01 · recall 1.000 · hallucination 0</span>
 <span class="pr">$ </span><span class="term-cur"></span></pre>
     </div>
 
@@ -1719,12 +1719,12 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
   if(!el) return;
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SES = [
-    { c: 'pr',  t: '$ dart-agent investigate ./evidence/case-01' },
-    { c: 'dim', t: '▸ mounting read-only MCP surface … 72 typed tools' },
-    { c: 'dim', t: '▸ building super-timeline … 1,284,402 events · ATT&CK-mapped' },
-    { c: 'ok',  t: '✓ T1059.001  PowerShell — base64 payload  · host WIN-7X64' },
-    { c: 'ok',  t: '✓ T1071.001  C2 beacon — 5s jitter → 185.xx.xx.40' },
-    { c: 'ok',  t: '✓ verdict: real incident · 0 hallucinated · recall 1.000' },
+    { c: 'pr',  t: '$ bash examples/demo-run.sh' },
+    { c: 'dim', t: '▸ dart-mcp — read-only forensic surface · 0 destructive ops' },
+    { c: 'dim', t: '▸ senior-analyst loop · every MCP call SHA-256 audit-chained' },
+    { c: 'dim', t: '▸ iter 7 — dart-corr: UNRESOLVED (timestomp 11s pre-alert) → revise' },
+    { c: 'ok',  t: '✓ bypass test: execute_shell → ToolNotFound (not on the wire)' },
+    { c: 'ok',  t: '✓ self-evaluation/case-01 · recall 1.000 · hallucination 0' },
     { c: 'pr',  t: '$ ' }
   ];
   const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
