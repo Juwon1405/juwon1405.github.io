@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://avatars.githubusercontent.com; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Juwon Bang — Senior DFIR Specialist, Tokyo</title>
-<meta name="description" content="Senior DFIR specialist & detection engineer in Tokyo. Author, patent holder, and SANS hackathon contestant. Building autonomous forensic agents." />
+<meta name="description" content="Senior DFIR specialist and detection engineer in Tokyo. Building autonomous forensic agents and private agentic systems for trading and market intelligence." />
 <meta name="author" content="Juwon Bang (방주원 · 優心 / YuShin)" />
 <meta name="color-scheme" content="light dark" />
 <meta name="theme-color" content="#f7f5f0" media="(prefers-color-scheme: light)" />
@@ -14,7 +14,7 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Juwon Bang — Senior DFIR Specialist" />
-<meta property="og:description" content="Author of Network Attack Packet Analysis. NIPA gold prize. Patent holder. Now building autonomous forensic agents in Tokyo." />
+<meta property="og:description" content="Author of Network Attack Packet Analysis. NIPA gold prize. Patent holder. Building autonomous forensic agents and private agentic systems in Tokyo." />
 <meta property="og:url" content="https://juwon1405.github.io/" />
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/126803957?v=4" />
 <meta property="og:image:width" content="460" />
@@ -619,6 +619,119 @@ code, .mono{
 .work-coda a{ color: var(--fg-1); border-bottom: 1px solid var(--fg-4) }
 .work-coda a:hover{ color: var(--fg); border-bottom-color: var(--fg); opacity: 1 }
 
+/* Personal agentic systems ───────────────────────────────── */
+
+.labs-intro{
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  max-width: 42ch;
+  margin-bottom: 2.25rem;
+  font-variation-settings: 'opsz' 72;
+}
+.labs-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 920px){
+  .labs-grid{ grid-template-columns: repeat(2, 1fr) }
+}
+.lab-card{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s ease, border-color .25s ease;
+}
+.lab-card:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-2);
+  opacity: 1;
+}
+.lab-media{
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+.lab-body{
+  padding: 1.5rem;
+}
+.lab-kicker{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .85rem;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+.lab-kicker .live{
+  color: var(--green);
+  letter-spacing: .06em;
+}
+.lab-body h3{
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  margin-bottom: .75rem;
+  letter-spacing: -0.025em;
+}
+.lab-body p{
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--fg-1);
+  margin-bottom: 1rem;
+}
+.lab-points{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 1rem 0 1.25rem;
+}
+.lab-points span{
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--fg-2);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: .2rem .55rem;
+}
+.lab-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--fg-2);
+}
+.lab-links a{
+  border-bottom: 1px solid var(--fg-4);
+}
+.lab-links a:hover{
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+  opacity: 1;
+}
+.labs-note{
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--line-2);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--fg-2);
+  max-width: 72ch;
+}
+
 /* Stack ────────────────────────────────────────────────── */
 
 .stack-grid{
@@ -929,6 +1042,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
       <li><a href="#experience">Experience</a></li>
       <li><a href="#published">Published</a></li>
       <li><a href="#work">Work</a></li>
+      <li><a href="#labs">Labs</a></li>
       <li><a href="#stack">Stack</a></li>
       <li><a href="#now">Now</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1028,9 +1142,9 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
         <span class="kpi-sub">NIPA · NIS · LINE · FSI · KISA</span>
       </div>
       <div class="kpi">
-        <span class="kpi-num"><span class="cu">6</span><span class="small">+</span></span>
-        <span class="kpi-label">Open-source</span>
-        <span class="kpi-sub">DFIR tooling on GitHub</span>
+        <span class="kpi-num"><span class="cu">8</span><span class="small">+</span></span>
+        <span class="kpi-label">Public projects</span>
+        <span class="kpi-sub">DFIR tooling and agentic-system showcases</span>
       </div>
     </div>
 
@@ -1274,7 +1388,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
       <h2>Selected work</h2>
     </div>
     <div>
-      <p class="eyebrow reveal">Six open-source projects, one currently shipping</p>
+      <p class="eyebrow reveal">Public security work and personal agentic systems</p>
 
       <div class="work-list reveal">
         <a class="work-row featured" href="https://github.com/Juwon1405/agentic-dart" target="_blank" rel="noopener">
@@ -1328,11 +1442,76 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
   </div>
 </section>
 
+<!-- Labs — personal agentic systems ────────────────────── -->
+<section id="labs" class="section">
+  <div class="wrap two-col">
+    <div class="col-label">
+      <span class="num"><em>05</em></span>
+      <h2>Personal<br>agentic systems</h2>
+    </div>
+    <div>
+      <p class="labs-intro reveal">
+        Outside DFIR, I run private agentic systems for trading and luxury-watch market intelligence.
+        They are not source-open; the public repos are showcases of the live operator surfaces.
+      </p>
+
+      <div class="labs-grid reveal">
+        <article class="lab-card">
+          <img class="lab-media" src="assets/yushin-trade-live.png" alt="YuShin Trade live dashboard preview" loading="lazy">
+          <div class="lab-body">
+            <div class="lab-kicker"><span>Autonomous trading cockpit</span><span class="live">Live dashboard</span></div>
+            <h3>YuShin Trade</h3>
+            <p>
+              A private Bithumb KRW spot scalping system where the execution loop is deterministic and the LLM acts as a supervisor. It reviews database evidence, blocked entries, policy history, and market context without becoming the runtime dependency.
+            </p>
+            <div class="lab-points">
+              <span>deterministic runtime</span>
+              <span>SQLite evidence</span>
+              <span>LLM supervisor</span>
+              <span>Telegram ops</span>
+            </div>
+            <div class="lab-links">
+              <a href="https://yushin.trade" target="_blank" rel="noopener">dashboard: yushin.trade ↗</a>
+              <a href="https://github.com/Juwon1405/yushin-trade-showcase" target="_blank" rel="noopener">showcase repo ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="lab-card">
+          <img class="lab-media" src="assets/yushin-watch-live.png" alt="YuShin Watch live dashboard preview" loading="lazy">
+          <div class="lab-body">
+            <div class="lab-kicker"><span>Luxury watch intelligence</span><span class="live">Live dashboard</span></div>
+            <h3>YuShin Watch</h3>
+            <p>
+              A private market-intelligence monitor for luxury watch resale. It combines sold-price baselines, active listing scans, exact-reference extraction, catalog context, and vision-assisted review while keeping purchase decisions human-controlled.
+            </p>
+            <div class="lab-points">
+              <span>price engine</span>
+              <span>reference extraction</span>
+              <span>catalog matching</span>
+              <span>vision review</span>
+            </div>
+            <div class="lab-links">
+              <a href="https://yushin.watch" target="_blank" rel="noopener">dashboard: yushin.watch ↗</a>
+              <a href="https://github.com/Juwon1405/yushin-watch-showcase" target="_blank" rel="noopener">showcase repo ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="labs-note reveal">
+        The actual runtimes, prompts, credentials, strategy rules, databases, and deployment details remain private.
+        The interesting part I can show publicly is the product shape: live dashboards, operator reports, policy evidence, and the split between deterministic control and LLM-assisted review.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- Stack ─────────────────────────────────────────────── -->
 <section id="stack" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>05</em></span>
+      <span class="num"><em>06</em></span>
       <h2>Stack</h2>
     </div>
     <div>
@@ -1386,7 +1565,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="now" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>06</em></span>
+      <span class="num"><em>07</em></span>
       <h2>Now</h2>
     </div>
     <div>
@@ -1413,7 +1592,7 @@ footer .build{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.05
 <section id="contact" class="section">
   <div class="wrap two-col">
     <div class="col-label">
-      <span class="num"><em>07</em></span>
+      <span class="num"><em>08</em></span>
       <h2>Contact</h2>
     </div>
     <div>
