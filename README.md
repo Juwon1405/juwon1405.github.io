@@ -8,7 +8,7 @@ Personal site of **Bang Juwon (優心 / YuShin)** — DFIR &amp; Detection Engin
 
 - Single-page static site. No framework, no client-side build step.
 - `index.html` ships HTML + CSS + JS inline. That's the whole thing.
-- Local `assets/` images are used for Agentic-DART and public YuShin Trade / YuShin Watch showcase previews.
+- Local `assets/` images are used for Agentic-DFIR and public YuShin Trade / YuShin Watch showcase previews.
 - Fonts via Google Fonts CDN: **Fraunces** (display serif), **Geist** (sans), **Geist Mono** (mono). `404.html` uses **Instrument Serif** + **JetBrains Mono**.
 - `.nojekyll` is kept for safety, though the deploy workflow uploads the repo as a Pages artifact directly (Jekyll is not invoked).
 - CI substitutes `__BUILD_DATE__` and `sitemap.xml`'s `<lastmod>` at deploy time.
